@@ -1,0 +1,169 @@
+
+.scrollbar .el-scrollbar__wrap { //给外层class不然element组件自己的会有问题比如下拉选项
+    overflow-x: hidden !important;
+}
+.scrollbar .el-scrollbar__view{
+    height: 100%;
+    min-height: 100%;
+}
+//自定义滚动
+.el-table--scrollable-x .el-table__body-wrapper,
+.el-table--scrollable-y .el-table__body-wrapper{
+    overflow: hidden !important;
+}
+.el-table__body-wrapper:hover > .ps__rail-x,
+.el-table__body-wrapper:hover > .ps__rail-y {
+  opacity: 0.6;
+}
+.el-table--scrollable-x .el-table__body-wrapper > .ps__rail-x,
+.el-table--scrollable-y .el-table__body-wrapper > .ps__rail-y {
+    display: block !important;
+    background-color: transparent !important;
+}
+/*弹窗确认*/
+.el-dialog,.el-message-box{
+    margin-bottom: 0 !important;
+    border-radius: 0px !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  .el-dialog__header,.el-message-box__header{
+    border-bottom: 1px solid #D5D5D5;
+    padding: 11px 20px 10px !important;
+    background: #E6E6E6;
+  }
+  .el-dialog__title,.el-message-box__title{
+    font-size: 14px !important;
+    color: #333 !important;
+  }
+  .el-dialog__headerbtn{
+      top: 8px !important;
+      font-size: 22px !important;
+  }
+  .el-dialog__headerbtn:focus .el-dialog__close, .el-dialog__headerbtn:hover .el-dialog__close{
+    color: #333;
+  }
+  .el-dialog__body{
+    padding: 0px !important;
+    background: #fff;
+  }
+  .dialog-footer{
+    padding: 20px !important;
+    background: #2B3153;
+    text-align: right;
+  }
+  .dialog-footer,.el-message-box__btns{
+    border-top: 1px solid #303555;
+  }
+  .el-message-box__btns{
+    padding: 20px 20px 10px 20px !important;
+    background: #2B3153;
+  }
+  .loncom_dialog_scroll{
+    overflow: auto !important;
+  }
+  .el-message-box__content{
+    padding: 50px 15px !important;
+    background: #1C2340;
+    color: #B9C6F2 !important;
+  }
+  .el-message-box__btns .el-button{
+    color: #B9C6F2 !important;
+    padding: 8px 20px;
+  }
+  .el-message-box__btns .el-button--default{
+    border: 1px solid #e0e0e0;
+  }
+  .el-message-box__btns .el-button--default:hover{
+    border: 1px solid #4A78FF;
+    background: #B9C6F2;
+  }
+.el-message-box__btns .el-button--primary{
+    color: #B9C6F2 !important;
+}
+  
+/*时间拖动提示*/
+.el-slider__marks-text{
+    width: 80px;
+}
+
+
+.collapse{
+    width: 100%;
+    background: #fff;
+    height: 100%;
+    overflow: hidden;
+    .el-collapse-item__header{
+        background: #637899;
+        color: #fff;
+        padding-left: 20px;
+        font-size: 16px;
+    }
+    .el-collapse-item__wrap{
+        height: calc(100% - 48px);
+        padding: 10px;
+    }
+    .el-collapse-item__content{
+        padding-bottom: 0;
+        height: 100%;
+    }
+}
+.collapse2{
+    .el-collapse-item.is-active{
+        height: calc(100% - 48px);
+    }
+}
+.collapse3{
+    .el-collapse-item.is-active{
+        height: calc(100% - 96px);
+    }
+}
+
+.swiper-container{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    .swiper-wrapper{
+        height: calc(100% - 48px);
+        top: 48px;
+        .swiper-slide{
+            padding: 10px;
+        }
+    }
+}
+.swiper-container-horizontal>.swiper-pagination-bullets{
+    top: 0;
+    height: 48px;
+    bottom: auto;
+    background: #637899;
+    color: #fff;
+    display: flex;
+    .swiper-pagination-bullet{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        line-height: 48px;
+        font-size: 18px;
+        background: transparent;
+        opacity: 1;
+    }
+    .swiper-pagination-bullet-active{
+        background: #4B5F80;
+        &.slide0{
+            background: #2EBA4F;
+        }
+        &.slide1{
+            background: #D44434;
+        }
+        &.slide2{
+            background: #E8BB33;
+        }
+        &.slide3{
+            background: #65AADC;
+        }
+        &.slide4{
+            background: #CCCCCC;
+        }
+    }
+}
