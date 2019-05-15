@@ -67,9 +67,9 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/loncom/set">
+                    <a href="javascript:;" @click="setSys">
                         <i class="el-icon-s-tools"></i>设置
-                    </router-link>
+                    </a>
                 </li>
                 <li>
                     <a href="javascript:;">
@@ -84,11 +84,12 @@
         <router-view/>
       </div>
     </div>
+    <check-password :dialogInfo="checkInfo" v-if="checkInfo.visible"></check-password>
   </div>
 </template>
 
 <script>
-
+import checkPassword from './set/dialogCheck.vue'
 export default {
     name: 'index',
     provide(){
@@ -115,6 +116,9 @@ export default {
                 hours:'',
                 minutes:'',
                 seconds:''
+            },
+            checkInfo:{
+                visible: false,
             }
         }
     },
@@ -132,9 +136,12 @@ export default {
         toBack:function(){
             this.$router.go(-1);
         },
+        setSys:function(){
+            this.checkInfo.visible=true;
+        },
     },
     components: {
-        
+        checkPassword
     }
 }
 </script>

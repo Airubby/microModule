@@ -2,10 +2,10 @@
   <div class="content">
     <el-collapse v-model="activeName" accordion class="collapse collapse2">
         <el-collapse-item title="环境图示" name="1">
-            <graphic></graphic>
+            <graphic v-if="activeName=='1'"></graphic>
         </el-collapse-item>
         <el-collapse-item title="环境实时数据" name="2">
-            <realdata></realdata>
+            <realdata v-if="activeName=='2'"></realdata>
         </el-collapse-item>
     </el-collapse>
   </div>

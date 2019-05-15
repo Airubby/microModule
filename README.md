@@ -1,4 +1,4 @@
-# hello
+# microModule
 
 ## Project setup
 ```

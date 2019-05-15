@@ -222,6 +222,133 @@ function echartfn(ID,title,xData,up,middle,down,color){
     });
     return myChart;
 }
+function echartAir(ID,title,legend,xData,yData,color){
+    // var legend=["上","中","下"];
+    // var xData=["1","2","3","4","5"];
+    // var yData=[
+    //     {
+    //         name: '上',
+    //         type: 'bar',
+    //         barWidth: '20%',
+    //         data: [29,23,4,5,6]
+    //     },
+    //     {
+    //         name: '中',
+    //         type: 'bar',
+    //         barWidth: '20%',
+    //         data: [29,23,4,5,6]
+    //     },
+    //     {
+    //         name: '下',
+    //         type: 'bar',
+    //         barWidth: '20%',
+    //         data: [29,23,4,5,6]
+    //     }
+    // ];
+    // var color=["#5984CD","#EF5959","#7BC0A1","#EAB03F"];
+    // 基于准备好的dom，初始化echarts实例
+    let myChart = echarts.init(document.getElementById(ID))
+    // 绘制图表
+    myChart.setOption({
+        color:color,
+        title:{
+            text:title,  
+            x:'left',
+            top: 0,
+            textStyle:{
+                color:"#555",
+                fontSize:14,
+            },
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            } 
+        },
+        grid: {
+            left: '75px',
+            right: '25px',
+            top:'35px',
+            bottom: '25px',
+        },
+        legend: {
+            top:'0px',
+            right:'0',
+            textStyle:{
+                rich:{
+                    a:{
+                        color:color[0],
+                        fontSize:16,
+                    },
+                    b:{
+                        color:color[1],
+                        fontSize:16,
+                    }
+                }
+            },
+            data: legend,
+        },
+        xAxis:  {
+            name:'空调编号',
+            nameLocation:'start',
+            nameTextStyle:{
+                color:'#555',
+                fontSize: 14,
+                padding:[30,-10,0,0]
+            },
+            type: 'category',
+            axisLine:{
+                lineStyle:{
+                    color:"#DBDBDA",
+                    width:1,
+                }
+            },
+            splitLine:{
+                show:false,
+            },
+            axisTick:{
+                show:true
+            },
+            axisLabel:{
+                interval:0,  //强制显示所有标签
+                color:'#000',
+            },
+            data: xData,
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                lineStyle:{
+                    color:"#DBDBDA",
+                    width:1,
+                }
+            },
+            axisTick:{
+                show:true
+            },
+            splitLine:{
+                show:false,
+                lineStyle:{
+                    color:"#213342",
+                    width:1,
+                    type:"dashed",
+                }
+            },
+            axisLabel:{
+                color:"#000"
+            },
+            
+        },
+        series: yData
+    });
+    window.addEventListener("resize", () => { 
+        setTimeout(function(){
+            myChart.resize();
+        },0)
+    });
+    return myChart;
+}
 function echartLine(ID,title,subtitle,legend,xData,yData){
     // 基于准备好的dom，初始化echarts实例
     // var xData=["2018-10-11 09:00:11", "2018-10-11 09:03", "2018-10-11 09:13", "2018-10-11 09:14",
@@ -527,6 +654,232 @@ function clickLegend(ID,xData,legend,title,color,series){
     });
     return myChart; 
 }
+function echartPUE(ID,xData,yData){
+    var xData=["2018-10-11 09:00:11", "2018-10-11 09:03", "2018-10-11 09:13", "2018-10-11 09:14",
+     "2018-10-11 09:24","2018-10-11 09:34","2018-10-11 09:44","2018-10-11 09:54","2018-10-11 10:04","2018-10-11 10:14","2018-10-11 10:24"];
+    
+    var yData=[320, 232, 301, 234, 390, 230, 310,18, 391, 234, 290, 343, 310];
+    let color=["#fff"];
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:color,
+        tooltip : {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '15px',
+            right: '20px',
+            top:'20px',
+            bottom: '10px',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                axisLine:{
+                    show:false,
+                    lineStyle:{
+                        color:"#f00",
+                        width:1,
+                    }
+                },
+                splitLine:{
+                    show:false,
+                    lineStyle:{
+                        color:"#fff",
+                        width:1,
+                        type:"solid",
+                    }
+                },
+                axisTick:{
+                    show:false
+                },     
+                axisLabel:{
+                    color:"#fff",
+                    formatter: function (value, index) {
+                        return Format('hh:dd',new Date(value));
+                    }
+                },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                data :xData
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                axisLine:{
+                    show:false,
+                    lineStyle:{
+                        color:"#fff",
+                        width:1,
+                    }
+                },
+                splitLine:{
+                    show:true,
+                    lineStyle:{
+                        color:"#fff",
+                        width:1,
+                        type:"solid",
+                    }
+                },
+                axisTick:{
+                    show:false
+                },
+                axisLabel:{
+                    color:"#fff",
+					formatter: '{value}'
+                }
+            }
+        ],
+        series : [
+            {
+                name:'pue',
+                type:'line',
+                smooth:"true", //平滑
+                data:yData
+            },
+        ]
+    };
+    myChart.setOption(option, true);
+    window.addEventListener("resize", () => { 
+        setTimeout(function(){
+            myChart.resize();
+        },0)
+    });
+    return myChart;
+}
+function pieChar(ID,data){
+    var data=[
+        {value:335, name:'IT能耗'},
+        {value:910, name:'其它能耗'},
+    ];
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:["#95E3D3","#8DFF18","#0077E9","#7B2DD8"],
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        series: [
+            {
+                type:'pie',
+                center:['60%','50%'],
+                radius: ['50%', '80%'],
+                label: {
+                    normal: {
+                        formatter: ' {b|{b} }{per|{d}%} ',
+                        rich: {
+                            b: {
+                                fontSize: 12,
+                                lineHeight: 33,
+                                color: "#fff"
+                            },
+                            per: {
+                                color: '#fff',
+                                fontSize: 14,
+                                padding: [2, 4],
+                                borderRadius: 2
+                            }
+                        }
+                    }
+                },
+                itemStyle:{
+                    borderColor:"#fff",  
+                    borderWidth: 1,
+                },
+                data:data
+            }
+        ]
+    };
+    myChart.setOption(option, true);
+    window.addEventListener("resize", () => { 
+        setTimeout(function(){
+            myChart.resize();
+        },0)
+    });
+    return myChart; 
+}
+function gaugeChar(ID,value,min,max,title,color){
+    var value=30,min=0,max=60,title="PUE";
+    var color=[[0.333333, '#4A86B1'],[0.5,"#4A86B1"],[1, '#4A86B1']];
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        tooltip : {
+            formatter: "{a}<br/>{c}"
+        },
+        series: [
+            {
+                name: title,
+                silent:true,
+                type: 'gauge',
+                radius: '130%',
+                min:min,
+                max:max,
+                startAngle:180,
+                endAngle:0,
+                splitNumber:6,
+                center: ['50%', '80%'],
+                axisLine:{
+                    length:'10',
+                    lineStyle:{
+                        color:color,
+                        width:'25',
+                    }
+                },
+                splitLine:{
+                    show:true,
+                    length:'25',
+                    lineStyle:{
+                        color:"#B3D6EF"
+                    }
+                },
+                pointer:{
+                    length:'70%',
+                    width:'10%'
+                },
+                itemStyle:{
+                    color: "#B3D6EF",
+                },
+                axisLabel:{
+                    color:"#B3D6EF"
+                },
+                detail: {
+                    show: true,
+                    lineHeight: 15,
+                    offsetCenter: ['0%', '0%'],
+                    formatter:'{num|'+value+'}\n{text|℃}',
+                    rich: {
+                        num: {
+                            width:60,
+                            height:60,
+                            fontSize:18,
+                            borderWidth:2,
+                            borderColor:"#B3D6EF",
+                            borderRadius:[60,60,60,60],
+                            backgroundColor:"#61A5D5",
+                            color:"#fff",
+                        },
+                        text: {
+                            color: '#fff',
+                            fontSize: 12,
+                            padding: [10, 0],
+                            borderRadius: 2
+                        }
+                    },
+
+                },
+                data: [{value: value}]
+            }
+        ]
+    };
+    myChart.setOption(option, true);
+    window.addEventListener("resize", () => { 
+        setTimeout(function(){
+            myChart.resize();
+        },0)
+    });
+    return myChart; 
+}
 function wsConnection(sendMsg, callback) {
   try {
       //var SOCKECT_ADDR = "ws://" + url +":"+ port;
@@ -631,8 +984,8 @@ function checkNumber(obj) {
             obj.callback()
         }
     } else {
-        let regPos = /^\d+(\.\d+)?$/; //非负浮点数
-        //let regPos = /^([1-9]+)$/;  //大于0的正整数
+        // let regPos = /^\d+(\.\d+)?$/; //非负浮点数
+        let regPos = /^([1-9]+)$/;  //大于0的正整数
         // let regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
         if(regPos.test(obj.value)){
             obj.callback()
@@ -642,18 +995,39 @@ function checkNumber(obj) {
     }
     
 }
+function checkPasspord(obj) {
+    if (!obj.value) {
+        if(obj.rules.required){
+            obj.callback(new Error('不能为空'))
+        }else{
+            obj.callback()
+        }
+    } else {
+        let regPos = /^[A-Za-z0-9]{6,20}$/; 
+        if(regPos.test(obj.value)){
+            obj.callback()
+        }else{
+            obj.callback('密码6到20位且只能为数字和字母')
+        }
+    } 
+}
 export default {
     arrayContains,
     switcFullScreen,
     Format,
     setClock,
     echartfn,
+    echartAir,
     echartLine,
+    echartPUE,
+    pieChar,
+    gaugeChar,
     clickLegend,
     wsConnection,
     checkPORT,
     checkIP,
     checkEMAIL,
     checkPHONE,
-    checkNumber
+    checkNumber,
+    checkPasspord
 }

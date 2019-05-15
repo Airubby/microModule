@@ -8,6 +8,5 @@ const getters = {
   addRouters: state => state.user.addRouters,
   limits:state=>state.user.limits,
   
-  getTheme: state => state.theme.theme,
 }
 export default getters

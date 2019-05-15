@@ -1,31 +1,31 @@
 <template>
   <div class="content">
-    fsfs
+    <el-collapse v-model="activeName" accordion class="collapse collapse2">
+        <el-collapse-item title="空调图示" name="1">
+            <graphic v-if="activeName=='1'"></graphic>
+        </el-collapse-item>
+        <el-collapse-item title="空调实时数据" name="2">
+            <realdata v-if="activeName=='2'"></realdata>
+        </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 
 <script>
-
+import graphic from './graphic.vue'
+import realdata from './realdata.vue'
 export default {
-  name: 'home',
-  provide(){
-    return{
-      
-    }
-  },
-  computed: {
     
-  },
-  data(){
-      return{
-        
-      }
+    data(){
+        return{
+            activeName: '1'
+        }
     },
-  methods: {
-    
-  },
-  components: {
-    
-  }
+    methods: {
+        
+    },
+    components: {
+        realdata,graphic
+    }
 }
 </script>

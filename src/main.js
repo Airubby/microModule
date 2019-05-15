@@ -23,6 +23,8 @@ Vue.prototype.$api = api
 //绑定工具函数到全局
 Vue.prototype.$tool = tool
 
+Vue.prototype.$store=store
+
 Vue.prototype.$Swiper = Swiper
 
 Vue.use(ElementUI)
