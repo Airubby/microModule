@@ -28,10 +28,7 @@ export default {
             },
         ]
         let color=["#578FEB","#EB5568"]
-        let _this=this;
-        setTimeout(function(){
-            _this.$tool.echartAir('echart3',"温度(℃)",legend,xData,yData,color);
-        },500)
+        this.$tool.echartAir('echart3',"温度(℃)",legend,xData,yData,color);
     },
     data(){
         return{

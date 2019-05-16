@@ -22,10 +22,10 @@
         <div class="his-detail-right bgfff">
             <el-scrollbar class="scrollbar">
                 <div class="his-detail-echart">
-                    <div class="echart-box echart-box4" id="hisEchart0"></div>
-                    <div class="echart-box echart-box4" id="hisEchart1"></div>
-                    <div class="echart-box echart-box4" id="hisEchart2"></div>
-                    <div class="echart-box echart-box4" id="hisEchart3"></div>
+                    <div class="echart-box echart-box3" id="hisEchart0"></div>
+                    <div class="echart-box echart-box3" id="hisEchart1"></div>
+                    <div class="echart-box echart-box3" id="hisEchart2"></div>
+                    <div class="echart-box echart-box4" id="hisEchart3" style="display:none"></div>
                 </div>
                 <div class="his-detail-time">
                     <div class="slider-time">{{startTime}}</div>
@@ -208,6 +208,9 @@ export default {
             this.marks=marks;
             console.log(this.time)
         }
+    },
+    destroyed() {
+        this.changeTitle();
     },
     components: {
         

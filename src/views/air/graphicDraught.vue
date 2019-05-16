@@ -28,11 +28,7 @@ export default {
             },
         ]
         let color=["#7CC2A2","#F7B551"]
-        let _this=this;
-
-        setTimeout(function(){
-            _this.$tool.echartAir('echart4',"百分比(%)",legend,xData,yData,color);
-        },500)
+        this.$tool.echartAir('echart4',"百分比(%)",legend,xData,yData,color);
         
     },
     data(){

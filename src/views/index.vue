@@ -81,7 +81,7 @@
           </div>
       </div>
       <div class="content-body">
-        <router-view/>
+        <router-view  v-if="isRouterAlive"/>
       </div>
     </div>
     <check-password :dialogInfo="checkInfo" v-if="checkInfo.visible"></check-password>
@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import checkPassword from './set/dialogCheck.vue'
+import checkPassword from './set/component/dialogCheck.vue'
 export default {
     name: 'index',
     provide(){
@@ -109,6 +109,7 @@ export default {
     data(){
         return{
             title:'',
+            isRouterAlive:true,
             date:{
                 year:'',
                 month:'',
@@ -128,9 +129,14 @@ export default {
         },
         changeTitle:function(title){
             this.$nextTick(() => {
-                this.title=title;
-                this.$el.querySelector(".content-logo-title").style.display="none";
-                this.$el.querySelector(".his-detail-title").style.display="block";
+                if(title){
+                    this.title=title;
+                    this.$el.querySelector(".content-logo-title").style.display="none";
+                    this.$el.querySelector(".his-detail-title").style.display="block";
+                }else{
+                    this.$el.querySelector(".content-logo-title").style.display="block";
+                    this.$el.querySelector(".his-detail-title").style.display="none";
+                }
             })
         },
         toBack:function(){

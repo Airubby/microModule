@@ -70,11 +70,8 @@ export default {
             },
         ]
         let color1=["#7CC1A2","#EBB23D"]
-        let _this=this;
-        setTimeout(function(){
-            _this.$tool.echartAir('echart1',"温度(℃)",legend,xData,yData,color);
-            _this.$tool.echartAir('echart2',"湿度(%)",legend1,xData,yData1,color1);
-        },500)
+        this.$tool.echartAir('echart1',"温度(℃)",legend,xData,yData,color);
+        this.$tool.echartAir('echart2',"湿度(%)",legend1,xData,yData1,color1);
     },
     data(){
         return{

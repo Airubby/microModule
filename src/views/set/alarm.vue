@@ -22,17 +22,18 @@
                             <div class="table-info-box">70</div>
                             <div class="table-info-box">60</div>
                             <div class="table-info-box">50</div>
-                            <div class="table-info-box"></div>
+                            <div class="table-info-box"><el-button type="text" @click="editFN(item)">编辑</el-button></div>
                         </div>
                     </div>
                 </el-scrollbar>
             </div>
+            <dialog-edit :dialogInfo="editInfo" v-if="editInfo.visible"></dialog-edit>
         </div>
     </div>
 </template>
 
 <script>
-
+import dialogEdit from './component/dialogEdit.vue'
 export default {
     created () {
         
@@ -51,14 +52,21 @@ export default {
     },
     data(){
         return{
-            data:30,
+            editInfo:{
+                visible:false,
+                id:'',
+            }
+
         }
     },
     methods: {
-      
+        editFN:function(item){
+            this.editInfo.visible=true;
+            this.editInfo.id=item
+        }
     },
     components: {
-      
+        dialogEdit
     }
 }
 </script>
