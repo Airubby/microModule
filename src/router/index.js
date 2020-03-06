@@ -84,8 +84,7 @@ export const syncRouter=[
 
 export const asyncRouter=[]
 export const router= new Router({
-  //mode: 'history',
-  mode:'hash',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes:syncRouter
 })

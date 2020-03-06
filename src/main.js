@@ -14,7 +14,6 @@ import tool from './utils/tool'  //工具函数
 // import 'promise-polyfill'  //兼容低版本浏览器   import 'babel-polyfill'
 import './utils/directive'  //自定义指令
 
-import 'vue-transition.css'
 
 import './assets/css/index.less'
 
@@ -34,7 +33,7 @@ Vue.config.productionTip = false
 
 function getServerConfig() {
   return new Promise ((resolve, reject) => {
-    axios.get('./serverConfig.json').then((result) => {
+    axios.get('/serverConfig.json').then((result) => {
       let config = result.data;
       let ajaxUrl = process.env.NODE_ENV == 'production' ? config.production:config.develop;
       Vue.prototype.$ajaxUrl=ajaxUrl;
