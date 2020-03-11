@@ -2,5 +2,22 @@
   "production":"https://www.easy-mock.com/mock/5bd2d48f3e503e20f0011196/testUrl",
   "develop":"https://www.easy-mock.com/mock/5bd2d48f3e503e20f0011196/testUrl",
   "loginBaseUrl":"https://www.easy-mock.com/mock/5bd2857e784ab67dd0f2a865/example",
-  "theme":"default"
+  "theme":"default",
+  "language":"zh",
+  "zhLang":{
+    "Mon":"星期一",
+    "Tues":"星期二",
+    "Wed":"星期三",
+    "Thurs":"星期四",
+    "Fir":"星期五",
+    "Sat":"星期六",
+    "SUN":"星期天",
+    "CircuitMap":"电路图",
+    "BatteryA":"电池组A",
+    "BatteryB":"电池组B",
+    "BatteryC":"电池组C"
+  },
+  "enLang":{
+      
+  }
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="app" ref="app">
-    <router-view v-if="isRouterAlive"/>
+    <router-view />
   </div>
 </template>
 <script>
@@ -10,11 +10,6 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
   export default {
     name: 'app',
-    provide(){
-      return{
-        reload:this.reload
-      }
-    },
     created () {
         
     },
@@ -25,20 +20,14 @@ import { mapGetters } from 'vuex'
         // this.$tool.wsConnection("",function(result){
         //   store.dispatch('setwsData',eval(result.data));
         // })
-
     },
     data(){
       return{
-        isRouterAlive:true,
+        
       }
     },
     methods:{
-      reload(){
-        this.isRouterAlive=false;
-        this.$nextTick(function(){
-          this.isRouterAlive=true;
-        })
-      },
+      
     },
     watch:{
      

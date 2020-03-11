@@ -1,5 +1,47 @@
 import echarts from 'echarts'
 import Vue from 'vue'
+import CryptoJS from 'crypto-js/crypto-js'
+
+// 默认的 KEY 与 iv 如果没有给
+const KEY = "loncom";//""中与后台一样  密码
+const keySize=128;
+const fillKey = (key) => { 
+    const filledKey = Buffer.alloc(keySize / 8); 
+    const keys = Buffer.from(key); 
+    if (keys.length < filledKey.length) { 
+        filledKey.map((b, i) => filledKey[i] = keys[i]); 
+    }
+    return filledKey; 
+}
+/**
+ * AES加密 ：字符串 key iv  返回base64
+ */
+function Encrypt(word, keyStr) {
+    let key = keyStr ? CryptoJS.enc.Utf8.parse(fillKey(keyStr)):CryptoJS.enc.Utf8.parse(fillKey(KEY));
+    let srcs = CryptoJS.enc.Utf8.parse(word);
+    var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+        mode: CryptoJS.mode.ECB,  //mode 为ECB  不需要iv
+        padding: CryptoJS.pad.Pkcs7
+    });
+    // console.log("-=-=-=-", encrypted.ciphertext)
+    return CryptoJS.enc.Base64.stringify(encrypted.ciphertext);
+}
+
+/**
+ * AES 解密 ：字符串 key iv  返回base64
+ *
+ */
+function Decrypt(word, keyStr, ivStr) {
+    let key = keyStr ? CryptoJS.enc.Utf8.parse(fillKey(keyStr)):CryptoJS.enc.Utf8.parse(fillKey(KEY));
+    let base64 = CryptoJS.enc.Base64.parse(word);
+    let src = CryptoJS.enc.Base64.stringify(base64);
+    var decrypt = CryptoJS.AES.decrypt(src, key, {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    var decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+    return decryptedStr.toString();
+}
 
 function Format(fmt,value){
   let date=value?new Date(value):new Date();
@@ -48,21 +90,6 @@ function arrayContains(v,arr){
   }else{
     return true;
   }
-}
-function setClock(){
-    let vWeek,vDate={};
-    vWeek = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
-    let date =  new Date();
-    vDate["year"] = date.getFullYear();
-    vDate["month"] =( date.getMonth() + 1)<10?("0"+ (date.getMonth() + 1)): date.getMonth() + 1;
-    vDate["day"] = date.getDate()<10?("0"+date.getDate()):date.getDate();
-    vDate["hours"] = date.getHours()<10?("0"+date.getHours()):date.getHours();
-    vDate["minutes"] = date.getMinutes()<10?("0"+date.getMinutes()):date.getMinutes();
-    vDate["seconds"] = date.getSeconds()<10?("0"+date.getSeconds()):date.getSeconds();
-    vDate["week"] = vWeek[date.getDay()];
-    return vDate;
-    // document.getElementById("time").innerHTML = year + "年" + month + "月" + day + "日" + "\t" + hours + ":" + minutes +":" + seconds + "\t" + vWeek[vWeek_s] ;
-    // setTimeout('setClock()',1000);
 }
 function echartfn(ID,title,xData,up,middle,down,color){
     // 基于准备好的dom，初始化echarts实例
@@ -1015,7 +1042,6 @@ export default {
     arrayContains,
     switcFullScreen,
     Format,
-    setClock,
     echartfn,
     echartAir,
     echartLine,

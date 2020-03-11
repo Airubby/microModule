@@ -51,8 +51,16 @@
           </div>
           <div class="content-right-top-right">
             <ul>
-                <li @click="switcFullScreen">
+                <!-- <li @click="switcFullScreen">
                     <a href="javascript:;">全屏切换</a>
+                </li> -->
+                <li @click="flushPage">
+                    <a href="javascript:;">刷新</a>
+                </li>
+                <li>
+                    <router-link to="/loncom/his">
+                        <i class="el-icon-timer"></i>声光
+                    </router-link>
                 </li>
                 <li>
                     <router-link to="/loncom/alarm">
@@ -62,19 +70,14 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/loncom/his">
-                        <i class="el-icon-timer"></i>历史
-                    </router-link>
-                </li>
-                <li>
                     <a href="javascript:;" @click="setSys">
-                        <i class="el-icon-s-tools"></i>设置
+                        <i class="el-icon-s-tools"></i>登陆
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;">
-                        <p style="font-size:22px;">{{date.hours}}:{{date.minutes}}:{{date.seconds}}</p>
-                        <p>{{date.year}}/{{date.month}}/{{date.day}}</p>
+                        <p style="font-size:26px;">{{date.hours}}:{{date.minutes}}:{{date.seconds}}</p>
+                        <p class="font-size12">{{date.year}}-{{date.month}}-{{date.day}}<span>{{date.week}}</span></p>
                     </a>
                 </li>
             </ul>
@@ -98,12 +101,11 @@ export default {
       }
     },
     created () {
-        this.date=this.$tool.setClock();
+        this.date=this.setClock();
     },
     mounted() {
-        let _this=this;
-        setInterval(function(){
-            _this.date=_this.$tool.setClock();
+        setInterval(()=>{
+            this.date=this.setClock();
         },1000);
     },
     data(){
@@ -124,6 +126,26 @@ export default {
         }
     },
     methods: {
+        flushPage:function(){
+            this.isRouterAlive=false;
+            this.$nextTick(function(){
+                this.isRouterAlive=true;
+            })
+        },
+        setClock:function(){
+            let vWeek,vDate={};
+            // vWeek = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
+            vWeek = ["SUN","Mon","Tues","Wed","Thurs","Fir","Sat"];
+            let date =  new Date();
+            vDate["year"] = date.getFullYear();
+            vDate["month"] =( date.getMonth() + 1)<10?("0"+ (date.getMonth() + 1)): date.getMonth() + 1;
+            vDate["day"] = date.getDate()<10?("0"+date.getDate()):date.getDate();
+            vDate["hours"] = date.getHours()<10?("0"+date.getHours()):date.getHours();
+            vDate["minutes"] = date.getMinutes()<10?("0"+date.getMinutes()):date.getMinutes();
+            vDate["seconds"] = date.getSeconds()<10?("0"+date.getSeconds()):date.getSeconds();
+            vDate["week"] = this.$t(vWeek[date.getDay()]);
+            return vDate;
+        },
         switcFullScreen:function(){
             this.$tool.switcFullScreen();
         },
