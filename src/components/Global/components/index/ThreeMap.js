@@ -108,6 +108,7 @@ export default class ThreeMap {
         }
         let data1=this.mapData.object.children[1].children;
         for(let i=0;i<data1.length;i++){
+            let uuid=data1[i].uuid;
             var geometry=new THREE.BoxGeometry(
                 this.mapData.geometries[this.mapData.geometries.length-1].width,
                 this.mapData.geometries[this.mapData.geometries.length-1].height,
@@ -116,6 +117,7 @@ export default class ThreeMap {
             var mesh=new THREE.Mesh(geometry,materail);
             var mirrorMatrix = new THREE.Matrix4().fromArray(data1[i].matrix);
             mesh.applyMatrix(mirrorMatrix);
+            mesh.uuid=uuid;
             tgroup.children.push(mesh);
             _this.scene.add(mesh);
         }
@@ -196,6 +198,23 @@ export default class ThreeMap {
         let z = 0;
         return [y, x, z];
     }
+    change(uuid,flag){
+        console.log(this.group)
+        console.log(uuid)
+
+        for(let i=0;i<this.group.children.length;i++){
+            console.log(this.group.children[i].uuid)
+            if(uuid==this.group.children[i].uuid){
+                console.log(11111111111111)
+                if(flag){
+                    this.group.children[i].material.color.set("#ff0000");
+                }else{
+                    this.group.children[i].material.color.set("#333333");
+                }
+                
+            }
+        }
+    }
     mouseClickEvent(event) {
         console.log(event)
         console.log(this.group)
@@ -214,6 +233,14 @@ export default class ThreeMap {
         // 计算物体和射线的焦点
         const intersects = this.raycaster.intersectObjects(this.group.children);
         console.log(intersects)
+        if(intersects.length>0){
+            intersects[0].object.scale.set(1 , 0.5, 1);
+            let y=intersects[0].object.position.y;
+            console.log(intersects[0].object.position.y)
+            intersects[0].object.position.y = y-1.6*0.5/2;
+            // intersects[0].object.material.color.set("#ff0000");
+        }
+         
         // this.group.children.forEach(mesh => {
         //     // mesh.material.color.set('#005fc3');
         //     // mesh.material.color.set('#005fc3');

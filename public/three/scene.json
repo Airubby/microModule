@@ -327,7 +327,7 @@
 						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-0.199066,0,1.55,1],
 						"geometry": "F3B54AF0-4F70-4464-9045-5D5CA3EEC76A",
-						"material": "A0E2B3AE-AE3C-4261-B21D-59563ADAAD2A"
+						"material": "F9D89CC4-855A-478B-B48D-AFD5916C1017"
 					},
 					{
 						"uuid": "5FD82219-C7B8-4F10-A28E-0A388784BA6B",
@@ -336,7 +336,7 @@
 						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-1.274461,0,1.55,1],
 						"geometry": "F3B54AF0-4F70-4464-9045-5D5CA3EEC76A",
-						"material": "55D8CE0F-82F1-4075-B912-9D661671E798"
+						"material": "F9D89CC4-855A-478B-B48D-AFD5916C1017"
 					},
 					{
 						"uuid": "CDCE54A4-0D8D-4F35-818C-D9B0D9777468",
@@ -345,7 +345,7 @@
 						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-2.35,0,1.55,1],
 						"geometry": "F3B54AF0-4F70-4464-9045-5D5CA3EEC76A",
-						"material": "73771441-B6B6-4EA5-B5DC-239E01C120BB"
+						"material": "F9D89CC4-855A-478B-B48D-AFD5916C1017"
 					},{
 						"uuid": "CCF8F7C8-A284-4391-A9BC-036DEEA75F0B",
 						"type": "Mesh",
@@ -353,7 +353,7 @@
 						"layers": 1,
 						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,2.021488,0,-1.55,1],
 						"geometry": "F3B54AF0-4F70-4464-9045-5D5CA3EEC76A",
-						"material": "15995FDD-A770-48A4-BE41-5CA615104B08"
+						"material": "F9D89CC4-855A-478B-B48D-AFD5916C1017"
 					}]
 			}],
 		"background": 11184810

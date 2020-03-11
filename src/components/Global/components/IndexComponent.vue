@@ -1,7 +1,12 @@
 <template>
   <div class="content bgfff">
         <div class="index-top">
-            <div class="index-top-title">实物模型</div>
+            <div class="index-top-title">实物模型
+                <span style="text-align:center;width:1000px;    display: inline-block;">
+                <span @click="test(1)" style="color:#f00;margin:0 10px;">测试告警</span>
+                <span @click="test(2)" style="color:#f00">解除告警</span>
+                </span>
+            </div>
             <div class="index-top-con" id="three-dom"></div>
         </div>
         <div class="index-bottom">
@@ -64,7 +69,8 @@ export default {
         let props={dom:"three-dom"}
         axios.get('/three/scene.json').then(data => {
             let result=data.data;
-            const map = new ThreeMap(props,result);
+            this.map = new ThreeMap(props,result);
+            
         })
 
         this.echartPUE("echartpue")
@@ -73,10 +79,20 @@ export default {
     },
     data(){
         return{
-            
+            map:""
         }
     },
     methods: {
+        test:function(info){
+            console.log(this.map)
+            let flag=true;
+            if(info==1){
+                flag=true;
+            }else{
+                flag=false;
+            }
+            this.map.change("CCF8F7C8-A284-4391-A9BC-036DEEA75F0B",flag);
+        },
         Format:function(fmt,value){
             let date=value?new Date(value):new Date();
             let o = {
