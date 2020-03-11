@@ -43,7 +43,7 @@
     <div class="content-right">
       <div class="content-right-top">
           <div class="content-right-top-logo">
-            <span class="content-logo-title">M108-MDC-F</span>
+            <router-link to="/test"><span class="content-logo-title">M108-MDC-F</span></router-link>
             <span class="his-detail-title" @click="toBack">
                 <img src="~@/assets/images/back.png">
                 {{title}}

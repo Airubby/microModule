@@ -11,7 +11,7 @@ import ElSearchTablePagination from 'el-table-pagination'
 import Swiper from 'swiper'  //3.4.2 打包不报错，4.+打包报错
 import 'swiper/dist/css/swiper.min.css'
 import tool from './utils/tool'  //工具函数
-// import 'promise-polyfill'  //兼容低版本浏览器   import 'babel-polyfill'
+import 'babel-polyfill' //兼容低版本浏览器  
 import './utils/directive'  //自定义指令
 
 

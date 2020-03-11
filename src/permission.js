@@ -6,7 +6,7 @@ routerGo();
 async function routerGo(){
     router.beforeEach((to, from, next) => {
         NProgress.start()
-        const whiteList = ['/401','/404'] // 不重定向白名单
+        const whiteList = ['/401','/404','/test'] // 不重定向白名单
         if (to.path!=="/"&&whiteList.indexOf(to.path) !== -1) {
             next()
         } else {

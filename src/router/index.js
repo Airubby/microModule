@@ -77,14 +77,17 @@ export const syncRouter=[
 		}, 
     ]
   },
-  
+  {
+	path:'/test',
+	component: () => import('@/views/test/index.vue'),
+	},
   { path: '*', component: () => import('@/views/errorPage/404') },
   
 ];
 
 export const asyncRouter=[]
 export const router= new Router({
-  mode: 'history',
+//   mode: 'history',
   base: process.env.BASE_URL,
   routes:syncRouter
 })
