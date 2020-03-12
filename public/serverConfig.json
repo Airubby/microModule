@@ -12,10 +12,51 @@
     "Fir":"星期五",
     "Sat":"星期六",
     "SUN":"星期天",
+    "Query":"查询",
+    "Reset":"重置",
+    "PleaseSelect":"请选择",
+    "To":"至",
+    "StartDate":"开始日期",
+    "EndDate":"结束日期",
+    "BatchExport":"批量导出",
+    "Handle":"操作",
+    "Edit":"编辑",
+    "Remove":"删除",
+
     "CircuitMap":"电路图",
     "BatteryA":"电池组A",
     "BatteryB":"电池组B",
-    "BatteryC":"电池组C"
+    "BatteryC":"电池组C",
+    "MDCinverter":"MDC配电拓扑",
+    "Tiprealdata":"末端实时数据",
+
+    "DevManage":"设备管理",
+    "InterfaceManage":"接口管理",
+    "GangedManage":"联动管理",
+    "UserManage":"用户管理",
+    "LogManage":"日志管理",
+    "SysManage":"系统管理",
+
+    
+    "Type":"类型",
+    "Name":"名称",
+    "Indate":"有效期",
+    "Grade":"级别",
+    "User":"用户",
+    "Time":"时间",
+    "Status":"状态",
+    "Detail":"详细内容",
+    "SelectDate":"选择日期",
+    "Classify":"分类",
+    "Location":"位置",
+    "DevClassify":"设备分类",
+    "APN":"接入点",
+    "Disable":"禁用",
+    "Inservice":"运行中",
+    "NotRun":"未运行",
+    "RestartServer":"重启服务",
+    "RestartSys":"重启系统"
+    
   },
   "enLang":{
       

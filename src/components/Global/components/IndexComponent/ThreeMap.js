@@ -234,10 +234,10 @@ export default class ThreeMap {
         const intersects = this.raycaster.intersectObjects(this.group.children);
         console.log(intersects)
         if(intersects.length>0){
-            intersects[0].object.scale.set(1 , 0.5, 1);
+            intersects[0].object.scale.set(1 ,0.4, 1);
             let y=intersects[0].object.position.y;
             console.log(intersects[0].object.position.y)
-            intersects[0].object.position.y = y-1.6*0.5/2;
+            intersects[0].object.position.y = y-1.6*(1-0.4)/2;
             // intersects[0].object.material.color.set("#ff0000");
         }
          

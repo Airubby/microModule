@@ -59,7 +59,7 @@
 <script>
 import echarts from 'echarts'
 import axios from 'axios';
-import ThreeMap from './index/ThreeMap.js';
+import ThreeMap from './IndexComponent/ThreeMap.js';
 export default {
     name: 'indexComponent',
     created () {

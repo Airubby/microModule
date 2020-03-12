@@ -82,15 +82,42 @@
     color: #B9C6F2 !important;
 }
 
+.el-form-item__label,
+.el-table thead{
+    color: #838FA3;
+}
+.el-table th{
+    background-color: #E4E7E9;
+}
+.showPagination{
+    .el-icon-warning{
+        color: #3CB2FF;
+    }
+}
 /** button*/
-.el-button--primary{
-    background: #4B5F80;
-    border-color: #4B5F80;
+.form-serarch{
+    overflow: hidden;
+    .el-button{
+        border-color: #3CB2FF;
+        color: #3CB2FF;
+    }
+    .el-button--primary{
+        background: #3CB2FF;
+        border-color: #3CB2FF;
+        color: #fff;
+    }
+    .el-button--primary:focus, .el-button--primary:hover{
+        background: #52b7f9;
+        border-color: #52b7f9;
+    }
+    .el-date-editor .el-range-separator{
+        width: 10%;
+    }
+    .el-date-editor .el-range-input{
+        width: 36%;
+    }
 }
-.el-button--primary:focus, .el-button--primary:hover{
-    background: #637899;
-    border-color: #637899;
-}
+
 /*时间拖动提示*/
 .el-slider__marks-text{
     width: 80px;
@@ -136,7 +163,7 @@
         height: calc(100% - 48px);
         top: 48px;
         .swiper-slide{
-            padding: 10px;
+            padding: 15px 15px 0;
         }
     }
 }
@@ -144,7 +171,7 @@
     top: 0;
     height: 48px;
     bottom: auto;
-    background: #637899;
+    background: #718199;
     color: #fff;
     display: flex;
     .swiper-pagination-bullet{
@@ -158,7 +185,7 @@
         opacity: 1;
     }
     .swiper-pagination-bullet-active{
-        background: #4B5F80;
+        background: #5A687B;
         &.slide0{
             background: #2EBA4F;
         }

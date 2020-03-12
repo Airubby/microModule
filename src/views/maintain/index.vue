@@ -4,8 +4,8 @@
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
         <div class="swiper-wrapper" id="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item,index) in arr">
-                <component :is="item.component" :data="item"></component>
+            <div class="swiper-slide" v-for="(item,index) in arr" :key="index">
+                <component :is="item"></component>
             </div>
         </div>
     </div>
@@ -13,10 +13,16 @@
 </template>
 
 <script>
+import DevManage from './dev'
+import InterfaceManage from './interface'
+import GangedManage from './ganged'
+import UserManage from './user'
+import LogManage from './log'
+import SysManage from './sys'
 export default {
-    props:["data"],
+    components: {DevManage,InterfaceManage,GangedManage,UserManage,LogManage,SysManage},
     created () {
-        this.arr=this.data;
+        
     },
     
     mounted() {
@@ -25,25 +31,23 @@ export default {
             autoplay: 0,
             spaceBetween: 0,
             slidesPerView: 1,
-            speed: 500,
+            speed: 100,
             effect: 'slide',
             pagination: '.swiper-pagination',
             paginationClickable: true,
             paginationBulletRender: function (swiper, index, className) {
-                return '<span class="' + className + '">' + _this.$t(_this.arr[index]["key"]) + '</span>';
+                return '<span class="' + className + '">' + _this.$t(_this.arr[index]) + '</span>';
             }
         })
     },
     data(){
         return{
-            arr:[],
+            arr:["DevManage","InterfaceManage","GangedManage","UserManage","LogManage","SysManage"],
         }
     },
     methods: {
         
     },
-    components: {
-        
-    }
+    
 }
 </script>

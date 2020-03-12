@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <public-component></public-component>
+    <public-component :data="arr"></public-component>
   </div>
 </template>
 
@@ -11,9 +11,9 @@ export default {
     created () {
         let arr=[
             {key:"CircuitMap",component:"CircuitMapComponent"},
-            {key:"BatteryA",component:"BatteryAComponent"},
-            {key:"BatteryB",component:"BatteryBComponent"},
-            {key:"BatteryC",component:"BatteryCComponent"},
+            {key:"BatteryA",component:"BatteryComponent"},
+            {key:"BatteryB",component:"BatteryComponent"},
+            {key:"BatteryC",component:"BatteryComponent"},
         ]
         this.arr=arr;
     },

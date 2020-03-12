@@ -7,7 +7,7 @@ import axios from 'axios'
 import api from './api' //用request，为每个模块的调用写一个js
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import ElSearchTablePagination from 'el-table-pagination'
+import ElTablePagination from 'el-table-pagination'
 import Swiper from 'swiper'  //3.4.2 打包不报错，4.+打包报错
 import 'swiper/dist/css/swiper.min.css'
 import tool from './utils/tool'  //工具函数 
@@ -31,13 +31,10 @@ Vue.prototype.$store=store
 
 Vue.prototype.$Swiper = Swiper
 
-Vue.use(ElementUI)
-Vue.use(ElSearchTablePagination)
+Vue.use(ElTablePagination)
 
 //加载组件
 import './components/Global/index.js'
-// import indexComponent from '@/pages/index/index.js'
-// Vue.use(indexComponent)
 
 
 Vue.config.productionTip = false

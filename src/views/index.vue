@@ -4,38 +4,92 @@
       <ul>
         <li>
            <router-link to="/loncom/home">
-            <img src="~@/assets/images/zjk.png">
-            <p>主监控</p>
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/zjk.png">
+                        <p>主监控</p>
+                    </div>
+                </div>
            </router-link>
         </li>
         <li>
            <router-link to="/loncom/power">
-            <img src="~@/assets/images/pd.png">
-            <p>配电</p>
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/pd.png">
+                        <p>配电</p>
+                    </div>
+                </div>
            </router-link>
         </li>
         <li>
            <router-link to="/loncom/hvdc">
-            <img src="~@/assets/images/hvdc.png">
-            <p>HVDC</p>
-           </router-link>
-        </li>
-        <li>
-           <router-link to="/loncom/env">
-            <img src="~@/assets/images/hj.png">
-            <p>环境</p>
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/hvdc.png">
+                        <p>HVDC</p>
+                    </div>
+                </div>
            </router-link>
         </li>
         <li>
            <router-link to="/loncom/air">
-            <img src="~@/assets/images/kt.png">
-            <p>空调</p>
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/kt.png">
+                        <p>制冷</p>
+                    </div>
+                </div>
+           </router-link>
+        </li>
+        <li>
+           <router-link to="/loncom/env">
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/hj.png">
+                        <p>环境</p>
+                    </div>
+                </div>
            </router-link>
         </li>
         <li>
            <router-link to="/loncom/security">
-            <img src="~@/assets/images/af.png">
-            <p>安防与消防</p>
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/af.png">
+                        <p>安防</p>
+                    </div>
+                </div>
+           </router-link>
+        </li>
+        <li>
+           <router-link to="/loncom/his">
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/af.png">
+                        <p>历史</p>
+                    </div>
+                </div>
+           </router-link>
+        </li>
+        <li>
+           <router-link to="/loncom/set">
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/af.png">
+                        <p>设置</p>
+                    </div>
+                </div>
+           </router-link>
+        </li>
+        <li>
+           <router-link to="/loncom/maintain">
+                <div class="nav-box">
+                    <div class="nav-box-con">
+                        <img src="~@/assets/images/af.png">
+                        <p>维护</p>
+                    </div>
+                </div>
            </router-link>
         </li>
       </ul>

@@ -75,6 +75,12 @@ export const syncRouter=[
 			meta: { title: '设置'},
 			component: () => import('@/views/set/index.vue')
 		}, 
+		{
+			path: '/loncom/maintain',
+			name: 'maintain',
+			meta: { title: '维护'},
+			component: () => import('@/views/maintain/index.vue')
+		}, 
     ]
   },
   

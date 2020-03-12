@@ -1,4 +1,10 @@
-import publicComponent from '@/views/public/index.vue'
+<template>
+  <div class="content">
+    serwe
+  </div>
+</template>
+
+<script>
 export default {
     created () {
         
@@ -9,13 +15,14 @@ export default {
     },
     data(){
         return{
-            arr:[],
+            
         }
     },
     methods: {
         
     },
     components: {
-        publicComponent
+        
     }
 }
+</script>
