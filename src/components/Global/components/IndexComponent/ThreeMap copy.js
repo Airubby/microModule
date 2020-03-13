@@ -2,12 +2,9 @@
 import * as THREE from 'three';
 import * as d3 from 'd3-geo';
 var OrbitControls = require('three-orbit-controls')(THREE)
-import air from './kongtiao.png';
-import cabinet from './cabinet.png';
 export default class ThreeMap {
     constructor(props,mapData) {
         this.props=props;
-        this.data=new Array();
         this.mapData=mapData;
         this.dom=document.getElementById(this.props.dom);
         this.init();
@@ -67,14 +64,6 @@ export default class ThreeMap {
         requestAnimationFrame(this.animate.bind(this));
         this.renderer.render(this.scene, this.camera);
     }
-     guid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0,
-                v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
-   
     setHelper() {
         //红色x,绿色y,蓝色z
         const axesHelper = new THREE.AxisHelper(5);
@@ -94,9 +83,6 @@ export default class ThreeMap {
 
         let _this=this;
         var textureLoader=new THREE.TextureLoader();
-        this.textures = {};
-        this.textures["air"]=new THREE.TextureLoader().load(air);
-        this.textures["cabinet"]=new THREE.TextureLoader().load(cabinet);
         let mapData=this.mapData;
         let data=this.mapData.object.children[0].children;
         for(let i=0;i<data.length;i++){
@@ -106,14 +92,12 @@ export default class ThreeMap {
                         for(let n=0;n<mapData.geometries.length;n++){
                             if(data[i].geometry==mapData.geometries[n].uuid){
                                 if(mapData.geometries[n].type=="PlaneBufferGeometry"){
-                                  
                                     var geometry=new THREE.PlaneBufferGeometry(mapData.geometries[n].width,mapData.geometries[n].height);  
                                     mapData.materials[j].map=mapData.materials[j].map?texture:"";
                                     var materail=new THREE.MeshBasicMaterial(mapData.materials[j]);
                                     var mesh=new THREE.Mesh(geometry,materail);
                                     var mirrorMatrix = new THREE.Matrix4().fromArray(data[i].matrix);
                                     mesh.applyMatrix(mirrorMatrix);
-
                                     _this.scene.add(mesh);
                                 }
                             }
@@ -122,66 +106,21 @@ export default class ThreeMap {
                 }
             }
         }
-        var json=[{type:"cabinet"},{type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"air"},{type:"cabinet"}]
-        let model=10;//机柜总数
-        let left=0.03//间距
-        let cwidth=5.76-(left*(model-1));//计算总宽
-        let width=cwidth/(model);//计算机柜宽度
-        let y=(5.76/2)-(width/2);//Y轴移位
-        let z=1.55;//z轴
-        let z1=1.54;//z轴
-           for(let j=0;j<2;j++){
-            y=(5.76/2)-(width/2);//Y轴移位
-                for(let i=0;i<json.length;i++){
-                    var xxxx=width;
-                      if(json[i].type=="cabinet"){
-                          xxxx=(width*2)+(left);
-                      }
-                      if(i==0){
-                        if(json[i].type=="cabinet"){
-                            y=y-(width/2)-(left/2);
-                        }else{
-                            y=y;
-                        }
-                      }else{
-                        if(json[i].type=="cabinet"){
-                            if(json[i-1].type=="cabinet"){
-                                y=y-(width*2+left+(left/2))-(left/2);
-                            }else{
-                                y=y-width-((width+left)/2)-left;
-                            }
-                        }else{
-                            if(json[i-1].type=="cabinet"){
-                            y=y-width-((width+left)/2)-left;
-                           }else{
-                            y=y-width-left;
-                           }
-                        }
-                      }
-                   var geometry=new THREE.BoxGeometry(
-                    xxxx ,
-                    1.66,
-                    1); 
-                var materail=new THREE.MeshBasicMaterial(_this.mapData.materials[_this.mapData.materials.length-1]);
-                var mesh=new THREE.Mesh(geometry,materail);
-                var mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,0,j==0?z-(z*2):z,1]);
-                mesh.material.type="MeshBasicMaterial";
-                mesh.material.color.set(0xfffffff);
-            // mesh.material.side=1;
-                mesh.material.map=this.textures[json[i].type];
-                mesh.material.transparent=true;
-                mesh.applyMatrix(mirrorMatrix);
-                tgroup.children.push(mesh);
-                _this.data.push(mesh.uuid);
-                var xxxcc=geometry.clone();
-               var mesh2=new THREE.Mesh(xxxcc,materail.clone());//创建新的网格对象
-               mesh2.applyMatrix(mirrorMatrix);
-               mesh2.position.z=j==0?z1-(z1*2):z1;//移动克隆的网格对象
-                _this.scene.add(mesh);
-                 _this.scene.add(mesh2);
-            }
-    }
-    
+        let data1=this.mapData.object.children[1].children;
+        for(let i=0;i<data1.length;i++){
+            let uuid=data1[i].uuid;
+            var geometry=new THREE.BoxGeometry(
+                this.mapData.geometries[this.mapData.geometries.length-1].width,
+                this.mapData.geometries[this.mapData.geometries.length-1].height,
+                this.mapData.geometries[this.mapData.geometries.length-1].depth); 
+            var materail=new THREE.MeshBasicMaterial(this.mapData.materials[this.mapData.materials.length-1]);
+            var mesh=new THREE.Mesh(geometry,materail);
+            var mirrorMatrix = new THREE.Matrix4().fromArray(data1[i].matrix);
+            mesh.applyMatrix(mirrorMatrix);
+            mesh.uuid=uuid;
+            tgroup.children.push(mesh);
+            _this.scene.add(mesh);
+        }
         this.group=tgroup;
 
         // let _this=this;
@@ -276,22 +215,6 @@ export default class ThreeMap {
             }
         }
     }
-    updatedata(uuid,flag){
-        console.log(this.group)
-        console.log(uuid)
-
-        for(let i=0;i<this.group.children.length;i++){
-            console.log(this.group.children[i].uuid)
-            if(uuid==this.group.children[i].uuid){
-                this.group.children[i].material.color.set("#ff0000");
-                this.group.children[i].position.y=0;
-                this.group.children[i].scale.set(1,0.5,1);
-               var y= this.group.children[i].position.y;
-               this.group.children[i].position.y=y-1.66*(1-0.5)/2;
-                
-            }
-        }
-    }
     mouseClickEvent(event) {
         console.log(event)
         console.log(this.group)
@@ -310,35 +233,14 @@ export default class ThreeMap {
         // 计算物体和射线的焦点
         const intersects = this.raycaster.intersectObjects(this.group.children);
         console.log(intersects)
-        // if(intersects.length>0){
-        //     intersects[0].object.position.y=0;
-        //     intersects[0].object.scale.set(1 ,0.4, 1);
-        //     let y=intersects[0].object.position.y;
-        //     intersects[0].object.position.y = y-1.66*(1-0.4)/2;
-        //     //intersects[0].object.material.color.set(0x66ff00,1);
-        //     // intersects[0].object.material.color.set("#ff0000");
-        // }
-         
         if(intersects.length>0){
-            for(var i=0;i<this.group.children.length;i++) {
-               if(intersects[0].object.uuid==this.group.children[i].uuid){
-                   intersects[0].object.material.color.set(0x66ff00,1);
-                   //intersects[0].object.visible=false;
-                   intersects[0].object.geometry.parameters.height=1;
-                  // this.render();
-                 console.log(intersects[0].object.geometry.parameters.height);
-                //  intersects[0].object.position.y=0;
-                //  intersects[0].object.scale.set(1,0.5,1);
-                // var y= intersects[0].object.position.y;
-                // intersects[0].object.position.y=y-1.66*(1-0.5)/2;
-               
-           
-                   continue;
-               }
-               console.log( this.group.children[i].uuid);
-               this.group.children[i].material.color.set(0xfffffff);
-            }
-           }
+            intersects[0].object.scale.set(1 ,0.4, 1);
+            let y=intersects[0].object.position.y;
+            console.log(intersects[0].object.position.y)
+            intersects[0].object.position.y = y-1.6*(1-0.4)/2;
+            // intersects[0].object.material.color.set("#ff0000");
+        }
+         
         // this.group.children.forEach(mesh => {
         //     // mesh.material.color.set('#005fc3');
         //     // mesh.material.color.set('#005fc3');

@@ -91,7 +91,7 @@ export default {
             }else{
                 flag=false;
             }
-            this.map.change("CCF8F7C8-A284-4391-A9BC-036DEEA75F0B",flag);
+            this.map.updatedata(this.map.data[7],flag);
         },
         Format:function(fmt,value){
             let date=value?new Date(value):new Date();
