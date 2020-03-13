@@ -4,14 +4,8 @@
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
         <div class="swiper-wrapper" id="swiper-wrapper">
-            <div class="swiper-slide">
-                <config></config>
-            </div>
-			<div class="swiper-slide">
-                <alarm></alarm>
-            </div>
-            <div class="swiper-slide">
-				<privilege></privilege>
+            <div class="swiper-slide" v-for="(item,index) in arr">
+                <component :is="item.component" :data="item"></component>
             </div>
         </div>
     </div>
@@ -19,11 +13,18 @@
 </template>
 
 <script>
-import alarm from './alarm.vue'
-import config from './config.vue'
-import privilege from './privilege.vue'
+import ConfigInfoComponent from './configInfo'
+import NewsInformComponent from './newsInform'
+import AlarmEventComponent from './alarmEvent'
+import AlarmMaskComponent from './alarmMask'
+import LimitSetComponent from './limitSet'
+import DataPublishComponent from './dataPublish'
+
+import swiper from '@/views/public/mixin/swiper'
 import { mapGetters } from 'vuex'
 export default {
+    mixins:[swiper],
+    components: {ConfigInfoComponent,NewsInformComponent,AlarmEventComponent,AlarmMaskComponent,LimitSetComponent,DataPublishComponent},
 	computed:{
         ...mapGetters([
             'token'
@@ -31,28 +32,25 @@ export default {
     },
     created () {
         if(!this.token){
-			this.$message.warning("非法进入");
-			this.$router.push({path:'/loncom/home'});
-		}
+			// this.$message.warning("非法进入");
+			// this.$router.push({path:'/loncom/home'});
+        }
+        let arr=[
+            {key:"ConfigInfo",component:"ConfigInfoComponent"},
+            {key:"NewsInform",component:"NewsInformComponent"},
+            {key:"AlarmEvent",component:"AlarmEventComponent"},
+            {key:"AlarmMask",component:"AlarmMaskComponent"},
+            // {key:"LimitSet",component:"LimitSetComponent"},
+            // {key:"DataPublish",component:"DataPublishComponent"},
+        ]
+        this.arr=arr;
     },
     mounted() {
-        let _this=this;
-        new this.$Swiper('#swiper-container', {
-            autoplay: 0,
-            spaceBetween: 0,
-            slidesPerView: 1,
-            speed: 500,
-            effect: 'slide',
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            paginationBulletRender: function (swiper, index, className) {
-                return '<span class="' + className + '">' + _this.title[index] + '</span>';
-            }
-        })
+        
     },
     data(){
         return{
-            title:["配置信息","告警参数","权限设置"]
+            
         }
     },
 	destroyed() {
@@ -61,8 +59,6 @@ export default {
     methods: {
         
     },
-    components: {
-        privilege,alarm,config
-    }
+    
 }
 </script>
