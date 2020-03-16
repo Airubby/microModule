@@ -22,14 +22,14 @@ export default {
         ._switch-left{
             width: calc(100% - 38px);
             height: 100%;
-            background: #00CF78;
+            background: #F75B49;
             position: relative;
         }
         ._switch-left:after{
             content: "";
             width: 3px;
             height: 3px;
-            border: 2px solid #00CF78;
+            border: 2px solid #F75B49;
             position: absolute;
             right: -5px;
             border-radius: 50%;
@@ -38,14 +38,14 @@ export default {
         ._switch-right{
             width: 14px;
             height: 100%;
-            background: #00CF78;
+            background: #F75B49;
             position: relative;
         }
         ._switch-right:before{
             content: "";
             width: 3px;
             height: 3px;
-            border: 2px solid #00CF78;
+            border: 2px solid #F75B49;
             position: absolute;
             left: -5px;
             border-radius: 50%;
@@ -54,7 +54,7 @@ export default {
         ._switch-line{
             width: 21px;
             height: 2px;
-            background: #00CF78;
+            background: #F75B49;
             position: absolute;
             right: 14px;
             bottom: 3px;
@@ -63,12 +63,12 @@ export default {
     }
     ._switch-open{
         ._switch-line{
-            background:#FF0C11;
+            background:#F75B49;
             transform: rotate(-20deg);
         }
         ._switch-left:after,
         ._switch-right:before{
-            border-color: #FF0C11;
+            border-color: #F75B49;
         }
     }
 </style>
