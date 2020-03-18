@@ -34,47 +34,47 @@
             <div class="font-size16 color mb5">用户信息</div>
             <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="56px">
                 <el-row :gutter="30">
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item :label="$t('UserName')" prop="user">
                             <el-input v-model="initParams.user"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item :label="$t('FullName')" prop="name" label-width="70px">
                             <el-input v-model="initParams.name"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item :label="$t('Password')" prop="password">
                             <el-input v-model="initParams.password"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item :label="$t('SurePassword')" prop="surePassword" label-width="70px">
                             <el-input v-model="initParams.surePassword"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item :label="$t('Wkno')" prop="wkno">
                             <el-input v-model="initParams.wkno"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item :label="$t('Email')" prop="email" label-width="70px">
                             <el-input v-model="initParams.email"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item :label="$t('Phone')" prop="phone">
                             <el-input v-model="initParams.phone"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item :label="$t('Wechat')" prop="Wechat" label-width="70px">
                             <el-input v-model="initParams.Wechat"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item label="">
                             <el-button type="primary" @click="submitForm">{{$t("Save")}}</el-button>
                         </el-form-item>

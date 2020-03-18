@@ -30,8 +30,10 @@ export default {
         height:100%;
         .img{
             width: 100%;
-            height: 65px;
-            padding-top: 15px;
+            padding: 15px 20% 5px;
+            img{
+                width: 100%;
+            }
         }
         .title{
             width: 22px;

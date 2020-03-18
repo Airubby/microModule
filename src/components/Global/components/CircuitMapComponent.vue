@@ -5,84 +5,86 @@
                 <div class="scrollbarbox-con">
                     <div class="scrollbarbox-content">
                         <div class="numbox">
-                            <div class="numbox-left">
+                            <el-scrollbar class="numbox-left scrollbar">
                                 <div class="numbox-con">
-                                    <div class="numbox-box" v-for="(item,index) in 9" @click="checkbox($event)">
-                                        <i class="el-icon-check"></i>
-                                        <span>{{item}}</span>
-                                    </div>
+                                    <template  v-for="(item,index) in 19">
+                                        <el-tooltip class="item" effect="light" content="提示文字" placement="left">
+                                            <div class="numbox-box" @click="checkbox($event)">
+                                                <i class="el-icon-check"></i>
+                                                <span>{{item}}</span>
+                                            </div>
+                                        </el-tooltip>
+                                    </template>
                                 </div>
-                                <div class="numbox-con">
-                                    <div class="numbox-box alarm" v-for="(item,index) in 18" v-if="item>9"  @click="checkbox($event)">
-                                        <i class="el-icon-check"></i>
-                                        <span>{{item}}</span>
-                                    </div>
-                                </div>
+                            </el-scrollbar>
+                            <div class="numbox-right"><span>{{$t("HVDCgroup")}}</span></div>
+                        </div>
+                        <div class="textbox textbox1">
+                            <div class="title">271.30</div>
+                            <div>直流母排电压(V)</div>
+                        </div>
+                        <div class="dcbox">
+                            <div class="threeline">
+                                <threeline></threeline>
                             </div>
-                            <div class="numbox-right"><span>高压直流组</span></div>
+                            <div class="cyclo">
+                                <span class="cyclo-minus">-</span>
+                                <span class="cyclo-plus">+</span>
+                                <span class="cyclo-text">DC</span>
+                            </div>
+                            <div class="line line1"></div>
                         </div>
-                        <div class="threeline">
-                            <threeline></threeline>
-                        </div>
-                        <div class="cyclo">
-                            <span class="cyclo-minus">-</span>
-                            <span class="cyclo-plus">+</span>
-                            <span class="cyclo-text">DC</span>
-                        </div>
-                        <div class="textbox textbox1 textboxred">
-                            <div>整机输出电压</div>
-                            <p><span>234</span>V</p>
-                        </div>
-                        <div class="textbox textbox2 textboxred">
-                            <div>输出电压</div>
-                            <p><span>234</span>V</p>
-                        </div>
-                        <div class="textbox textbox3 textboxred">
-                            <div>整机模块状态</div>
-                            <p><span></span></p>
-                        </div>
-                        <div class="textbox textbox4 textboxgreen">
-                            <div>整机输出电流</div>
-                            <p><span>4</span>A</p>
-                        </div>
-                        <div class="textbox textbox5 textboxgreen">
-                            <div>输出电流</div>
-                            <p><span>23</span>A</p>
-                        </div>
-                        <div class="textbox textbox6 textboxtint">
-                            <div>电池电流</div>
-                            <p><span>23</span>A</p>
-                            <div class="textboxtint alarm">32</div>
-                        </div>
-                        <div class="textbox textbox7 textboxtint">
-                            <div>电池电流</div>
-                            <p><span>23</span>A</p>
-                            <div class="textboxtint alarm" style="top: -30px;">1232</div>
-                        </div>
-                        <div class="textbox textbox8 textboxtint">
-                            <div>电池电流</div>
-                            <p><span>23</span>A</p>
-                            <div class="textboxtint"></div>
+                        <div class="textbox-group">
+                            <div class="textbox">
+                                <div class="title">1.30</div>
+                                <div>模块输出功率(KW)</div>
+                            </div>
+                            <div class="textbox">
+                                <div class="title">4.30</div>
+                                <div>模块输出电流(A)</div>
+                            </div>
+                            <div class="textbox">
+                                <div class="title">1.30</div>
+                                <div>总负载电流(A)</div>
+                            </div>
                         </div>
                         <div class="battery battery1">
-                            <battery :direction="false"></battery>
-                            <div class="battery-text"><span class="state">未知</span><span class="text">电池组C</span></div>
+                            <div class="battery-threeline"><threeline :height="232"></threeline></div>
+                            <div class="battery-box"><battery :direction="false"></battery></div>
+                            <div class="battery-text">
+                                <p>电池组A</p>
+                                <p>电流(A)：0.00</p>
+                            </div>
                         </div>
                         <div class="battery battery2">
-                            <battery :direction="false"></battery>
-                            <div class="battery-text"><span class="state">未知</span><span class="text">电池组B</span></div>
+                            <div class="battery-threeline"><threeline :height="232" :direction="false"></threeline></div>
+                            <div class="battery-box"><battery :direction="true"></battery></div>
+                            <div class="battery-text">
+                                <p>电池组B</p>
+                                <p>电流(A)：0.00</p>
+                            </div>
                         </div>
                         <div class="battery battery3">
-                            <battery></battery>
-                            <div class="battery-text" style="top: 0"><span class="state" style="bottom:-27px;top:auto;">未知</span><span class="text">电池组A</span></div>
+                            <div class="battery-threeline"><threeline :height="232"></threeline></div>
+                            <div class="battery-box"><battery :direction="false"></battery></div>
+                            <div class="battery-text">
+                                <p>电池组C</p>
+                                <p>电流(A)：0.00</p>
+                            </div>
                         </div>
                         <div class="server">
-                            <div class="server-box">Server</div>
+                            <div class="server-box">
+                                <div class="server-box-con">
+                                    <span v-for="item in 17"></span>
+                                </div>
+                            </div>
+                            <div class="server-btn"></div>
                         </div>
-                        <div class="line line1"></div>
                         <div class="line line2"></div>
-                        <div class="line line3"></div>
-                        <div class="line line4"></div>
+                        <div class="Triangle Triangle1"></div>
+                        <div class="Triangle Triangle2"></div>
+                        <div class="Triangle Triangle3"></div>
+                        <div class="Triangle Triangle4"></div>
                     </div>
                 </div>
             </div>
@@ -91,8 +93,8 @@
 </template>
 
 <script>
-import battery from '@/components/battery.vue'
-import threeline from '@/components/threeLine.vue'
+import battery from './CircuitMapComponent/battery.vue'
+import threeline from './CircuitMapComponent/threeLine.vue'
 export default {
     created () {
         
@@ -120,38 +122,32 @@ export default {
 </script>
 <style scoped lang="less">
     .scrollbarbox-content{
-        width: 930px;
+        width: 865px;
         height:460px;
         .numbox{
-            width: 200px;
-            height: 340px;
+            width: 110px;
+            height: 450px;
             position:absolute;
-            left:0;
+            left:50px;
             top:0;
             display:flex;
-            background:#EEF1F6;
+            background:#ECF2F6;
             .numbox-left{
-                width: calc(100% - 35px);
-                display:flex;
-                flex-wrap:wrap;
-                justify-content: space-evenly;
-                padding: 0 6px;
+                width: calc(100% - 30px);
+                height: 100%;
+                padding: 0 6px 5px;
                 .numbox-con{
-                    width: 50%;
-                    height:100%;
-                    display:flex;
-                    flex-wrap:wrap;
-                    align-content:space-evenly;
-                    justify-content: space-evenly;
+                    width: 100%;
                     .numbox-box{
                         width: 70px;
                         height:30px;
                         color:#fff;
                         line-height:30px;
                         text-align:center;
-                        background:#24BB8B;
+                        background:#3CB2FF;
                         cursor: pointer;
                         position:relative;
+                        margin-top: 5px;
                         .el-icon-check{
                             position: absolute;
                             top: 50%;
@@ -172,206 +168,228 @@ export default {
                 
             }
             .numbox-right{
-                width:35px;
+                width:30px;
                 height:100%;
-                background:#D0D7E4;
-                display:table;
-                font-size:18px;
-                span{
-                    display:table-cell;
-                    vertical-align:middle;
-                    text-align:center;
-                }
+                background:#E4E7E9;
+                writing-mode: vertical-rl;
+                padding: 0 5px;
+                font-size:16px;
             }
         }
-        .threeline{
-            width: 32px;
-            height: 60px;
-            position:absolute;
-            left: 243px;
-            top: 45px;
+        .dcbox{
+            position: absolute;
+            width: 50px;
+            height: 236px;
+            left: 320px;
+            top: 0;
+            .threeline{
+                width: 32px;
+                height: 60px;
+                position:absolute;
+                left: 9px;
+                top: 0px;
+            }
+            .cyclo{
+                width: 50px;
+                height:50px;
+                background:#838FA3;
+                position:absolute;
+                left: 0px;
+                top: 80px;
+                border-radius:50%;
+                color:#fff;
+                font-size:20px;
+                z-index:9;
+                span{
+                    position:absolute;
+                    left: 50%;
+                    margin-left: -7px;
+                    width: 14px;
+                    height: 14px;
+                    &.cyclo-minus{
+                        top: -2px;
+                    }
+                    &.cyclo-plus{
+                        bottom: 14px;
+                    }
+                    &.cyclo-text{
+                        left: -20px;
+                        width: 20px;
+                        height: 20px;
+                        line-height: 20px;
+                        color: #4f5b72;
+                        font-size: 16px;
+                        top: 50%;
+                        margin-top: -10px;
+                    }
+                }
+                
+            }
         }
+        
         .textbox{
-            width: 100px;
+            width: 110px;
             height: 50px;
+            line-height: 20px;
             position: absolute;
             font-size: 12px;
             padding: 5px;
+            background: #3CB2FF;
             color: #fff;
-            text-align: left;
-            p{
-                margin-top:2px;
-                font-size:16px;
-            }
-            &.textboxred{
-                background:#FF7369;
-            }
-            &.textboxgreen{
-                background:#66CDAD;
-            }
-            &.textboxtint{
-                background:#80D1D6;
-                .textboxtint{
-                    width: 60px;
-                    height: 26px;
-                    background: #f00;
-                    position: absolute;
-                    bottom: -30px;
-                    font-size: 16px;
-                    line-height: 26px;
-                    text-align: center;
-                    right: 0;
-                    display:none;
-                }
-                .alarm{
-                    display:block;
-                }
+            text-align: center;
+            .title{
+                border-bottom: 1px solid rgba(255,255,255,0.5);
             }
             &.textbox1{
-                left: 310px;
-                top: 10px;
+                left: 170px;
+                top: 80px;
             }
-            &.textbox2{
-                left: 310px;
-                top: 90px;
-            }
-            &.textbox3{
-                left: 310px;
-                top: 155px;
-            }
-            &.textbox4{
-                left: 425px;
-                top: 10px;
-            }
-            &.textbox5{
-                left: 425px;
-                top: 90px;
-            }
-            &.textbox6{
-                left: 275px;
-                bottom: 140px;
-            }
-            &.textbox7{
-                right: 115px;
-                top: 170px;
-            }
-            &.textbox8{
-                right: 115px;
-                bottom: 136px;
-            }
-
         }
-        .cyclo{
-            width: 50px;
-            height:50px;
-            background:#4F5B72;
-            position:absolute;
-            left: 235px;
-            top: 122px;
-            border-radius:50%;
-            color:#fff;
-            font-size:20px;
-            z-index:9;
-            span{
-                position:absolute;
-                left: 50%;
-                margin-left: -7px;
-                width: 14px;
-                height: 14px;
-                &.cyclo-minus{
-                    top: -2px;
-                }
-                &.cyclo-plus{
-                    bottom: 14px;
-                }
-                &.cyclo-text{
-                    left: -20px;
-                    width: 20px;
-                    height: 20px;
-                    line-height: 20px;
-                    color: #4f5b72;
-                    font-size: 16px;
-                    top: 50%;
-                    margin-top: -10px;
-                }
+        .textbox-group{
+            position: absolute;
+            left: 388px;
+            .textbox{
+                margin-bottom: 30px;
+                position: initial;
             }
-            
+        }
+        .Triangle{
+            position: absolute;
+            width: 0;
+            height: 0;
+            &.Triangle1{
+                border-top: 10px solid transparent;
+                border-right: 0px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-left: 15px solid #838FA3;
+                top: 221px;
+                left: 445px;
+            }
+            &.Triangle2{
+                border-left: 10px solid transparent;
+                border-top: 0px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 15px solid #838FA3;
+                top: 170px;
+                left: 551px;
+            }
+            &.Triangle3{
+                border-left: 10px solid transparent;
+                border-bottom: 0px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 15px solid #838FA3;
+                top: 260px;
+                left: 622px;
+            }
+            &.Triangle4{
+                border-left: 10px solid transparent;
+                border-top: 0px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 15px solid #838FA3;
+                top: 170px;
+                left: 700px;
+            }
         }
         .battery{
             width: 100px;
-            height:150px;
+            height:236px;
             position: absolute;
+            .battery-threeline{
+                position: absolute;
+                top: 0;
+                left: 10px;
+            }
+            .battery-box{
+                position: absolute;
+                top: 80px;
+                left: 0;
+            }
             .battery-text{
                 position: absolute;
-                right: -28px;
-                width: 20px;
+                left: 55px;
+                width: 90px;
                 height: 100px;
                 display: table;
-                color: #ffc85c;
-                font-size: 16px;
-                bottom: 0;
-                .text{
-                    display: table-cell;
-                    text-align:center;
-                    vertical-align: middle;
-                }
-                .state{
-                    width: 44px;
-                    height: 26px;
-                    background: #202833;
-                    text-align: center;
-                    color: #fff;
-                    position: absolute;
-                    top: -27px;
-                    left: -20px;
-                    font-size: 12px;
-                    line-height: 26px;
-                }
+                color: #838FA3;
+                font-size: 12px;
+                top: 86px;
+                text-align: left;
             }
             &.battery1{
-                left: 415px;
-                bottom: 50px;
+                left: 535px;
+                top: 0px;
             }
             &.battery2{
-                left:  570px;
-                bottom: 50px;
+                left: 606px;
+                bottom: 0px;
+                height: 230px;
             }
             &.battery3{
-                left:  570px;
-                top: 80px;
+                left: 684px;
+                top: 0px;
             }
         }
         .server{
             width: 100px;
             height: 200px;
-            background: #505C73;
-            display: table;
+            background: #3CB2FF;
+            padding: 6px;
             position: absolute;
             right: 0;
-            top: 146px;
-            color: #fff;
-            font-size: 18px;
+            top: 132px;
+            border-radius: 4px;
             z-index: 9;
             .server-box{
-                display: table-cell;
-                text-align:center;
-                vertical-align: middle;
+                width: 100%;
+                height: 100%;
+                border: 5px solid #fff;
+                .server-box-con{
+                    padding: 2px 5px;
+                    border-radius: 4px;
+                    span{
+                        border: 1px solid #fff;
+                        height: 5px;
+                        width: 100%;
+                        display: block;
+                        margin: 5px 0;
+                    }
+                }
+            }
+            .server-btn{
+                position: absolute;
+                width: 4px;
+                height: 26px;
+                background: #fff;
+                border-radius: 10px;
+                left: 1px;
+                top: 50%;
+                margin-top: -13px;
+                &:before{
+                    content: "";
+                    width: 2px;
+                    height: 2px;
+                    background: #3CB2FF;
+                    position: absolute;
+                    bottom: 2px;
+                    left: 1px;
+                    border-radius: 50%;
+                }
             }
         }
         .line{
             position:absolute;
             width:2px;
-            background:#5E6673;
+            background:#838FA3;
             &.line1{
-                height: 147px;
-                left: 258px;
-                top: 100px;
+                height: 172px;
+                left: 24px;
+                top: 60px;
             }
             &.line2{
-                width: 600px;
+                width: 520px;
                 height: 2px;
-                left: 259px;
-                top: 245px;
+                left: 344px;
+                top: 230px;
             }
             &.line3{
                 width: 2px;

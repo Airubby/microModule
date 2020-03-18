@@ -19,9 +19,9 @@ service.interceptors.request.use(
       config.data=Qs.stringify(config.data)
       config.headers['Content-Type']='application/x-www-form-urlencoded';
     }
-    if (store.getters.token) {
-      config.headers['X-Token'] =store.getters.token // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-    }
+    // if (store.getters.token) {
+    //   config.headers['X-Token'] =store.getters.token // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+    // }
     return config;
   },
   error => {

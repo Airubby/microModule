@@ -5,7 +5,7 @@
         <div class="swiper-pagination"></div>
         <div class="swiper-wrapper" id="swiper-wrapper">
             <div class="swiper-slide" v-for="(item,index) in arr">
-                <component :is="item.component" :data="item"></component>
+                <component :is="item.component" :data="item" v-if="getIndex==index"></component>
             </div>
         </div>
     </div>

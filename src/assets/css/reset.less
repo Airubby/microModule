@@ -108,15 +108,6 @@
         border-color: #3CB2FF;
         color: #3CB2FF;
     }
-    .el-button--primary{
-        background: #3CB2FF;
-        border-color: #3CB2FF;
-        color: #fff;
-    }
-    .el-button--primary:focus, .el-button--primary:hover{
-        background: #52b7f9;
-        border-color: #52b7f9;
-    }
     .el-date-editor .el-range-separator{
         width: 10%;
     }
@@ -124,10 +115,42 @@
         width: 36%;
     }
 }
-
+.el-button--primary{
+    background: #3CB2FF;
+    border-color: #3CB2FF;
+    color: #fff !important;
+}
+.el-button--primary:focus, .el-button--primary:hover{
+    background: #52b7f9;
+    border-color: #52b7f9;
+}
+.el-tooltip__popper.is-light{
+    border-color: #3CB2FF;
+    color: #3CB2FF;
+}
+.el-tooltip__popper.is-light[x-placement^=left] .popper__arrow{
+    border-left-color: #3CB2FF;
+}
 /*时间拖动提示*/
 .el-slider__marks-text{
     width: 80px;
+}
+.slider{
+    .el-slider__runway{
+        height: 28px;
+        margin: 0;
+        border-radius: 20px;
+        .el-slider__bar{
+            height: 100%;
+            background: #3CB2FF;
+        }
+        .el-slider__button-wrapper,.el-slider__button{
+            height: 100%;
+            width: 28px;
+            top: 0;
+            border-color: #3CB2FF;
+        }
+    }
 }
 
 

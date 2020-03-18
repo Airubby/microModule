@@ -122,27 +122,6 @@ export default class ThreeMap {
                 }
             }
         }
-
-
-        // var options = {
-        //     size: 12,
-        //     height: 1,
-        //     weight: 10,
-        //     font: "helvetiker",
-        // };
-        // text1 = this.createMesh(new THREE.TextGeometry("Learning", options));
-        // var textmirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,0,1.50,1.5,1]);
-        // text1.applyMatrix(textmirrorMatrix);
-        // _this.scene.add(text1);
-
-        var loader11 = new THREE.FontLoader();
-        loader11.load( '/three/fonts/Alibaba PuHuiTi_Regular.json', function ( response ) {
-            console.log(response)
-        } );
-
-
-
-
         var json=[{type:"cabinet"},{type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"air"},{type:"cabinet"}]
         let model=10;//机柜总数
         let left=0.03//间距
@@ -229,23 +208,7 @@ export default class ThreeMap {
 
 
     }
-    createMesh(geom) {
-
-        // assign two materials
-    //            var meshMaterial = new THREE.MeshLambertMaterial({color: 0xff5555});
-    //            var meshMaterial = new THREE.MeshNormalMaterial();
-        var meshMaterial = new THREE.MeshPhongMaterial({
-            specular: 0xffffff,
-            color: 0xeeffff,
-            shininess: 100,
-            metal: true
-        });
-    //            meshMaterial.side=THREE.DoubleSide;
-        // create a multimaterial
-        var plane = THREE.SceneUtils.createMultiMaterialObject(geom, [meshMaterial]);
-
-        return plane;
-    }
+    
     //绘制网格
     getAreaMesh(points) {
         // console.log('---' + points);

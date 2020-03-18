@@ -7,7 +7,6 @@
 // import store from './store'
 import store from './store/index'
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
   export default {
     name: 'app',
     created () {

@@ -202,7 +202,9 @@
 import switchc from './MDCinverterComponent/switch.vue'
 import showDetail from './MDCinverterComponent/showDetail.vue'
 export default {
-    
+    created () {
+        
+    },
     data(){
         return{
             info:{
@@ -224,7 +226,7 @@ export default {
 </script>
 <style lang="less" scoped>
     .scrollbarbox-content{
-        width: 1080px;
+        width: 865px;
         height: 500px;
         .bg1{
             background: #3087C0;
@@ -233,7 +235,7 @@ export default {
             background: #2B77A9;
         }
         .inverter{
-            width: 280px;
+            width: 230px;
             height:100%;
             float: left;
             .inverter-box{
@@ -247,7 +249,7 @@ export default {
                 color: #fff;
                 display:flex;
                 .inverter-box-left{
-                    width:calc(100% - 35px);
+                    width:calc(100% - 30px);
                     height:100%;
                     .inverter-box-left-line{
                         height: 20%;
@@ -265,14 +267,14 @@ export default {
                         }
                         .inverter-box-left-title{
                             width: 34%;
-                            padding-left: 10px;
+                            padding-left: 5px;
                             justify-content: left;
                             background: #3087C0;
                         }
                     }
                 }
                 .inverter-box-right{
-                    width:35px;
+                    width:30px;
                     height:100%;
                     display:table;
                     padding: 0 5px;
@@ -286,7 +288,7 @@ export default {
             }
         }
         .inverterline{
-            width: calc(100% - 280px);
+            width: calc(100% - 230px);
             height: 100%;
             position: relative;
             float:left;
@@ -407,7 +409,7 @@ export default {
             .line{
                 position:absolute;
                 background:#F75B49;
-                width: 130px;
+                width: 75px;
                 height: 2px;
                 &.linet:after{
                     content: "";
@@ -438,7 +440,7 @@ export default {
                     margin-bottom: -50px;
                 }
                 &.line4{
-                    width: 40px;
+                    width: 10px;
                     left: 460px;
                     bottom: 243px;
                 }
@@ -451,7 +453,7 @@ export default {
                 &.line6{
                     left: 385px;
                     bottom: 75px;
-                    width: 115px;
+                    width: 26px;
                 }
                 &.line6.linet:after{
                     height: 86px;
@@ -464,17 +466,20 @@ export default {
                 height: 130px;
                 position: absolute;
                 &.line-box1{
-                    left: 231px;
+                    left: 176px;
                     top: 5px;
                 }
                 &.line-box2{
-                    left: 498px;
+                    left: 468px;
                     top: 175px;
                 }
                 &.line-box3{
-                    left: 498px;
+                    left: 409px;
                     bottom: 47px;
                     height: 86px;
+                    .line{
+                        width: 60px;
+                    }
                 }
                 .line-boxcon{
                     position: absolute;
@@ -498,7 +503,7 @@ export default {
                     }
                     .boxline-textbox{
                         position: absolute;
-                        left: 130px;
+                        left: 75px;
                         top: 0;
                         cursor: pointer;
                     }
@@ -525,6 +530,7 @@ export default {
                     display: inline-block;
                     position: relative;
                     top: -10px;
+                    left: 30px;
                     z-index: 9;
                 }
             }

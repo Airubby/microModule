@@ -6,18 +6,18 @@
                     <div class="scrollbarbox-content">
                         <div class="his">
                             <div class="his-top his-con">
-                                <div class="his-conbox" @click="showDetail(item,$event)" v-for="item in data1">
-                                    <cabinet :type="item.type" :title="item.title" :color="item.color"></cabinet>
+                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" @click="showDetail(item,$event)" v-for="item in data1">
+                                    <cabinet-component :type="item.type" :title="item.title" :color="item.color"></cabinet-component>
                                 </div>
                             </div>
                             <div class="his-cen">
-                                <div class="his-cendoor his-cendoor-close"></div>
+                                <div class="his-cendoor" :class="{'his-cendoor-close':leftDoor}" @click="leftDoor=!leftDoor"></div>
                                 <div class="his-cencon"></div>
-                                <div class="his-cendoor his-cendoor-right"></div>
+                                <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}" @click="rightDoor=!rightDoor"></div>
                             </div>
                             <div class="his-bottom his-con">
-                                <div class="his-conbox" @click="showDetail(item,$event)" v-for="item in data2">
-                                    <cabinet :type="item.type" :title="item.title" :color="item.color"></cabinet>
+                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" @click="showDetail(item,$event)" v-for="item in data2">
+                                    <cabinet-component :type="item.type" :title="item.title" :color="item.color"></cabinet-component>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
             <div class="detail-con">
                 <el-scrollbar class="scrollbar">
                     <ul>
-                        <li v-for="item in 40" @click="toDetail('综合布线系统')">综合布线系统</li>
+                        <li v-for="item in 40" @click="toDetail({name:'综合布线系统'})">综合布线系统</li>
                     </ul>
                 </el-scrollbar>
             </div>
@@ -39,8 +39,11 @@
 </template>
 
 <script>
-import cabinet from '@/components/Global/components/HisComponent/cabinet.vue'
+import cabinetComponent from './HisComponent/cabinet.vue'
 export default {
+    components: {
+        cabinetComponent
+    },
     created () {
         
     },
@@ -49,40 +52,42 @@ export default {
     },
     data(){
         return{
+            leftDoor:false,
+            rightDoor:false,
             title:'',
             data1:[
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
+                {title:'配电单元',type:'pd',color:'#D8645B'},
+                {title:'整流柜',type:'zl',color:'#8CBECF'},
+                {title:'电池柜',type:'dc',color:'#F7BB48'},
+                {title:'设备单元01',type:'jg',color:'#7BC1A1'},
+                {title:'精密空调1',type:'kt',color:'#588EEA'},
+                {title:'设备单元02',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元03',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元04',type:'jg',color:'#7BC1A1'},
+                {title:'精密空调2',type:'kt',color:'#588EEA'},
+                {title:'设备单元05',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元06',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元07',type:'jg',color:'#7BC1A1'},
+                {title:'精密空调3',type:'kt',color:'#588EEA'},
+                {title:'设备单元08',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元09',type:'jg',color:'#7BC1A1'},
             ],
             data2:[
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
-                {title:'',type:'',color:''},
+                {title:'管控单元',type:'gk',color:'#55A1E2'},
+                {title:'冷量分配单元',type:'llfp',color:'#59CA38'},
+                {title:'电池柜',type:'dc',color:'#F7BB48'},
+                {title:'设备单元18',type:'jg',color:'#7BC1A1'},
+                 {title:'精密空调6',type:'kt',color:'#588EEA'},
+                {title:'设备单元17',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元16',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元15',type:'jg',color:'#7BC1A1'},
+                {title:'精密空调5',type:'kt',color:'#588EEA'},
+                {title:'设备单元14',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元13',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元12',type:'jg',color:'#7BC1A1'},
+                {title:'精密空调4',type:'kt',color:'#588EEA'},
+                {title:'设备单元11',type:'jg',color:'#7BC1A1'},
+                {title:'设备单元10',type:'jg',color:'#7BC1A1'},
             ]
         }
     },
@@ -105,18 +110,20 @@ export default {
                 this.$el.querySelectorAll(".his-conbox")[i].classList.remove("active");
             }
             ev.currentTarget.classList.add("active");
-            
+            if(type=='pd'||type=='zl'||type=='dc'||type=='gk'||type=='llfp'||type=='kt'){
+
+            }else{
+                this.toDetail(item);
+            }
         },
-        toDetail:function(title){
-            this.$router.push({path:'/loncom/his/detail',query:{
-                    param:JSON.stringify({"title":title})
-                }
-            });
+        toDetail:function(item){
+            console.log(item)
+            let info=item;
+            info["activeComponent"]="HisDetailComponent"
+            this.$emit("backInfo",info)
         }
     },
-    components: {
-        cabinet
-    }
+    
 }
 </script>
 <style lang="less" scoped>
@@ -126,7 +133,6 @@ export default {
         .detail{
             width: 200px;
             height: 100%;
-            padding:10px;
             position: absolute;
             right: -200px;
             top:0;
@@ -148,7 +154,7 @@ export default {
                 ul{
                     width: 100%;
                     height: 100%;
-                    padding-top: 12px;
+                    padding: 10px;
                     li{
                         height: 36px;
                         line-height: 36px;
@@ -165,7 +171,7 @@ export default {
         }
     }
     .scrollbarbox-content{
-        width: 1140px;
+        width: 865px;
         height: 560px;
         .his{
             width: 100%;
@@ -176,7 +182,6 @@ export default {
                 border: 10px solid #515E75;
                 margin: 0 auto;
                 display: flex;
-                padding:0 3px;
                 &.his-top{
                     border-bottom: none;
                 }
@@ -186,10 +191,13 @@ export default {
                 .his-conbox{
                     width: 100%;
                     height: 100%;
-                    padding: 0 3px;
+                    padding: 0 1px;
                     cursor: pointer;
                     &.active{
                         background: #515E75;
+                    }
+                    &.his-conbox1{
+                        flex-shrink: 2;
                     }
                 }
             }

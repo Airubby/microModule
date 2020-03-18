@@ -10,6 +10,7 @@ export default {
     mixins:[index],
     created () {
         let arr=[
+            // {key:"Tiprealdata",component:"TiprealdataTwoComponent"},
             {key:"MDCinverter",component:"MdcinverterComponent"},
             {key:"Tiprealdata",component:"TiprealdataComponent"},
         ]

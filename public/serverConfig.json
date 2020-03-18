@@ -24,6 +24,7 @@
     "Remove":"删除",
     "Back":"返回",
     "All":"所有",
+    "Whole":"全部",
     "Set":"设置",
     "PleaseInput":"请输入",
     "Wechat":"微信号",
@@ -35,6 +36,15 @@
     "FullName":"姓名",
     "UserName":"用户名",
     "Save":"保存",
+    "Enabled":"启用",
+    "NotEnabled":"未启用",
+    "VDC":"电压",
+    "VDCunit":"V",
+    "RDS":"内阻",
+    "RDSunit":"mΩ",
+    "Temp":"温度",
+    "Tempunit":"℃",
+    "BatteryNo":"电池编号",
 
     "CircuitMap":"电路图",
     "BatteryA":"电池组A",
@@ -83,7 +93,8 @@
     "CollectionValue":"采集值",
     "SVGA":"信号类型",
     "PointClassify":"测点分类",
-    "HisTrend":"历史趋势"
+    "HisTrend":"历史趋势",
+    "HVDCgroup":"高压直流组"
     
   },
   "enLang":{

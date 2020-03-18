@@ -9,7 +9,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import ElTablePagination from 'el-table-pagination'
 import Swiper from 'swiper'  //3.4.2 打包不报错，4.+打包报错
-import 'swiper/dist/css/swiper.min.css'
+import 'swiper/css/swiper.min.css'
 import tool from './utils/tool'  //工具函数 
 import 'babel-polyfill'
 import 'promise-polyfill'

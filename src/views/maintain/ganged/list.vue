@@ -5,20 +5,16 @@
                 <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="40px">
                     <el-row :gutter="10">
                         <el-col :md="5" :lg="4">
-                            <el-form-item :label="$t('Classify')" prop="type">
-                                <el-input v-model="initParams.type"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :md="5" :lg="4">
-                            <el-form-item :label="$t('Location')" prop="type">
-                                <el-input v-model="initParams.type"></el-input>
+                            <el-form-item :label="$t('Name')" prop="name">
+                                <el-input v-model="initParams.name"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :md="5" :lg="4">
                             <el-form-item :label="$t('Status')" prop="type">
                                 <el-select v-model="initParams.type" :placeholder="$t('PleaseSelect')">
-                                    <el-option label="超级卡" value="shanghai"></el-option>
-                                    <el-option label="普通卡" value="beijing"></el-option>
+                                    <el-option label="0" value="0">{{$t("Whole")}}</el-option>
+                                    <el-option label="1" value="1">{{$t("Enabled")}}</el-option>
+                                    <el-option label="1" value="2">{{$t("NotEnabled")}}</el-option>
                                 </el-select>
                             </el-form-item>
                         </el-col>
@@ -27,6 +23,9 @@
                                 <el-button type="primary" @click="submitForm">{{$t("Query")}}</el-button>
                                 <el-button class="reset" @click="resetForm">{{$t("Reset")}}</el-button>
                             </div>
+                        </el-col>
+                        <el-col :md="9" :lg="12">
+                            <el-button class="fr">{{$t("BatchExport")}}</el-button>
                         </el-col>
                     </el-row>
                 </el-form>
@@ -72,8 +71,8 @@ export default {
     data(){
         return{
             initParams:{
-                type:null,
-                time:null,
+                name:null,
+                status:null,
             },
             table_columns:[
                 { prop: 'code', label: this.$t("Name"),minWidth:10},
@@ -105,13 +104,12 @@ export default {
         },
         rowClick:function(row){
             console.log(row)
-            this.$emit("backInfo",row)
         },
         disable(){
 
         },
         edit(){
-
+            this.$emit("backInfo",row)
         },
         remove(){
 

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import cabinet from '@/components/cabinet.vue'
+import cabinet from '@/components/Global/components/HisComponent/cabinet.vue'
 export default {
     inject:['changeTitle'],
     created () {

@@ -63,7 +63,7 @@
            </router-link>
         </li>
         <li>
-           <router-link to="/loncom/his">
+           <router-link to="/loncom/his" @click="flushPage">
                 <div class="nav-box">
                     <div class="nav-box-con">
                         <img src="~@/assets/images/af.png">

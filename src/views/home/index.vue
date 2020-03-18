@@ -7,7 +7,7 @@
 <script>
 export default {
     created () {
-        this.currentView="indexComponent"
+        this.currentView="IndexComponent"
     },
     mounted() {
         

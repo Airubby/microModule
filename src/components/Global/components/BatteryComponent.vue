@@ -1,36 +1,20 @@
 <template>
   <div class="content">
         <div class="echart-info" :id="data.key"></div>
-        <div class="echart-table">
-            <div class="echart-tablecon">
-                <div class="echart-table-title">
-                    <div class="echart-table-box">
-                        <div class="echart-table-boxcon">电池编号</div>
-                    </div>
-                    <div class="echart-table-box">
-                        <div class="echart-table-boxcon">电压(V)</div>
-                    </div>
-                    <div class="echart-table-box">
-                        <div class="echart-table-boxcon">温度(℃)</div>
-                    </div>
-                    <div class="echart-table-box">
-                        <div class="echart-table-boxcon">内阻(mΩ)</div>
-                    </div>
+        <div class="table">
+            <div class="table-con">
+                <div class="table-box table-box-title">
+                    <div class="table-title">{{$t("BatteryNo")}}</div>
+                    <div class="table-title">{{$t("VDC")}}({{$t("VDCunit")}})</div>
+                    <div class="table-title">{{$t("RDS")}}({{$t("RDSunit")}})</div>
+                    <div class="table-title">{{$t("Temp")}}({{$t("Tempunit")}})</div>
                 </div>
-                <div class="echart-table-con">
-                    <div v-for="item in title" class="echart-table-content">
-                        <div class="echart-table-box">
-                            <div class="echart-table-boxcon">{{item}}</div>
-                        </div>
-                        <div class="echart-table-box">
-                            <div class="echart-table-boxcon">23</div>
-                        </div>
-                        <div class="echart-table-box">
-                            <div class="echart-table-boxcon">324</div>
-                        </div>
-                        <div class="echart-table-box">
-                            <div class="echart-table-boxcon">23</div>
-                        </div>
+                <div class="table-box flex">
+                    <div class="table-box-con" v-for="(item,index) in 18">
+                        <div class="table-title">{{item}}</div>
+                        <div class="table-title">0.00</div>
+                        <div class="table-title">0.00</div>
+                        <div class="table-title">0.00</div>
                     </div>
                 </div>
             </div>
@@ -47,27 +31,27 @@ export default {
     },
     mounted() {
         let xData=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20'];
-        let legend=["电压(V)","温度(℃)","内阻(mΩ)"];
-        let title=["V","℃","mΩ"];
-        let color=["#5DC49E","#FFB34C","#378EE9"];
+        let legend=["电压(V)","内阻(mΩ)","温度(℃)"];
+        let title=["V","mΩ","℃"];
+        let color=["#3C6BFF","#3CB2FF","#FFC940"];
         let series=[
                 {
                     name: "电压(V)",
                     type: 'bar',
-                    barWidth: '50%',
+                    barWidth: '40%',
                     data: [120, 132, 101, 134, 90, 230, 400,120, 132, 101, 134, 90, 230, 400,120, 132, 101, 134, 90, 230]
-                },
-                {
-                    name: "温度(℃)",
-                    type: 'bar',
-                    barWidth: '50%',
-                    data: [220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330]
                 },
                 {
                     name: "内阻(mΩ)",
                     type: 'bar',
-                    barWidth: '50%',
+                    barWidth: '40%',
                     data: [220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330, 220, 182, 191, 234, 290, 330, 400]
+                },
+                {
+                    name: "温度(℃)",
+                    type: 'bar',
+                    barWidth: '40%',
+                    data: [220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330]
                 }
             ];
         let echart=this.clickLegend(this.data.key,xData,legend,title,color,series);
@@ -261,3 +245,53 @@ export default {
     }
 }
 </script>
+<style lang="less" scoped>
+.echart-info{
+    width: 100%;
+    height: calc(100% - 170px);
+}
+.table{
+    width: 100%;
+    height: 160px;
+    position:relative;
+    .flex{
+        display: flex;
+        justify-content: space-between;
+    }
+    .table-con{
+        width:100%;
+        display:flex;
+        .table-box{
+            width: 75px;
+            .table-box-con{
+                width: 100%;
+            }
+            .table-title{
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 14px;
+                color:#838FA3;
+                overflow: hidden;
+                border-bottom: 1px solid #E4E7E9;
+                border-right: 1px solid #e4e7e9;
+                &.active{
+                    background: #DAF0FF;
+                }
+            }
+            .table-title:nth-of-type(1){
+                background: #E4E7E9;
+            }
+        }
+        .table-box:nth-of-type(2){
+            width: calc(100% - 75px);
+        }
+        .table-box-title{
+            .table-title{
+                border-left: 1px solid #e4e7e9;
+            }
+        }
+
+    }
+}
+</style>

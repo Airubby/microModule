@@ -4,7 +4,7 @@
             <div class="table_search">
                 <el-form ref="ValidateForm" class="form-serarch" :model="initParams">
                     <el-row :gutter="20">
-                        <el-col :span="4">
+                        <el-col :md="5" :lg="4">
                             <el-form-item :label="$t('Type')" label-width="40px" prop="type">
                                 <el-select v-model="initParams.type" :placeholder="$t('PleaseSelect')">
                                     <el-option label="超级卡" value="shanghai"></el-option>
@@ -12,7 +12,7 @@
                                 </el-select>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="6">
+                        <el-col :md="8" :lg="6">
                             <el-form-item :label="$t('SelectDate')" label-width="75px" prop="time">
                                 <el-date-picker
                                 style="width:100%"
@@ -24,13 +24,13 @@
                                 </el-date-picker>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="4">
+                        <el-col :md="5" :lg="4">
                             <div class="mb20">
                                 <el-button type="primary" @click="submitForm">{{$t("Query")}}</el-button>
                                 <el-button class="reset" @click="resetForm">{{$t("Reset")}}</el-button>
                             </div>
                         </el-col>
-                        <el-col :span="10">
+                        <el-col :md="6" :lg="10">
                             <el-button class="fr">{{$t("BatchExport")}}</el-button>
                         </el-col>
                     </el-row>

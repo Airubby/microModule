@@ -12,7 +12,7 @@
                     <div class="table-title">功耗(KW)</div>
                 </div>
                 <div class="table-box flex">
-                    <div class="table-box-con" v-for="(item,index) in 20">
+                    <div class="table-box-con" v-for="(item,index) in 18">
                         <div class="table-title">机柜{{item}}</div>
                         <div class="table-title">0.00</div>
                         <div class="table-title active">0.00</div>
@@ -30,6 +30,9 @@
 <script>
 
 export default {
+    created () {
+        console.log("222222222222222222222222")  
+    },
     computed: {
       
     },
@@ -59,7 +62,7 @@ export default {
             width:100%;
             display:flex;
             .table-box{
-                width: 100px;
+                width: 75px;
                 .table-box-con{
                     width: 100%;
                 }
@@ -67,7 +70,8 @@ export default {
                     height: 40px;
                     line-height: 40px;
                     text-align: center;
-                    font-size: 16px;
+                    font-size: 14px;
+                    overflow: hidden;
                     color:#838FA3;
                     border-bottom: 1px solid #E4E7E9;
                     border-right: 1px solid #e4e7e9;
@@ -80,7 +84,7 @@ export default {
                 }
             }
             .table-box:nth-of-type(2){
-                width: calc(100% - 100px);
+                width: calc(100% - 75px);
             }
             .table-box-title{
                 .table-title{
