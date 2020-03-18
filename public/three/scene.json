@@ -290,7 +290,7 @@
 						"name": "后面",
 						"renderOrder": 3,
 						"layers": 1,
-						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,-2,1],
+						"matrix": [-1,0,0,0,0,1,0,0,0,0,-1,0,0,0,-2,1],
 						"geometry": "BA295FAB-2D47-43C0-BAE6-C236B8E2B8AA",
 						"material": "C951215A-6FF4-4E04-8CB7-43B86E27F50B"
 					}]

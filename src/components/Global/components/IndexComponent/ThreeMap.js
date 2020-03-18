@@ -124,84 +124,120 @@ export default class ThreeMap {
         }
 
 
-        // var options = {
-        //     size: 12,
-        //     height: 1,
-        //     weight: 10,
-        //     font: "helvetiker",
-        // };
-        // text1 = this.createMesh(new THREE.TextGeometry("Learning", options));
-        // var textmirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,0,1.50,1.5,1]);
-        // text1.applyMatrix(textmirrorMatrix);
-        // _this.scene.add(text1);
 
         var loader11 = new THREE.FontLoader();
-        loader11.load( '/three/fonts/Alibaba PuHuiTi_Regular.json', function ( response ) {
-            console.log(response)
-        } );
-
-
-
-
-        var json=[{type:"cabinet"},{type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"air"},{type:"cabinet"}]
-        let model=10;//机柜总数
-        let left=0.03//间距
-        let cwidth=5.76-(left*(model-1));//计算总宽
-        let width=cwidth/(model);//计算机柜宽度
-        let y=(5.76/2)-(width/2);//Y轴移位
-        let z=1.55;//z轴
-        let z1=1.54;//z轴
-           for(let j=0;j<2;j++){
-            y=(5.76/2)-(width/2);//Y轴移位
-                for(let i=0;i<json.length;i++){
-                    var xxxx=width;
-                      if(json[i].type=="cabinet"){
-                          xxxx=(width*2)+(left);
-                      }
-                      if(i==0){
+        var option={
+            size: 0.15, //字体大小
+            height: 0.01,  //字体的深度
+            curveSegments: 12,  //曲线控制点数
+            bevelEnabled: false,  //斜角
+            bevelThickness: 10,  //斜角的深度
+            bevelSize: 8,  //斜角的大小
+            bevelSegments: 5  //斜角段数
+        }
+        //创建法向量材质
+        var fontmeshMaterial = new THREE.MeshNormalMaterial({
+            flatShading: THREE.FlatShading,
+            transparent: true,
+            opacity: 0.9
+        });
+        loader11.load( '/three/helvetiker_regular.typeface.json', //加载好字体后创建三维文字
+            function ( font ) {
+                
+                var json=[{type:"cabinet"},{type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"air"},{type:"cabinet"}]
+                let model=10;//机柜总数
+                let left=0.03//间距
+                let cwidth=5.76-(left*(model-1));//计算总宽
+                let width=cwidth/(model);//计算机柜宽度
+                let y=(5.76/2)-(width/2);//Y轴移位
+                let z=1.55;//z轴
+                let z1=1.54;//z轴
+                for(let j=0;j<2;j++){
+                    y=(5.76/2)-(width/2);//Y轴移位
+                    for(let i=0;i<json.length;i++){
+                        var xxxx=width;
                         if(json[i].type=="cabinet"){
-                            y=y-(width/2)-(left/2);
-                        }else{
-                            y=y;
+                            xxxx=(width*2)+(left);
                         }
-                      }else{
-                        if(json[i].type=="cabinet"){
-                            if(json[i-1].type=="cabinet"){
-                                y=y-(width*2+left+(left/2))-(left/2);
+                        if(i==0){
+                            if(json[i].type=="cabinet"){
+                                y=y-(width/2)-(left/2);
                             }else{
-                                y=y-width-((width+left)/2)-left;
+                                y=y;
                             }
                         }else{
-                            if(json[i-1].type=="cabinet"){
-                            y=y-width-((width+left)/2)-left;
-                           }else{
-                            y=y-width-left;
-                           }
+                            if(json[i].type=="cabinet"){
+                                if(json[i-1].type=="cabinet"){
+                                    y=y-(width*2+left+(left/2))-(left/2);
+                                }else{
+                                    y=y-width-((width+left)/2)-left;
+                                }
+                            }else{
+                                if(json[i-1].type=="cabinet"){
+                                    y=y-width-((width+left)/2)-left;
+                                }else{
+                                    y=y-width-left;
+                                }
+                            }
                         }
-                      }
-                   var geometry=new THREE.BoxGeometry(
-                    xxxx ,
-                    1.66,
-                    1); 
-                var materail=new THREE.MeshBasicMaterial(_this.mapData.materials[_this.mapData.materials.length-1]);
-                var mesh=new THREE.Mesh(geometry,materail);
-                var mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,0,j==0?z-(z*2):z,1]);
-                mesh.material.type="MeshBasicMaterial";
-                mesh.material.color.set(0xfffffff);
-            // mesh.material.side=1;
-                mesh.material.map=this.textures[json[i].type];
-                mesh.material.transparent=true;
-                mesh.applyMatrix(mirrorMatrix);
-                tgroup.children.push(mesh);
-                _this.data.push(mesh.uuid);
-                var xxxcc=geometry.clone();
-               var mesh2=new THREE.Mesh(xxxcc,materail.clone());//创建新的网格对象
-               mesh2.applyMatrix(mirrorMatrix);
-               mesh2.position.z=j==0?z1-(z1*2):z1;//移动克隆的网格对象
-                _this.scene.add(mesh);
-                 _this.scene.add(mesh2);
+                        option['font']=font;
+                        var g1 = new THREE.TextGeometry( 'JIGUI'+i, option );
+                        var fontmesh = new THREE.Mesh(g1, fontmeshMaterial);
+                        var fontmirrorMatrix;
+                        if(j==0){
+                            fontmirrorMatrix=new THREE.Matrix4().fromArray([-1,0,0,0,0,1,0,0,0,0,-1,0,y,1.2,j==0?z-(z*2):z,1]);
+                            // [-1,0,0,0,0,-1,0,0,0,0,1,0,0,0,-2,1],
+                        }else{
+                            fontmirrorMatrix=new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,1.2,j==0?z-(z*2):z,1]);
+                        }
+                        fontmesh.applyMatrix(fontmirrorMatrix);
+                        _this.scene.add(fontmesh);
+
+
+                        var geometry=new THREE.BoxGeometry(
+                            xxxx ,
+                            1.66,
+                            1); 
+                        var materail=new THREE.MeshBasicMaterial(_this.mapData.materials[_this.mapData.materials.length-1]);
+                        var mesh=new THREE.Mesh(geometry,materail);
+                        var mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,0,j==0?z-(z*2):z,1]);
+                        mesh.material.type="MeshBasicMaterial";
+                        mesh.material.color.set(0xfffffff);
+                        // mesh.material.side=1;
+                        mesh.material.map=_this.textures[json[i].type];
+                        mesh.material.transparent=true;
+                        mesh.applyMatrix(mirrorMatrix);
+                        
+                        
+
+                        tgroup.children.push(mesh);
+                        _this.data.push(mesh.uuid);
+                        var xxxcc=geometry.clone();
+                        var mesh2=new THREE.Mesh(xxxcc,materail.clone());//创建新的网格对象
+                        mesh2.applyMatrix(mirrorMatrix);
+                        mesh2.position.z=j==0?z1-(z1*2):z1;//移动克隆的网格对象
+                        _this.scene.add(mesh);
+                        _this.scene.add(mesh2);
+                    }
+                }
+
+
+
+            },
+            //加载进度
+            function ( xhr ) {
+                console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+            },
+            //出现错误
+            function (err) {
+                console.log(err);
             }
-    }
+        )
+
+
+
+
+        
     
         this.group=tgroup;
 
