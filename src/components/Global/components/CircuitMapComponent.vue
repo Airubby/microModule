@@ -8,7 +8,7 @@
                             <el-scrollbar class="numbox-left scrollbar">
                                 <div class="numbox-con">
                                     <template  v-for="(item,index) in 19">
-                                        <el-tooltip class="item" effect="light" content="提示文字" placement="left">
+                                        <el-tooltip class="item" effect="light" content="0.3" placement="left">
                                             <div class="numbox-box" @click="checkbox($event)">
                                                 <i class="el-icon-check"></i>
                                                 <span>{{item}}</span>

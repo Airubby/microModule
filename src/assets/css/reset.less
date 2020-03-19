@@ -40,7 +40,8 @@
       top: 8px !important;
       font-size: 22px !important;
   }
-  .el-dialog__headerbtn:focus .el-dialog__close, .el-dialog__headerbtn:hover .el-dialog__close{
+  .el-dialog__headerbtn:focus .el-dialog__close, .el-dialog__headerbtn:hover .el-dialog__close,
+  .el-dialog__headerbtn .el-dialog__close{
     color: #DAE0EF !important;
   }
   .el-dialog__body{
@@ -49,8 +50,7 @@
   }
   .dialog-footer{
     padding: 10px 20px !important;
-    background: #E6E6E6;
-    text-align: right;
+    text-align: center;
   }
   .dialog-footer,.el-message-box__btns{
     border-top: 1px solid #D5D5D5;
@@ -81,7 +81,9 @@
 .el-message-box__btns .el-button--primary{
     color: #B9C6F2 !important;
 }
-
+.el-form--label-top .el-form-item__label{
+    padding: 0;
+}
 .el-form-item__label,
 .el-table thead{
     color: #838FA3;
@@ -152,7 +154,9 @@
         }
     }
 }
-
+.el-select{
+    width: 100%;
+}
 
 .collapse{
     width: 100%;

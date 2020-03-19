@@ -25,7 +25,8 @@
                             </div>
                         </el-col>
                         <el-col :md="9" :lg="12">
-                            <el-button class="fr">{{$t("BatchExport")}}</el-button>
+                            <el-button class="fr ml5">{{$t("BatchExport")}}</el-button>
+                            <el-button class="fr" type="primary" @click="add()">{{$t("Add")}}</el-button>
                         </el-col>
                     </el-row>
                 </el-form>
@@ -78,8 +79,8 @@ export default {
                 { prop: 'code', label: this.$t("Name"),minWidth:10},
                 { prop: 'type', label: this.$t("DevClassify"),minWidth:10},
                 { prop: 'status', label: this.$t("Status"),slotName:'preview-status',minWidth:10},
-                { prop: 'user', label: this.$t("Location"),minWidth:10},
-                { prop: 'indate', label: this.$t("APN"),minWidth:20},
+                { prop: 'user', label: this.$t("User"),minWidth:10},
+                { prop: 'indate', label: this.$t("Time"),minWidth:20},
                 { prop: 'd', label: this.$t("Handle"),slotName:'preview-handle',width:140},
             ],
             table_data:[
@@ -108,7 +109,12 @@ export default {
         disable(){
 
         },
-        edit(){
+        add:function(){
+            let row={activeComponent:"addComponent"}
+            this.$emit("backInfo",row)
+        },
+        edit(row){
+            row["activeComponent"]="addComponent";
             this.$emit("backInfo",row)
         },
         remove(){

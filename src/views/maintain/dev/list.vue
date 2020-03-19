@@ -41,9 +41,11 @@
                 :params="initParams"
                 :showPagination="true"
                 :showSelectAll="true"
-                @row-click="rowClick"
                 :columns="table_columns" ref="thisRef">   
                 <el-table-column slot="prepend" type="selection"></el-table-column>
+                <template slot-scope="scope" slot="preview-name">
+                    <span class="color" @click="showDetail(scope.row)">{{scope.row.code}}</span>
+                </template>
                 <template slot-scope="scope" slot="preview-status">
                     <span v-if="scope.row.status=='1'">{{$t("Inservice")}}</span>
                     <span v-else class="alarm">{{$t("NotRun")}}</span>
@@ -76,7 +78,7 @@ export default {
                 time:null,
             },
             table_columns:[
-                { prop: 'code', label: this.$t("Name"),minWidth:10},
+                { prop: 'code', label: this.$t("Name"),slotName:'preview-name',minWidth:10},
                 { prop: 'type', label: this.$t("DevClassify"),minWidth:10},
                 { prop: 'status', label: this.$t("Status"),slotName:'preview-status',minWidth:10},
                 { prop: 'user', label: this.$t("Location"),minWidth:10},
@@ -103,15 +105,17 @@ export default {
             }
             });
         },
-        rowClick:function(row){
+        showDetail:function(row){
             console.log(row)
-            this.$emit("backInfo",row)
+            row["activeComponent"]="detailComponent";
+            this.$emit("backInfo",row);
         },
         disable(){
 
         },
-        edit(){
-
+        edit(row){
+            row["activeComponent"]="editComponent";
+            this.$emit("backInfo",row);
         },
         remove(){
 

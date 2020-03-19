@@ -1,7 +1,7 @@
 <template>
-    <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogCancel" size="small">取 消</el-button>
-        <el-button type="primary" size="small" @click="dialogSure">确 定</el-button>
+    <div slot="footer" class="dialog-footer form-serarch">
+        <el-button @click="dialogCancel" size="small">{{$t("Cancel")}}</el-button>
+        <el-button type="primary" size="small" @click="dialogSure">{{$t("Confirm")}}</el-button>
     </div>
 </template>
 

@@ -1,7 +1,10 @@
 <template>
     <div class="content flex">
         <div class="con-left">
-            <div class="font-size16 color mb5">用户列表</div>
+            <div class="font-size16 color mb5">
+                {{$t("UserList")}}
+                <i class="el-icon-setting fr" style="font-size:20px;"></i>
+            </div>
             <div class="input mb10">
                 <el-input
                     :placeholder="$t('PleaseInput')"
@@ -31,7 +34,7 @@
             </div>
         </div>
         <div class="con-right">
-            <div class="font-size16 color mb5">用户信息</div>
+            <div class="font-size16 color mb5">{{$t("UserInfo")}}</div>
             <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="56px">
                 <el-row :gutter="30">
                     <el-col :md="11" :lg="9">

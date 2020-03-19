@@ -15,7 +15,7 @@
                                     </div>
                                     <div class="inverter-box-left-line">
                                         <div class="inverter-box-left-title inverter-box-text">电流(A)</div>
-                                        <div class="inverter-box-text"><span>23</span></div>
+                                        <div class="inverter-box-text"><span>{{initParams.AAA}}</span></div>
                                         <div class="inverter-box-text"><span>2</span></div>
                                         <div class="inverter-box-text"><span>4</span></div>
                                     </div>
@@ -73,7 +73,7 @@
                                         <div class="inverter-box-text"><span>4</span></div>
                                     </div>
                                 </div>
-                                <div class="inverter-box-right bg3"><span>市电A路</span></div>
+                                <div class="inverter-box-right bg3"><span>市电B路</span></div>
                             </div>
                         </div>
                         <div class="inverterline">
@@ -186,9 +186,6 @@
                             <div class="line line4 linet"></div>
                             <div class="line line5"></div>
                             <div class="line line6 linet"></div>
-                            <!-- <div @click="showDetail('70路交流输入')" class="clickinfo clickinfo1"></div>
-                            <div @click="showDetail('15路整流模块')" class="clickinfo clickinfo2"></div>
-                            <div @click="showDetail('51路直流输入')" class="clickinfo clickinfo3"></div> -->
                         </div>
                     </div>
                 </div>
@@ -203,13 +200,87 @@ import switchc from './MDCinverterComponent/switch.vue'
 import showDetail from './MDCinverterComponent/showDetail.vue'
 export default {
     created () {
-        
+        let config=[
+            {name:"市电A路A相电流",key:"AAA",type:"value"},
+            {name:"市电A路B相电流",key:"ABA",type:"value"},
+            {name:"市电A路C相电流",key:"ACA",type:"value"},
+            {name:"市电A路A相电压",key:"AAV",type:"value"},
+            {name:"市电A路B相电压",key:"ABV",type:"value"},
+            {name:"市电A路C相电压",key:"ACV",type:"value"},
+            {name:"市电A路A相功率",key:"AAKW",type:"value"},
+            {name:"市电A路A相功率",key:"AAKW",type:"value"},
+            {name:"市电A路B相功率",key:"ABKW",type:"value"},
+            {name:"市电A路C相功率",key:"ACKW",type:"value"},
+            {name:"市电A路A相功率因素",key:"AAPF",type:"value"},
+            {name:"市电A路B相功率因素",key:"ABPF",type:"value"},
+            {name:"市电A路C相功率因素",key:"ACPF",type:"value"},
+
+            {name:"市电B路A相电流",key:"BAA",type:"value"},
+            {name:"市电B路B相电流",key:"BBA",type:"value"},
+            {name:"市电B路C相电流",key:"BCA",type:"value"},
+            {name:"市电B路A相电压",key:"BAV",type:"value"},
+            {name:"市电B路B相电压",key:"BBV",type:"value"},
+            {name:"市电B路C相电压",key:"BCV",type:"value"},
+            {name:"市电B路A相功率",key:"BAKW",type:"value"},
+            {name:"市电B路A相功率",key:"BAKW",type:"value"},
+            {name:"市电B路B相功率",key:"BBKW",type:"value"},
+            {name:"市电B路C相功率",key:"BCKW",type:"value"},
+            {name:"市电B路A相功率因素",key:"BAPF",type:"value"},
+            {name:"市电B路B相功率因素",key:"BBPF",type:"value"},
+            {name:"市电B路C相功率因素",key:"BCPF",type:"value"},
+            
+            {name:"市电A路开关",key:"Aswitch",type:"value"},
+            {name:"市电A路制冷",key:"Acool",type:"item"},
+            {name:"市电A路其它",key:"Aother",type:"item"},
+            {name:"市电A路机柜",key:"Arack",type:"item"},
+            {name:"市电A路备用",key:"Ares",type:"item"},
+            {name:"市电A路ATS开关",key:"AATSswitch",type:"value"},
+            
+            {name:"市电B路开关",key:"Bswitch",type:"value"},
+            {name:"市电B路ATS开关",key:"BATSswitch",type:"value"},
+            {name:"市电B路HVDC开关",key:"BHVDCswitch",type:"value"},
+            {name:"市电B路制冷",key:"Bcool",type:"item"},
+            {name:"市电B路其它",key:"Bother",type:"item"},
+            {name:"市电B路机柜",key:"Brack",type:"item"},
+            {name:"市电B路备用",key:"Bres",type:"item"},
+            {name:"市电B路电池柜1开关",key:"BswitchBox1",type:"value"},
+            {name:"市电B路电池柜2开关",key:"BswitchBox2",type:"value"},
+            {name:"市电B路电池柜3开关",key:"BswitchBox3",type:"value"},
+            
+        ]
     },
     data(){
         return{
             info:{
                 visible:false,
                 title:"",
+            },
+            initParams:{
+                AAA:"234",
+                ABA:"",
+                ACA:"",
+                AAV:"",
+                ABV:"",
+                ACV:"",
+                AAKW:"",
+                ABKW:"",
+                ACKW:"",
+                AAPF:"",  //功率因数
+                ABPF:"",
+                ACPF:"",
+                BAA:"",
+                BBA:"",
+                BCA:"",
+                BAV:"",
+                BBV:"",
+                BCV:"",
+                BAKW:"",
+                BBKW:"",
+                BCKW:"",
+                BAPF:"",
+                BBPF:"",
+                BCPF:"",
+                //
             }
         }
     },
@@ -333,7 +404,7 @@ export default {
                     bottom: 40px;
                 }
                 &.switch5{
-                    left: 356px;
+                    left: 346px;
                     bottom: 18px;
                 }
             }
@@ -408,14 +479,14 @@ export default {
             }
             .line{
                 position:absolute;
-                background:#F75B49;
+                background:#838FA3;
                 width: 75px;
                 height: 2px;
                 &.linet:after{
                     content: "";
                     width: 2px;
                     height: 130px;
-                    background: #F75B49;
+                    background: #838FA3;
                     position: absolute;
                     right: 0;
                     bottom: 50%;
@@ -441,7 +512,7 @@ export default {
                 }
                 &.line4{
                     width: 10px;
-                    left: 460px;
+                    left: 451px;
                     bottom: 243px;
                 }
                 &.line5{
@@ -470,7 +541,7 @@ export default {
                     top: 5px;
                 }
                 &.line-box2{
-                    left: 468px;
+                    left: 459px;
                     top: 175px;
                 }
                 &.line-box3{

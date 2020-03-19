@@ -5,11 +5,12 @@
 </template>
 
 <script>
-import list from './list'
-import detail from './detail'
+import listComponent from './list'
+import detailComponent from './detail'
+import editComponent from './edit'
 export default {
     components: {
-        list,detail    
+        listComponent,detailComponent,editComponent    
     },
     created () {
         
@@ -20,7 +21,7 @@ export default {
     },
     data(){
         return{
-            activeComponent:"list",
+            activeComponent:"listComponent",
             obj:null
         }
     },
@@ -29,9 +30,9 @@ export default {
             console.log(info)
             if(info){
                 this.obj=info;
-                this.activeComponent="detail"
+                this.activeComponent=info.activeComponent
             }else{
-                this.activeComponent="list";
+                this.activeComponent="listComponent";
             }
         }
     },
