@@ -17,11 +17,11 @@
                                     </template>
                                 </div>
                             </el-scrollbar>
-                            <div class="numbox-right"><span>{{$t("HVDCgroup")}}</span></div>
+                            <div class="numbox-right" @click="showFn()"><span>{{$t("HVDCgroup")}}</span></div>
                         </div>
                         <div class="textbox textbox1">
                             <div class="title">271.30</div>
-                            <div>直流母排电压(V)</div>
+                            <div>{{$t("DcBusVoltage")}}({{$t("VDCunit")}})</div>
                         </div>
                         <div class="dcbox">
                             <div class="threeline">
@@ -37,39 +37,39 @@
                         <div class="textbox-group">
                             <div class="textbox">
                                 <div class="title">1.30</div>
-                                <div>模块输出功率(KW)</div>
+                                <div>{{$t("ModuleOutput")}}({{$t("PowerUnit")}})</div>
                             </div>
                             <div class="textbox">
                                 <div class="title">4.30</div>
-                                <div>模块输出电流(A)</div>
+                                <div>{{$t("ModuleOutputCurrent")}}({{$t("ElectricityUnit")}})</div>
                             </div>
                             <div class="textbox">
                                 <div class="title">1.30</div>
-                                <div>总负载电流(A)</div>
+                                <div>{{$t("ITOT")}}({{$t("ElectricityUnit")}})</div>
                             </div>
                         </div>
                         <div class="battery battery1">
                             <div class="battery-threeline"><threeline :height="232"></threeline></div>
                             <div class="battery-box"><battery :direction="false"></battery></div>
                             <div class="battery-text">
-                                <p>电池组A</p>
-                                <p>电流(A)：0.00</p>
+                                <p>{{$t("BatteryA")}}</p>
+                                <p>{{$t("Electricity")}}({{$t("ElectricityUnit")}})：0.00</p>
                             </div>
                         </div>
                         <div class="battery battery2">
                             <div class="battery-threeline"><threeline :height="232" :direction="false"></threeline></div>
                             <div class="battery-box"><battery :direction="true"></battery></div>
                             <div class="battery-text">
-                                <p>电池组B</p>
-                                <p>电流(A)：0.00</p>
+                                <p>{{$t("BatteryB")}}</p>
+                                <p>{{$t("Electricity")}}({{$t("ElectricityUnit")}})：0.00</p>
                             </div>
                         </div>
                         <div class="battery battery3">
                             <div class="battery-threeline"><threeline :height="232"></threeline></div>
                             <div class="battery-box"><battery :direction="false"></battery></div>
                             <div class="battery-text">
-                                <p>电池组C</p>
-                                <p>电流(A)：0.00</p>
+                                <p>{{$t("BatteryC")}}</p>
+                                <p>{{$t("Electricity")}}({{$t("ElectricityUnit")}})：0.00</p>
                             </div>
                         </div>
                         <div class="server">
@@ -89,13 +89,18 @@
                 </div>
             </div>
         </el-scrollbar>
+        <show v-if="showInfo.visible" :dialogInfo="showInfo"></show>
     </div>
 </template>
 
 <script>
 import battery from './CircuitMapComponent/battery.vue'
 import threeline from './CircuitMapComponent/threeLine.vue'
+import show from './CircuitMapComponent/show.vue'
 export default {
+    components: {
+      battery,threeline,show
+    },
     created () {
         
     },
@@ -104,7 +109,9 @@ export default {
     },
     data(){
         return{
-          
+            showInfo:{
+                visible:false,
+            }
         }
     },
     methods: {
@@ -113,11 +120,12 @@ export default {
                 this.$el.querySelectorAll(".numbox-box")[i].classList.remove("active");
             }
             ev.currentTarget.classList.add("active");
-        }
+        },
+        showFn:function(){
+            this.showInfo.visible=true;
+        },
     },
-    components: {
-      battery,threeline
-    }
+    
 }
 </script>
 <style scoped lang="less">

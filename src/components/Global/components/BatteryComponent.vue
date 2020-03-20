@@ -31,24 +31,24 @@ export default {
     },
     mounted() {
         let xData=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20'];
-        let legend=["电压(V)","内阻(mΩ)","温度(℃)"];
-        let title=["V","mΩ","℃"];
+        let legend=[this.$t("VDC")+"("+this.$t("VDCunit")+")",this.$t("RDS")+"("+this.$t("RDSunit")+")",this.$t("Temp")+"("+this.$t("Tempunit")+")"];
+        let title=[this.$t("VDCunit"),this.$t("RDSunit"),this.$t("Tempunit")];
         let color=["#3C6BFF","#3CB2FF","#FFC940"];
         let series=[
                 {
-                    name: "电压(V)",
+                    name: this.$t("VDC")+"("+this.$t("VDCunit")+")",
                     type: 'bar',
                     barWidth: '40%',
                     data: [120, 132, 101, 134, 90, 230, 400,120, 132, 101, 134, 90, 230, 400,120, 132, 101, 134, 90, 230]
                 },
                 {
-                    name: "内阻(mΩ)",
+                    name: this.$t("RDS")+"("+this.$t("RDSunit")+")",
                     type: 'bar',
                     barWidth: '40%',
                     data: [220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330, 220, 182, 191, 234, 290, 330, 400]
                 },
                 {
-                    name: "温度(℃)",
+                    name: this.$t("Temp")+"("+this.$t("Tempunit")+")",
                     type: 'bar',
                     barWidth: '40%',
                     data: [220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330]

@@ -206,34 +206,79 @@ em{
         padding: 10px;
     }
 }
-.table-info{
+// .table-info{
+//     width: 100%;
+//     height: 100%;
+//     .table-info-title{
+//         width: 100%;
+//         height: 36px;
+//         line-height: 36px;
+//         background: #EBF0F5;
+//         display: flex;
+//         font-size: 16px;
+//     }
+//     .table-info-con{
+//         width: 100%;
+//         height: calc(100% - 36px);
+//         padding-top: 10px;
+//         .table-info-list{
+//             width: 100%;
+//             height: 30px;
+//             line-height: 30px;
+//             display: flex;
+//         }
+//     }
+//     .table-info-box{
+//         width: 50%;
+//         padding: 0 10px;
+//     }
+//     .table-info-box1{
+//         width: 100%;
+//     }
+// }
+
+.table{
     width: 100%;
     height: 100%;
-    .table-info-title{
-        width: 100%;
-        height: 36px;
-        line-height: 36px;
-        background: #EBF0F5;
+    position:relative;
+    .flex{
         display: flex;
-        font-size: 16px;
+        justify-content: space-between;
     }
-    .table-info-con{
-        width: 100%;
-        height: calc(100% - 36px);
-        padding-top: 10px;
-        .table-info-list{
-            width: 100%;
-            height: 30px;
-            line-height: 30px;
-            display: flex;
+    .table-con{
+        width:100%;
+        display:flex;
+        .table-box{
+            width: 75px;
+            .table-box-con{
+                width: 100%;
+            }
+            .table-title{
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 14px;
+                overflow: hidden;
+                color:#838FA3;
+                border-bottom: 1px solid #E4E7E9;
+                border-right: 1px solid #e4e7e9;
+                &.active{
+                    background: #DAF0FF;
+                }
+            }
+            .table-title:nth-of-type(1){
+                background: #E4E7E9;
+            }
         }
-    }
-    .table-info-box{
-        width: 50%;
-        padding: 0 10px;
-    }
-    .table-info-box1{
-        width: 100%;
+        .table-box:nth-of-type(2){
+            width: calc(100% - 75px);
+        }
+        .table-box-title{
+            .table-title{
+                border-left: 1px solid #e4e7e9;
+            }
+        }
+
     }
 }
 

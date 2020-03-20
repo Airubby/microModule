@@ -12,7 +12,7 @@ export default {
         let arr=[
             // {key:"Tiprealdata",component:"TiprealdataTwoComponent"},
             {key:"MDCinverter",component:"MdcinverterComponent"},
-            {key:"Tiprealdata",component:"TiprealdataComponent"},
+            {key:"Tiprealdata",component:"TiprealdataTwoComponent"},
         ]
         this.arr=arr;
     },

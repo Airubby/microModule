@@ -5,3 +5,7 @@ IndexComponent：主页组件
 MdcinverterComponent：MDC拓扑配电组件
 TiprealdataComponent：末端实时数据组件
 TiprealdataTwoComponent：末端实时数据组件2
+HumitureComponent：温湿度图示组件
+ForTheReturnComponent：供回水图示组件
+FanAndWaterComponent：风机与水阀图示组件
+AirRealDataComponent：空调实时数据组件

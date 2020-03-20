@@ -61,7 +61,7 @@ import echarts from 'echarts'
 import axios from 'axios';
 import ThreeMap from './IndexComponent/ThreeMap.js';
 export default {
-    name: 'indexComponent',
+    name: 'IndexComponent',
     created () {
         
     },
@@ -70,7 +70,6 @@ export default {
         axios.get('/three/scene.json').then(data => {
             let result=data.data;
             this.map = new ThreeMap(props,result);
-            
         })
 
         this.echartPUE("echartpue")
@@ -87,11 +86,18 @@ export default {
             console.log(this.map)
             let flag=true;
             if(info==1){
+                 this.map.switch("2");
                 flag=true;
             }else{
+                // this.map.switch("1");
+                this.map.updatevalue(this.map.data[0],75);
                 flag=false;
             }
-            this.map.updatedata(this.map.data[7],flag);
+            console.log(this.map.data);
+           
+           // this.map.updatedata(this.map.data[6],flag);
+           //  this.map.updatedata(this.map.data[8],flag);
+           
         },
         Format:function(fmt,value){
             let date=value?new Date(value):new Date();
@@ -468,4 +474,5 @@ export default {
             }
         }
     }
+    
 </style>

@@ -3,23 +3,23 @@
         <div class="table">
             <div class="table-con">
                 <div class="table-box table-box-title">
-                    <div class="table-title">机柜编号</div>
+                    <div class="table-title">{{$t("RackNo")}}</div>
                     <div class="table-title">
-                        <span>交流1(A)</span>
-                        <span>直流1(A)</span>
+                        <span>{{$t("AC")}}1(A)</span>
+                        <span>{{$t("DC")}}1(A)</span>
                     </div>
                     <div class="table-title">
-                        <span>交流2(A)</span>
-                        <span>直流2(A)</span>
+                        <span>{{$t("AC")}}2(A)</span>
+                        <span>{{$t("DC")}}2(A)</span>
                     </div>
                     <div class="table-title">
-                        <span>交流3(A)</span>
-                        <span>功耗(KW)</span>
+                        <span>{{$t("AC")}}3(A)</span>
+                        <span>{{$t("TDP")}}(KW)</span>
                     </div>
                 </div>
                 <div class="table-box flex">
                     <div class="table-box-con" v-for="(item,index) in 9">
-                        <div class="table-title">机柜{{item}}</div>
+                        <div class="table-title">{{$t("Rack")}}{{item}}</div>
                         <div class="table-title">
                             <span>0.00</span>
                             <span>0.00</span>
@@ -37,23 +37,23 @@
             </div>
             <div class="table-con">
                 <div class="table-box table-box-title">
-                    <div class="table-title">机柜编号</div>
+                    <div class="table-title">{{$t("RackNo")}}</div>
                     <div class="table-title">
-                        <span>交流1(A)</span>
-                        <span>直流1(A)</span>
+                        <span>{{$t("AC")}}1(A)</span>
+                        <span>{{$t("DC")}}1(A)</span>
                     </div>
                     <div class="table-title">
-                        <span>交流2(A)</span>
-                        <span>直流2(A)</span>
+                        <span>{{$t("AC")}}2(A)</span>
+                        <span>{{$t("DC")}}2(A)</span>
                     </div>
                     <div class="table-title">
-                        <span>交流3(A)</span>
-                        <span>功耗(KW)</span>
+                        <span>{{$t("AC")}}3(A)</span>
+                        <span>{{$t("TDP")}}(KW)</span>
                     </div>
                 </div>
                 <div class="table-box flex">
                     <div class="table-box-con" v-for="(item,index) in 9">
-                        <div class="table-title">机柜{{item+9}}</div>
+                        <div class="table-title">{{$t("Rack")}}{{item+9}}</div>
                         <div class="table-title">
                             <span>0.00</span>
                             <span>0.00</span>
