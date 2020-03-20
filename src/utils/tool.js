@@ -1006,7 +1006,7 @@ function checkPHONE(obj) {
 function checkNumber(obj) {
     if (!obj.value) {
         if(obj.rules.required){
-            obj.callback(new Error('不能为空'))
+            obj.callback(new Error('NoEmpty'))
         }else{
             obj.callback()
         }
@@ -1017,7 +1017,7 @@ function checkNumber(obj) {
         if(regPos.test(obj.value)){
             obj.callback()
         }else{
-            obj.callback('请输入正数数值')
+            obj.callback('IsZindex')
         }
     }
     

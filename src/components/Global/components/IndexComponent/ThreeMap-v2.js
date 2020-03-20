@@ -296,7 +296,6 @@ export default class ThreeMap {
          this.scene.add(meshleft);
 
          var meshrigth=new THREE.Mesh(geometryleft,materail.clone());
-
          var mirrorMatrixright = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y+(cabinetwidth/2),0,j==0?z-(z*2):z,1]);
          meshrigth.material.type="MeshBasicMaterial";
          meshrigth.material.color.set(0xfffffff);
@@ -332,12 +331,12 @@ export default class ThreeMap {
     mesh2.material.side=2;//两边
     mesh2.material.color.set(0xfffffff);//设置颜色
     mesh2.material.map=new THREE.CanvasTexture(this.getTextCanvas(title));//生成文字图片题图
-    mirrorMatrix = new THREE.Matrix4().fromArray([j==0?-1:1,0,0,0,0,1,0,0,0,0,1,0,y,0.9,j==0?z-0.5:z+0.5,1]);//面板矩阵
+    mirrorMatrix = new THREE.Matrix4().fromArray([j==0?-1:1,0,0,0,0,1,0,0,0,0,1,0,y,0.9,j==0?z-(z*2)-0.5:z+0.5,1]);//面板矩阵
     mesh2.applyMatrix(mirrorMatrix);
     this.scene.add(mesh);
     this.scene.add(mesh2);
 }
-     getTextCanvas(text){ 
+getTextCanvas(text){ 
         var width=100, height=60; 
         var canvas = document.createElement('canvas');
         canvas.width = width;

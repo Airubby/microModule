@@ -137,7 +137,22 @@
     "InstallationLocation":"安装位置",
     "AcquisitionChannel":"采集通道",
     "UserList":"用户列表",
-    "UserInfo":"用户信息"
+    "UserInfo":"用户信息",
+    "securityPolicySet":"安全策略设置",
+    "IDsecurityPolicy":"账号安全策略",
+    "PWsecurityPolicy":"密码安全策略",
+    "EnabledIDlock":"启用账号验证锁定策略",
+    "SecurityPolicyLoginNumber":"账号登录，连续密码错误次数",
+    "SecurityPolicyLoginTime":"账号验证错误后，锁定时长(分钟)",
+    "EnabledPWlock":"启用密码过期强制修改策略",
+    "PWvalidity":"密码有效期(天)",
+    "DISTrevise":"距离密码到期，提醒用户修改的天数",
+    "IsInteger":"为正整数",
+    "ProjectConfig":"工程配置",
+    "Corelet":"核心程序",
+    "OSKernal":"系统内核",
+    "Version":"版本号",
+    "UpdateAt":"更新于"
     
   },
   "enLang":{

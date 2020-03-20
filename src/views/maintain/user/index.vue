@@ -3,7 +3,7 @@
         <div class="con-left">
             <div class="font-size16 color mb5">
                 {{$t("UserList")}}
-                <i class="el-icon-setting fr" style="font-size:20px;"></i>
+                <i class="el-icon-setting fr" style="font-size:20px;" @click="set()"></i>
             </div>
             <div class="input mb10">
                 <el-input
@@ -85,11 +85,14 @@
                 </el-row>
             </el-form>
         </div>
+        <set v-if="setInfo.visible" :dialogInfo="setInfo"></set>
     </div>
 </template>
 
 <script>
+import set from './component/set.vue'
 export default {
+    components: {set},
     created () {
         
     },
@@ -99,6 +102,9 @@ export default {
     },
     data(){
         return{
+            setInfo:{
+                visible:false,
+            },
             search:null,
             initParams:{
                 user:null,
@@ -139,11 +145,12 @@ export default {
         },
         submitForm:function(){
             
+        },
+        set:function(){
+            this.setInfo.visible=true;
         }
     },
-    components: {
-        
-    }
+    
 }
 </script>
 <style lang="less" scoped>
