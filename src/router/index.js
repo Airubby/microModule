@@ -64,12 +64,6 @@ export const syncRouter=[
 			component: () => import('@/views/his/index.vue')
 		}, 
 		{
-			path: '/loncom/his/detail',
-			name: 'hisdetail',
-			meta: { title: '历史详情'},
-			component: () => import('@/views/his/detail.vue')
-		}, 
-		{
 			path: '/loncom/set',
 			name: 'set',
 			meta: { title: '设置'},

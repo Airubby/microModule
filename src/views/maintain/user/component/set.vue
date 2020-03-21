@@ -128,7 +128,7 @@ export default {
     methods:{
         //保存的操作
         dialogSure:function(){
-            this.$refs['ruleForm'].validate((valid) => {
+            this.$refs['ValidateForm'].validate((valid) => {
                 if(valid){ //验证通过
                     
                     // this.$api.post('',this.ruleForm, r => {});

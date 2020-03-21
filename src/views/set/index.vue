@@ -40,7 +40,7 @@ export default {
             {key:"NewsInform",component:"NewsInformComponent"},
             {key:"AlarmEvent",component:"AlarmEventComponent"},
             {key:"AlarmMask",component:"AlarmMaskComponent"},
-            // {key:"LimitSet",component:"LimitSetComponent"},
+            {key:"LimitSet",component:"LimitSetComponent"},
             // {key:"DataPublish",component:"DataPublishComponent"},
         ]
         this.arr=arr;

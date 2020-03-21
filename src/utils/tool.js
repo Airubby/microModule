@@ -91,164 +91,7 @@ function arrayContains(v,arr){
     return true;
   }
 }
-function echartfn(ID,title,xData,up,middle,down,color){
-    // 基于准备好的dom，初始化echarts实例
-    let myChart = echarts.init(document.getElementById(ID))
-    // 绘制图表
-    myChart.setOption({
-        color:color,
-        title:{
-            text:title,  
-            x:'left',
-            top: 0,
-            textStyle:{
-                color:"#555",
-                fontSize:14,
-            },
-        },
-        tooltip : {
-            trigger: 'axis',
-            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            } 
-        },
-        grid: {
-            left: '75px',
-            right: '25px',
-            top:'45px',
-            bottom: '50px',
-        },
-        legend: {
-            top:'0px',
-            right:'0',
-            textStyle:{
-                rich:{
-                    a:{
-                        color:color[0],
-                        fontSize:16,
-                    },
-                    b:{
-                        color:color[1],
-                        fontSize:16,
-                    }
-                }
-            },
-            data: ["上","中"],
-            formatter: function(name) {
-                var index = 0;
-                var clientlabels = ['冷通道','热通道'];
-                var data=["上","中"];
-                data.forEach(function(value,i){
-                    if(value == name){
-                        index = i;
-                    }
-                });
-                if(index==0){
-                    return '{a|'+clientlabels[index]+'}';
-                }else{
-                    return '{b|'+clientlabels[index]+'}';
-                }
-                
-            },
-        },
-        xAxis:  {
-            name:'机柜编码',
-            nameLocation:'start',
-            nameTextStyle:{
-                color:'#555',
-                fontSize: 14,
-                padding:[60,-10,0,0]
-            },
-            type: 'category',
-            axisLine:{
-                lineStyle:{
-                    color:"#DBDBDA",
-                    width:1,
-                }
-            },
-            splitLine:{
-                show:false,
-            },
-            axisTick:{
-                show:true
-            },
-            axisLabel:{
-                interval:0,  //强制显示所有标签
-                backgroundColor:'#637880',
-                color:'#fff',
-                padding:2,
-                // formatter:'上\r中\r下\n{value}',
-                formatter:function(value){
-                    var info='{text|上}{text|中}{text|下}\n{value|'+value+'}'
-                    return info
-                },
-                rich:{
-                    text:{
-                        color:"#fff",
-                        padding:[0,1,1,1],
-                        height: 20,
-                        lineHeight: 20
-                    },
-                    value:{
-                        color:"#fff",
-                        lineHeight: 20
-                    },
-                }
-            },
-            data: xData,
-        },
-        yAxis: {
-            type: 'value',
-            axisLine:{
-                lineStyle:{
-                    color:"#DBDBDA",
-                    width:1,
-                }
-            },
-            axisTick:{
-                show:true
-            },
-            splitLine:{
-                show:false,
-                lineStyle:{
-                    color:"#213342",
-                    width:1,
-                    type:"dashed",
-                }
-            },
-            axisLabel:{
-                color:"#000"
-            },
-            
-        },
-        series: [
-            {
-                name: '上',
-                type: 'bar',
-                barWidth: '20%',
-                data: up
-            },
-            {
-                name: '中',
-                type: 'bar',
-                barWidth: '20%',
-                data: middle
-            },
-            {
-                name: '下',
-                type: 'bar',
-                barWidth: '20%',
-                data: down
-            }
-        ]
-    });
-    window.addEventListener("resize", () => { 
-        setTimeout(function(){
-            myChart.resize();
-        },0)
-    });
-    return myChart;
-}
+
 function echartAir(ID,title,legend,xData,yData,color){
     // var legend=["上","中","下"];
     // var xData=["1","2","3","4","5"];
@@ -283,7 +126,7 @@ function echartAir(ID,title,legend,xData,yData,color){
             x:'left',
             top: 0,
             textStyle:{
-                color:"#555",
+                color:"#838FA3",
                 fontSize:14,
             },
         },
@@ -300,19 +143,32 @@ function echartAir(ID,title,legend,xData,yData,color){
             bottom: '25px',
         },
         legend: {
+            selectedMode:false,
             top:'0px',
             right:'0',
             textStyle:{
                 rich:{
                     a:{
                         color:color[0],
-                        fontSize:16,
                     },
                     b:{
                         color:color[1],
-                        fontSize:16,
                     }
                 }
+            },
+            formatter: function(name) {
+                var index = 0;
+                legend.forEach(function(value,i){
+                    if(value == name){
+                        index = i;
+                    }
+                });
+                if(index==0){
+                    return '{a|'+legend[index]+'}';
+                }else{
+                    return '{b|'+legend[index]+'}';
+                }
+                
             },
             data: legend,
         },
@@ -320,7 +176,7 @@ function echartAir(ID,title,legend,xData,yData,color){
             name:'空调编号',
             nameLocation:'start',
             nameTextStyle:{
-                color:'#555',
+                color:'#838FA3',
                 fontSize: 14,
                 padding:[30,-10,0,0]
             },
@@ -339,7 +195,7 @@ function echartAir(ID,title,legend,xData,yData,color){
             },
             axisLabel:{
                 interval:0,  //强制显示所有标签
-                color:'#000',
+                color:'#838FA3',
             },
             data: xData,
         },
@@ -363,7 +219,7 @@ function echartAir(ID,title,legend,xData,yData,color){
                 }
             },
             axisLabel:{
-                color:"#000"
+                color:"#838FA3"
             },
             
         },
@@ -1042,7 +898,6 @@ export default {
     arrayContains,
     switcFullScreen,
     Format,
-    echartfn,
     echartAir,
     echartLine,
     echartPUE,

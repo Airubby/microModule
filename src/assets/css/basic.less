@@ -95,6 +95,10 @@ em{
     display: flex;
     justify-content: space-between;
 }
+.block{
+    width: 100%;
+    overflow: hidden;
+}
 .border-right{
     border-right: 1px solid #E4E7E9;
 }
@@ -164,11 +168,9 @@ em{
             font-size: 26px;
             line-height: 60px;
             display: flex;
+            align-items: center;
             img{
-                height: 34px;
-                margin-top: 13px;
-                float: left;
-                margin-right: 5px;
+                max-height: 60px;
             }
         }
         .content-right-top-right{
@@ -178,7 +180,7 @@ em{
                     height: 100%;
                     float: left;
                     display: table;
-                    padding: 0 26px;
+                    padding: 0 15px;
                     font-size: 17px;
                     a{
                         display: table-cell;

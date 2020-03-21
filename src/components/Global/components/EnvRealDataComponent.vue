@@ -139,7 +139,6 @@
                     </div>
                 </div>
             </div>
-            <img src="~@/assets/images/zb.png" class="table-img">
         </div>
     </div>
 </template>
@@ -167,23 +166,23 @@ export default {
     .table{
         width: 100%;
         height: 100%;
-        padding: 0 30px;
         position:relative;
         .table-con{
             width:100%;
-            height: calc(50% - 40px);
-            margin-bottom: 35px;
-            border: 1px solid #336699;
+            height: calc(50% - 25px);
+            margin-bottom: 20px;
+            border-top: 1px solid #E4E7E9;
+            border-bottom: 1px solid #E4E7E9;
+            border-left: 1px solid #E4E7E9;
             display:flex;
             .table-box{
-                border:1px solid #AABDD8;
+                border-right:1px solid #E4E7E9;
                 width: 9%;
                 .table-box-title{
                     height: 25%;
-                    background:#637899;
+                    background:#E4E7E9;
                     text-align: center;
                     font-size: 16px;
-                    color:#fff;
                     .table-box-cont{
                         width:100%;
                         border:none;
@@ -195,11 +194,10 @@ export default {
                     flex-wrap: wrap;
                     .table-box-cont{
                         height: 50%;
-                        border-right:1px solid #AABDD8;
                     }
                     .table-box-cont:nth-of-type(2n){
                         border-right:none;
-                        border-left: 1px solid #AABDD8;
+                        border-left: 1px solid #E4E7E9;
                     }
                 }
                 .table-box-con:nth-of-type(1){
@@ -211,17 +209,16 @@ export default {
             }
             .table-box1{
                 width: 19%;
-                color:#fff;
                 .table-box1-left{
                     width:65%;
                     height:100%;
-                    background:#FF0000;
-                    border-right:2px solid #fff;
+                    background:#e4e7e9;
+                    border-right:1px solid #fff;
                 }
                 .table-box1-right{
                     width:35%;
                     height: 100%;
-                    background:#F55252;
+                    background:#e4e7e9;
                 }
                 .table-box-con{
                     .table-box-cont{
@@ -232,22 +229,21 @@ export default {
                 }
                 .table-box-title{
                     background: none;
-                    color: #637899;
                 }
                 .table-box1-left1{
-                    background:#5984CD;
+                    background:#e4e7e9;
                 }
                 .table-box1-right1{
                     width:35%;
                     .table-box1-right1-top{
                         width: 100%;
                         height:50%;
-                        background:#4A76C2;
+                        background:#e4e7e9;
                     }
                     .table-box1-right1-bottom{
                         width: 100%;
                         height:50%;
-                        background:#446CB0;
+                        background: #e4e7e9;
                     }
                 }
             }
@@ -263,12 +259,7 @@ export default {
             }
         }
         .table-con:nth-of-type(1){
-            margin-top: 20px;
-        }
-        .table-img{
-            position: absolute;
-            right:-2px;
-            bottom:-2px;
+            margin-top: 10px;
         }
     }
 </style>

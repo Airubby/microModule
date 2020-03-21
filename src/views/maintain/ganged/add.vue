@@ -5,7 +5,7 @@
                 <div class="mb10"><el-button @click="back">{{$t("Back")}}</el-button></div>
                 <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="40px">
                     <el-row :gutter="10">
-                        <div class="block">
+                        <el-col :span="24">
                         <el-col :md="10" :lg="6">
                             <el-form-item :label="$t('StrategyName')" prop="name" label-width="70px">
                                 <el-input v-model="initParams.name"></el-input>
@@ -16,18 +16,20 @@
                                 <el-checkbox v-model="initParams.status">{{$t("Enabled")}}</el-checkbox>
                             </el-form-item>
                         </el-col>
-                        </div>
-                        <div class="block">
+                        </el-col>
+                        <el-col :span="24">
                             <el-col :md="15" :lg="10">
                                 <el-form-item :label="$t('StrategyDescribe')" prop="detail" label-width="70px">
                                     <el-input v-model="initParams.detail" type="textarea"></el-input>
                                 </el-form-item>
                             </el-col>
-                        </div>
+                        </el-col>
+                        <el-col :span="24">
                         <div class="block color font-size16 mb10" style="padding-left:5px;">
                             {{$t("INinfo")}}
                         </div>
-                        <div class="block">
+                        </el-col>
+                        <el-col :span="24">
                             <span class="title">{{$t('Signal1')}}</span>
                             <el-col :md="4" :lg="3">
                                 <el-form-item label="" prop="signal1" label-width="0">
@@ -63,8 +65,8 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
-                        </div>
-                        <div class="block">
+                        </el-col>
+                        <el-col :span="24">
                             <span class="title">{{$t('Typeid')}}</span>
                             <el-col :md="4" :lg="3">
                                 <el-form-item label="" prop="signal1" label-width="0">
@@ -75,8 +77,8 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
-                        </div>
-                        <div class="block">
+                        </el-col>
+                        <el-col :span="24">
                             <span class="title">{{$t('Signal2')}}</span>
                             <el-col :md="4" :lg="3">
                                 <el-form-item label="" prop="signal1" label-width="0">
@@ -105,14 +107,16 @@
                             </el-col>
                             <el-col :md="4" :lg="3">
                                 <el-form-item label="" prop="signal1" label-width="0">
-                                    <el-input placeholder="请输入内容" v-model="initParams.signal1"></el-input>
+                                    <el-input placeholder="" v-model="initParams.signal1"></el-input>
                                 </el-form-item>
                             </el-col>
-                        </div>
+                        </el-col>
+                        <el-col :span="24">
                         <div class="block color font-size16 mb10" style="padding-left:5px;">
                             {{$t("OUTinfo")}}
                         </div>
-                        <div class="block">
+                        </el-col>
+                        <el-col :span="24">
                             <span class="title">{{$t('Action')}}</span>
                             <el-col :md="4" :lg="3">
                                 <el-form-item label="" prop="signal1" label-width="0">
@@ -135,13 +139,12 @@
                                     <el-input placeholder="" v-model="initParams.signal1"></el-input>
                                 </el-form-item>
                             </el-col>
-                        </div>
-                        <div class="block">
+                        </el-col>
+                        <el-col :span="24">
                             <el-form-item label="" prop="signal1" label-width="55px">
                                 <el-button type="primary" @click="submitForm">{{$t("Save")}}</el-button>
                             </el-form-item>
-                            
-                        </div>
+                        </el-col>
                     </el-row>
                 </el-form>
             </div>
@@ -192,10 +195,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-    .block{
-        width: 100%;
-        overflow: hidden;
-    }
     .title{
         padding-left: 5px;
         float: left;

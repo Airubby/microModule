@@ -65,6 +65,11 @@
     "ForTheReturnChart":"供回水图示",
     "FanAndWaterChart":"风机与水阀图示",
     "AirRealData":"空调实时数据",
+    "EnvironmentChart":"环境视图",
+    "EnvRealData":"环境实时数据",
+    "SecurityStatus":"安防消防系统状态",
+    "AccessInfo":"门禁信息",
+    "SensorInfo":"传感器信息",
 
 
     "CircuitMap":"电路图",
@@ -177,7 +182,10 @@
     "Corelet":"核心程序",
     "OSKernal":"系统内核",
     "Version":"版本号",
-    "UpdateAt":"更新于"
+    "UpdateAt":"更新于",
+    "EventCode":"事件编码",
+    "EventType":"事件类型",
+    "EventDescribe":"事件描述"
     
   },
   "enLang":{

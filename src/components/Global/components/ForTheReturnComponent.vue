@@ -1,7 +1,6 @@
 <template>
     <div class="content">
-        <div class="echart">
-            <div class="content" id="echart3"></div>
+        <div class="echart" id="echart3">
         </div>
     </div>
 </template>
@@ -47,6 +46,6 @@ export default {
     .echart{
         width: 100%;
         height: 100%;
-        padding-top: 15px;
+        padding-bottom: 15px;
     }
 </style>

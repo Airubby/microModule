@@ -1,23 +1,23 @@
 <template>
-    <div class="content content-flex bgfff" @click="hiddenDetail">
+    <div class="content content-flex bgfff">
         <el-scrollbar class="scrollbar">
             <div class="scrollbarbox">
                 <div class="scrollbarbox-con">
                     <div class="scrollbarbox-content">
                         <div class="his">
                             <div class="his-top his-con">
-                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" @click="showDetail(item,$event)" v-for="item in data1">
-                                    <cabinet-component :type="item.type" :title="item.title" :color="item.color"></cabinet-component>
+                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" v-for="item in data1">
+                                    <cabinet-component :color="item.color"></cabinet-component>
                                 </div>
                             </div>
                             <div class="his-cen">
-                                <div class="his-cendoor" :class="{'his-cendoor-close':leftDoor}" @click="showDoor()"></div>
+                                <div class="his-cendoor" :class="{'his-cendoor-close':leftDoor}"></div>
                                 <div class="his-cencon"></div>
-                                <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}" @click="showDoor()"></div>
+                                <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}"></div>
                             </div>
                             <div class="his-bottom his-con">
-                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" @click="showDetail(item,$event)" v-for="item in data2">
-                                    <cabinet-component :type="item.type" :title="item.title" :color="item.color"></cabinet-component>
+                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" v-for="item in data2">
+                                    <cabinet-component :color="item.color"></cabinet-component>
                                 </div>
                             </div>
                         </div>
@@ -56,76 +56,43 @@ export default {
             rightDoor:true,
             title:'',
             data1:[
-                {title:'配电单元',type:'pd',color:'#D8645B'},
-                {title:'整流柜',type:'zl',color:'#8CBECF'},
-                {title:'电池柜',type:'dc',color:'#F7BB48'},
-                {title:'设备单元01',type:'jg',color:'#7BC1A1'},
-                {title:'精密空调1',type:'kt',color:'#588EEA'},
-                {title:'设备单元02',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元03',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元04',type:'jg',color:'#7BC1A1'},
-                {title:'精密空调2',type:'kt',color:'#588EEA'},
-                {title:'设备单元05',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元06',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元07',type:'jg',color:'#7BC1A1'},
-                {title:'精密空调3',type:'kt',color:'#588EEA'},
-                {title:'设备单元08',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元09',type:'jg',color:'#7BC1A1'},
+                {title:'配电单元',type:'pd',color:'#E7E6EB'},
+                {title:'整流柜',type:'zl',color:'#E7E6EB'},
+                {title:'电池柜',type:'dc',color:'#E7E6EB'},
+                {title:'设备单元01',type:'jg',color:'#E7E6EB'},
+                {title:'精密空调1',type:'kt',color:'#E7E6EB'},
+                {title:'设备单元02',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元03',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元04',type:'jg',color:'#E7E6EB'},
+                {title:'精密空调2',type:'kt',color:'#E7E6EB'},
+                {title:'设备单元05',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元06',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元07',type:'jg',color:'#E7E6EB'},
+                {title:'精密空调3',type:'kt',color:'#E7E6EB'},
+                {title:'设备单元08',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元09',type:'jg',color:'#E7E6EB'},
             ],
             data2:[
-                {title:'管控单元',type:'gk',color:'#55A1E2'},
-                {title:'冷量分配单元',type:'llfp',color:'#59CA38'},
-                {title:'电池柜',type:'dc',color:'#F7BB48'},
-                {title:'设备单元18',type:'jg',color:'#7BC1A1'},
-                 {title:'精密空调6',type:'kt',color:'#588EEA'},
-                {title:'设备单元17',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元16',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元15',type:'jg',color:'#7BC1A1'},
-                {title:'精密空调5',type:'kt',color:'#588EEA'},
-                {title:'设备单元14',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元13',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元12',type:'jg',color:'#7BC1A1'},
-                {title:'精密空调4',type:'kt',color:'#588EEA'},
-                {title:'设备单元11',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元10',type:'jg',color:'#7BC1A1'},
+                {title:'管控单元',type:'gk',color:'#E7E6EB'},
+                {title:'冷量分配单元',type:'llfp',color:'#E7E6EB'},
+                {title:'电池柜',type:'dc',color:'#E7E6EB'},
+                {title:'设备单元18',type:'jg',color:'#E7E6EB'},
+                 {title:'精密空调6',type:'kt',color:'#E7E6EB'},
+                {title:'设备单元17',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元16',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元15',type:'jg',color:'#E7E6EB'},
+                {title:'精密空调5',type:'kt',color:'#E7E6EB'},
+                {title:'设备单元14',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元13',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元12',type:'jg',color:'#E7E6EB'},
+                {title:'精密空调4',type:'kt',color:'#E7E6EB'},
+                {title:'设备单元11',type:'jg',color:'#E7E6EB'},
+                {title:'设备单元10',type:'jg',color:'#E7E6EB'},
             ]
         }
     },
     methods: {
-        stopP:function(ev){
-            ev.stopPropagation();
-        },
-        hiddenDetail:function(){
-            for(let i=0;i<this.$el.querySelectorAll('.his-conbox').length;i++){
-                this.$el.querySelectorAll(".his-conbox")[i].classList.remove("active");
-            }
-            this.$el.querySelector("#detail").style.right="-200px";
-        },
-        showDetail:function(item,ev){
-            let type=item.type;
-            ev.stopPropagation();
-            this.$el.querySelector("#detail").style.right="0px";
-            this.title=item.title;
-            for(let i=0;i<this.$el.querySelectorAll('.his-conbox').length;i++){
-                this.$el.querySelectorAll(".his-conbox")[i].classList.remove("active");
-            }
-            ev.currentTarget.classList.add("active");
-            if(type=='pd'||type=='zl'||type=='dc'||type=='gk'||type=='llfp'||type=='kt'){
-
-            }else{
-                this.toDetail(item);
-            }
-        },
-        toDetail:function(item){
-            console.log(item)
-            let info=item;
-            info["activeComponent"]="HisDetailComponent"
-            this.$emit("backInfo",info)
-        },
-        showDoor:function(){
-            let info={activeComponent:"HisDoorComponent"};
-            this.$emit("backInfo",info)
-        }
+        
     },
     
 }
@@ -176,13 +143,13 @@ export default {
     }
     .scrollbarbox-content{
         width: 865px;
-        height: 560px;
+        height: 520px;
         .his{
             width: 100%;
             height:100%;
             .his-con{
                 width: calc(100% - 160px);
-                height: 200px;
+                height: 180px;
                 border: 10px solid #515E75;
                 margin: 0 auto;
                 display: flex;
@@ -207,7 +174,7 @@ export default {
             }
             .his-cen{
                 width:100%;
-                height: calc(100% - 400px);
+                height: calc(100% - 360px);
                 display: flex;
                 .his-cendoor{
                     width: 90px;

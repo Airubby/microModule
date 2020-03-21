@@ -13,64 +13,12 @@
 import echarts from 'echarts'
 export default {
     mounted() {
-        let legend=["回风-上","回风-中","回风-下","出风-上","出风-中","出风-下"];
-        let xData=['空调01','空调02','空调03','空调04','空调05'];
-        let yData=[
-            {
-                name: '回风-上',
-                type: 'bar',
-                barWidth: '10%',
-                data: [ 20, 36, 10, 10, 20,40]
-            },
-            {
-                name: '出风-上',
-                type: 'bar',
-                barWidth: '10%',
-                data: [ 20, 36,19 ,10, 10, 20]
-            },
-            {
-                name: '回风-中',
-                type: 'bar',
-                barWidth: '10%',
-                data: [120, 132,29, 101, 134, 94]
-            },
-            {
-                name: '出风-中',
-                type: 'bar',
-                barWidth: '10%',
-                data: [120, 132, 40,101, 134, 94]
-            },
-            {
-                name: '回风-下',
-                type: 'bar',
-                barWidth: '10%',
-                data: [29,23,4,50,5,6]
-            },
-            {
-                name: '出风-下',
-                type: 'bar',
-                barWidth: '10%',
-                data: [29,23,39,4,5,6]
-            }
-        ];
-        let color=["#3CB2FF","#FFC940"];
-        let legend1=["出风","回风"];
-        let yData1=[
-            {
-                name: '出风',
-                type: 'bar',
-                barWidth: '25%',
-                data: [ 20, 36, 10, 10, 20,40]
-            },
-            {
-                name: '回风',
-                type: 'bar',
-                barWidth: '25%',
-                data: [120, 132,29, 101, 134, 94]
-            },
-        ]
-        this.$tool.echartAir('echart2',"湿度(%)",legend1,xData,yData1,color);
-        this.echartShow("echart1");
+        let xData=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18'];
+        let up=[5, 20, 36, 10, 10, 20,5, 20, 36, 10, 10, 20,5, 20, 36, 10, 10, 20];
+        let middle=[120, 132, 101, 134, 90, 230, 400,120, 132, 101, 134, 90, 230, 400,120, 132, 101, 134];
+        let down= [220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330, 400, 234, 290, 330, 400];
+        this.echartfn('echart1',"温度(℃)",xData,up,middle,down,["#5984CD","#EF5959","#5984CD"]);
+        this.echartfn('echart2',"湿度(%)",xData,up,middle,down,["#7BC0A1","#EAB03F","#7BC0A1"]);
     },
     data(){
         return{
@@ -78,50 +26,11 @@ export default {
         }
     },
     methods: {
-        echartShow:function(ID,title){
-            var title="温度(℃)";
-            var yData=['空调01','空调02','空调03','空调04','空调05','空调06'];
-            var color=["#3CB2FF","#FFC940"];
-            var data=[
-                    {
-                        name: '上-出风',
-                        type: 'bar',
-                        barWidth: '5%',
-                        data: [120, 132, 101,120, 132, 101]
-                    },
-                    {
-                        name: '上-回风',
-                        type: 'bar',
-                        barWidth: '5%',
-                        data: [120, 132, 101, 182, 191,120]
-                    },
-                    {
-                        name: '中-出风',
-                        type: 'bar',
-                        barWidth: '5%',
-                        data: [220, 182, 191,120, 132, 101]
-                    },
-                    {
-                        name: '中-回风',
-                        type: 'bar',
-                        barWidth: '5%',
-                        data: [220, 182, 191,220, 182, 191]
-                    },
-                    {
-                        name: '下-出风',
-                        type: 'bar',
-                        barWidth: '5%',
-                        data: [150, 212, 201,220, 182, 191]
-                    },
-                    {
-                        name: '下-回风',
-                        type: 'bar',
-                        barWidth: '5%',
-                        data: [150, 212, 201,120, 132, 101]
-                    }
-                ];
-            var myChart = echarts.init(document.getElementById(ID));
-            var option = {
+        echartfn(ID,title,xData,up,middle,down,color){
+            // 基于准备好的dom，初始化echarts实例
+            let myChart = echarts.init(document.getElementById(ID))
+            // 绘制图表
+            myChart.setOption({
                 color:color,
                 title:{
                     text:title,  
@@ -141,13 +50,13 @@ export default {
                 grid: {
                     left: '75px',
                     right: '25px',
-                    top:'35px',
-                    bottom: '55px',
+                    top:'45px',
+                    bottom: '50px',
                 },
                 legend: {
-                    selectedMode:false,//取消图例上的点击事件
-                    top:'5px',
-                    right:'10px',
+                    selectedMode:false,
+                    top:'0px',
+                    right:'0',
                     textStyle:{
                         rich:{
                             a:{
@@ -158,11 +67,11 @@ export default {
                             }
                         }
                     },
-                    data: ["上-出风","上-回风"],
+                    data: ["上","中"],
                     formatter: function(name) {
                         var index = 0;
-                        var clientlabels = ['出风','回风'];
-                        var data=["上-出风","上-回风"];
+                        var clientlabels = ['冷通道','热通道'];
+                        var data=["上","中"];
                         data.forEach(function(value,i){
                             if(value == name){
                                 index = i;
@@ -177,12 +86,12 @@ export default {
                     },
                 },
                 xAxis:  {
-                    name:'空调编号',
+                    name:'机柜编码',
                     nameLocation:'start',
                     nameTextStyle:{
                         color:'#838FA3',
                         fontSize: 14,
-                        padding:[30,-10,0,0]
+                        padding:[60,-10,0,0]
                     },
                     type: 'category',
                     axisLine:{
@@ -201,7 +110,7 @@ export default {
                         interval:0,  //强制显示所有标签
                         backgroundColor:'#E5E7EB',
                         color:'#fff',
-                        padding:4,
+                        padding:2,
                         // formatter:'上\r中\r下\n{value}',
                         formatter:function(value){
                             var info='{text|上}{text|中}{text|下}\n{value|'+value+'}'
@@ -210,7 +119,7 @@ export default {
                         rich:{
                             text:{
                                 color:"#838FA3",
-                                padding:[0,3,3,3],
+                                padding:[0,1,1,1],
                                 height: 20,
                                 lineHeight: 20
                             },
@@ -220,9 +129,10 @@ export default {
                             },
                         }
                     },
-                    data: yData,
+                    data: xData,
                 },
                 yAxis: {
+                    type: 'value',
                     axisLine:{
                         lineStyle:{
                             color:"#DBDBDA",
@@ -245,15 +155,33 @@ export default {
                     },
                     
                 },
-                series: data
-            };
-            myChart.setOption(option, true);
+                series: [
+                    {
+                        name: '上',
+                        type: 'bar',
+                        barWidth: '20%',
+                        data: up
+                    },
+                    {
+                        name: '中',
+                        type: 'bar',
+                        barWidth: '20%',
+                        data: middle
+                    },
+                    {
+                        name: '下',
+                        type: 'bar',
+                        barWidth: '20%',
+                        data: down
+                    }
+                ]
+            });
             window.addEventListener("resize", () => { 
                 setTimeout(function(){
                     myChart.resize();
                 },0)
             });
-            return myChart; 
+            return myChart;
         }
     },
     components: {

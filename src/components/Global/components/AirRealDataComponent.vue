@@ -187,34 +187,39 @@ export default {
         .table{
             width: 100%;
             height: 100%;
-            padding: 0 30px;
             position:relative;
             .table-title{
                 display: flex;
                 width:100%;
                 height: 100px;
-                background: #7093C5;
-                color:#fff;
-                border: 1px solid #C3CEDF;
+                background: #E4E7E9;
+                border-right: 1px solid #ccc;
+                border-top: 1px solid #ccc;
                 border-bottom:none;
+                .table-box{
+                    border-left-color: #ccc;
+                }
             }
             .table-con{
                 width:100%;
                 height:auto;
+                display: block;
+                border-right:1px solid #E4E7E9;
                 .table-con-list{
                     width:100%;
                     height: 50px;
                     display:flex;
-                    border-right:1px solid #C3CEDF;
-                    border-left:1px solid #C3CEDF;
+                    // border-right:1px solid #E4E7E9;
+                    // border-left:1px solid #E4E7E9;
                 }
                 .table-con-list:nth-last-of-type(1){
-                    border-bottom: 1px solid #C3CEDF;
+                    border-bottom: 1px solid #E4E7E9;
                 }
             }
             .table-box{
                 width: 9%;
-                border: 1px solid #C3CEDF;
+                border-left: 1px solid #E4E7E9;
+                border-top: 1px solid #E4E7E9;
                 &.table-box1{
                     width: 14%;
                     display:flex;
@@ -223,10 +228,9 @@ export default {
                         width: 100%;
                         &.table-box1-con1{
                             display:flex;
-                            border-top: 2px solid #C3CEDF;
                             .table-box-con:nth-of-type(2){
-                                border-left: 2px solid #C3CEDF;
-                                border-right: 2px solid #C3CEDF;
+                                border-left: 1px solid #E4E7E9;
+                                border-right: 1px solid #E4E7E9;
                             }
                         }
                         &.table-box1-con1:nth-of-type(1){

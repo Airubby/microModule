@@ -44,8 +44,9 @@
 
 <script>
 export default {
+    props:["data"],
     created () {
-        
+        console.log(this.data)
     },
     
     mounted() {
@@ -56,7 +57,7 @@ export default {
             initParams:{
                 name:null,
             },
-            
+            rules:[]
         }
     },
     methods: {

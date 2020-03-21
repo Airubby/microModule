@@ -1,7 +1,10 @@
 <template>
     <div class="content flex">
         <div class="con-left">
-            <div class="font-size16 color mb5">用户列表</div>
+            <div class="font-size16 color mb5 flex">
+                <span>设备列表</span>
+                <el-checkbox v-model="initParams.check">仅显示屏蔽设备</el-checkbox>
+            </div>
             <div class="input mb10">
                 <el-input
                     :placeholder="$t('PleaseInput')"
@@ -14,67 +17,25 @@
                     <el-tree
                         :data="treedata"
                         node-key="id"
-                        default-expand-all
                         :expand-on-click-node="false">
-                        <div class="custom-tree-node" slot-scope="{ node, data }">
-                            <span>{{ node.label }}</span>
-                            <span v-if="node.level===1" class="btn">
-                                <i class="el-icon-circle-plus-outline"></i>
-                            </span>
-                            <span v-else class="btn">
-                                <i class="el-icon-remove-outline" @click="() => remove(node, data)"></i>
-                                <i class="el-icon-edit-outline ml5" @click="() => edit(node, data)"></i>
-                            </span>
-                        </div>
                     </el-tree>
                 </el-scrollbar>
             </div>
         </div>
         <div class="con-right">
-            <div class="font-size16 color mb5">用户信息</div>
-            <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="56px">
-                <el-row :gutter="30">
-                    <el-col :span="9">
-                        <el-form-item :label="$t('UserName')" prop="user">
-                            <el-input v-model="initParams.user"></el-input>
+            <div class="font-size16 color mb5">监控状态</div>
+            <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="0">
+                <el-row :gutter="10">
+                    <el-col :md="24" :lg="24">
+                        <el-form-item label="" prop="">
+                            <el-radio-group v-model="initParams.type">
+                                <el-radio :label="3">正常</el-radio>
+                                <el-radio :label="6">维护</el-radio>
+                                <el-radio :label="9">停用</el-radio>
+                            </el-radio-group>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('FullName')" prop="name" label-width="70px">
-                            <el-input v-model="initParams.name"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Password')" prop="password">
-                            <el-input v-model="initParams.password"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('SurePassword')" prop="surePassword" label-width="70px">
-                            <el-input v-model="initParams.surePassword"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Wkno')" prop="wkno">
-                            <el-input v-model="initParams.wkno"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Email')" prop="email" label-width="70px">
-                            <el-input v-model="initParams.email"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Phone')" prop="phone">
-                            <el-input v-model="initParams.phone"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Wechat')" prop="Wechat" label-width="70px">
-                            <el-input v-model="initParams.Wechat"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
+                    <el-col :md="11" :lg="9">
                         <el-form-item label="">
                             <el-button type="primary" @click="submitForm">{{$t("Save")}}</el-button>
                         </el-form-item>
@@ -98,33 +59,57 @@ export default {
         return{
             search:null,
             initParams:{
-                user:null,
-                name:null,
-                password:null,
-                surePassword:null,
-                wkno:null,
-                email:null,
-                phone:null,
-                Wechat:null,
+                check:false,
+                type:6,
             },
             treedata :[{
                 id: 1,
-                label: '管理员',
+                label: '微模块',
                 children: [{
-                    id: 4,
-                    label: '用户一',
-                }]
-                }, {
                     id: 2,
-                    label: '运维员',
-                    children: [{
-                            id: 5,
-                            label: '张三',
-                        }, {
-                            id: 6,
-                            label: '李四',
-                    }]
+                    label: '照明与其它',
+                },{
+                    id: 3,
+                    label: '供配电',
+                },{
+                    id: 4,
+                    label: 'HVDC',
+                    children:[
+                        {
+                            id: 41,
+                            label: '机柜1',
+                        },{
+                            id: 42,
+                            label: '机柜2',
+                        }
+                    ]
+                },{
+                    id: 5,
+                    label: '空调',
+                    children:[
+                        {
+                            id: 51,
+                            label: '空调1',
+                        },
+                        {
+                            id: 52,
+                            label: '空调2',
+                            children:[
+                                {
+                                    id: 521,
+                                    label: '回风温度',
+                                },{
+                                    id: 522,
+                                    label: '回风湿度',
+                                },{
+                                    id: 523,
+                                    label: '回风温度',
+                                }
+                            ]
+                        }
+                    ]
                 }]
+            }]
         }
     },
     methods: {

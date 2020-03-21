@@ -97,11 +97,7 @@
     <div class="content-right">
       <div class="content-right-top">
           <div class="content-right-top-logo">
-            <span class="content-logo-title">M108-MDC-F</span>
-            <span class="his-detail-title" @click="toBack">
-                <img src="~@/assets/images/back.png">
-                {{title}}
-            </span>
+            <img src="/images/logo.png">
           </div>
           <div class="content-right-top-right">
             <ul>
@@ -109,23 +105,25 @@
                     <a href="javascript:;">全屏切换</a>
                 </li> -->
                 <li @click="flushPage">
-                    <a href="javascript:;">刷新</a>
+                    <a href="javascript:;">
+                        <i class="el-icon-refresh"></i>刷新
+                    </a>
                 </li>
                 <li>
                     <router-link to="/loncom/his">
-                        <i class="el-icon-timer"></i>声光
+                        <i class="el-icon-s-opportunity"></i>声光
                     </router-link>
                 </li>
                 <li>
                     <router-link to="/loncom/alarm">
                         <el-badge :value="200" :max="99" class="item">
-                            <i class="el-icon-message-solid"></i>告警
+                            <i class="el-icon-bell"></i>告警
                         </el-badge>
                     </router-link>
                 </li>
                 <li>
                     <a href="javascript:;" @click="setSys">
-                        <i class="el-icon-s-tools"></i>登陆
+                        <i class="el-icon-user"></i>登陆
                     </a>
                 </li>
                 <li>

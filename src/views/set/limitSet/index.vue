@@ -1,87 +1,18 @@
 <template>
-    <div class="content flex">
-        <div class="con-left">
-            <div class="font-size16 color mb5">用户列表</div>
-            <div class="input mb10">
-                <el-input
-                    :placeholder="$t('PleaseInput')"
-                    v-model="search">
-                    <i slot="suffix" class="el-input__icon el-icon-search"></i>
-                </el-input>
-            </div>
-            <div style="width:100%;height:calc(100% - 65px)">
-                <el-scrollbar class="scrollbar">
-                    <el-tree
-                        :data="treedata"
-                        node-key="id"
-                        default-expand-all
-                        :expand-on-click-node="false">
-                        <div class="custom-tree-node" slot-scope="{ node, data }">
-                            <span>{{ node.label }}</span>
-                            <span v-if="node.level===1" class="btn">
-                                <i class="el-icon-circle-plus-outline"></i>
-                            </span>
-                            <span v-else class="btn">
-                                <i class="el-icon-remove-outline" @click="() => remove(node, data)"></i>
-                                <i class="el-icon-edit-outline ml5" @click="() => edit(node, data)"></i>
-                            </span>
-                        </div>
-                    </el-tree>
-                </el-scrollbar>
-            </div>
+    <div class="content">
+        <div class="font-size16 color mb5">登录超时时间</div>
+        <div class="">
+            <el-radio-group v-model="initParams.type">
+                <el-radio :label="1">10分钟</el-radio>
+                <el-radio :label="30">30分钟</el-radio>
+                <el-radio :label="0">永不超时</el-radio>
+                <el-radio :label="111">
+                    <span>自定义超时时间</span>
+                    <span style="width:120px;margin-left:5px;display: inline-block;"><el-input v-model="initParams.user"></el-input></span>
+                </el-radio>
+            </el-radio-group>
         </div>
-        <div class="con-right">
-            <div class="font-size16 color mb5">用户信息</div>
-            <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="56px">
-                <el-row :gutter="30">
-                    <el-col :span="9">
-                        <el-form-item :label="$t('UserName')" prop="user">
-                            <el-input v-model="initParams.user"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('FullName')" prop="name" label-width="70px">
-                            <el-input v-model="initParams.name"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Password')" prop="password">
-                            <el-input v-model="initParams.password"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('SurePassword')" prop="surePassword" label-width="70px">
-                            <el-input v-model="initParams.surePassword"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Wkno')" prop="wkno">
-                            <el-input v-model="initParams.wkno"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Email')" prop="email" label-width="70px">
-                            <el-input v-model="initParams.email"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Phone')" prop="phone">
-                            <el-input v-model="initParams.phone"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item :label="$t('Wechat')" prop="Wechat" label-width="70px">
-                            <el-input v-model="initParams.Wechat"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="9">
-                        <el-form-item label="">
-                            <el-button type="primary" @click="submitForm">{{$t("Save")}}</el-button>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-            </el-form>
-        </div>
+        <el-button type="primary" @click="submitForm">{{$t("Save")}}</el-button>
     </div>
 </template>
 
@@ -96,44 +27,15 @@ export default {
     },
     data(){
         return{
-            search:null,
             initParams:{
+                type:1,
+                user:"",
                 user:null,
-                name:null,
-                password:null,
-                surePassword:null,
-                wkno:null,
-                email:null,
-                phone:null,
-                Wechat:null,
             },
-            treedata :[{
-                id: 1,
-                label: '管理员',
-                children: [{
-                    id: 4,
-                    label: '用户一',
-                }]
-                }, {
-                    id: 2,
-                    label: '运维员',
-                    children: [{
-                            id: 5,
-                            label: '张三',
-                        }, {
-                            id: 6,
-                            label: '李四',
-                    }]
-                }]
+            
         }
     },
     methods: {
-        remove:function(node,data){
-
-        },
-        edit:function(node,data){
-
-        },
         submitForm:function(){
             
         }
@@ -144,22 +46,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-    .custom-tree-node{
-        width: calc(100% - 60px);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        i{
-            font-size: 16px;
-            &:hover{
-                color: #3CB2FF;
-            }
-        }
-        .btn{
-            display: none;
-        }
-        &:hover .btn{
-            display: block;
-        }
-    }
+    
 </style>
