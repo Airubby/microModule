@@ -14,13 +14,13 @@
 
 <script>
 import swiper from '@/views/public/mixin/swiper'
-import infoAlarm from './infoAlarm.vue'
+import infoAlarmComponent from './infoAlarm.vue'
 export default {
     mixins:[swiper],
-    components: {infoAlarm},
+    components: {infoAlarmComponent},
     created () {
         let arr=[
-            {key:"AlarmDetail",component:"infoAlarm"},
+            {key:"AlarmDetail",component:"infoAlarmComponent"},
         ]
         this.arr=arr;
     },

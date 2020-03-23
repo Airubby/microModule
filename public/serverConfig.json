@@ -97,6 +97,7 @@
     "AlarmMask":"告警屏蔽",
     "LimitSet":"权限设置",
     "DataPublish":"数据发布",
+    "AlarmDetail":"告警详情",
     
     "Type":"类型",
     "Name":"名称",

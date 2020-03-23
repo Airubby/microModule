@@ -173,7 +173,7 @@ function echartAir(ID,title,legend,xData,yData,color){
             data: legend,
         },
         xAxis:  {
-            name:'空调编号',
+            name:'',
             nameLocation:'start',
             nameTextStyle:{
                 color:'#838FA3',

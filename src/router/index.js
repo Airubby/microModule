@@ -17,61 +17,61 @@ export const syncRouter=[
 		children:[
 		{
 			path: '/loncom/home',
-			name: 'home',
+			name: 'Home',
 			meta: { title: '主监控'},
 			component: () => import('@/views/home/index.vue')
 		},
 		{
 			path: '/loncom/power',
-			name: 'power',
+			name: 'Power',
 			meta: { title: '配电'},
 			component: () => import('@/views/power/index.vue')
 		},
 		{
 			path: '/loncom/hvdc',
-			name: 'hvdc',
+			name: 'Hvdc',
 			meta: { title: 'hvdc'},
 			component: () => import('@/views/hvdc/index.vue')
 		},
 		{
 			path: '/loncom/env',
-			name: 'env',
+			name: 'Env',
 			meta: { title: '环境'},
 			component: () => import('@/views/env/index.vue')
 		},
 		{
 			path: '/loncom/air',
-			name: 'air',
+			name: 'Air',
 			meta: { title: '空调'},
 			component: () => import('@/views/air/index.vue')
 		},
 		{
 			path: '/loncom/security',
-			name: 'security',
+			name: 'Security',
 			meta: { title: '安防'},
 			component: () => import('@/views/security/index.vue')
 		},
 		{
 			path: '/loncom/alarm',
-			name: 'alarm',
+			name: 'Alarm',
 			meta: { title: '告警'},
 			component: () => import('@/views/alarm/index.vue')
 		},
 		{
 			path: '/loncom/his',
-			name: 'his',
+			name: 'His',
 			meta: { title: '历史'},
 			component: () => import('@/views/his/index.vue')
 		}, 
 		{
 			path: '/loncom/set',
-			name: 'set',
+			name: 'Set',
 			meta: { title: '设置'},
 			component: () => import('@/views/set/index.vue')
 		}, 
 		{
 			path: '/loncom/maintain',
-			name: 'maintain',
+			name: 'Maintain',
 			meta: { title: '维护'},
 			component: () => import('@/views/maintain/index.vue')
 		}, 

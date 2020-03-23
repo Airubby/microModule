@@ -1,24 +1,37 @@
 <template>
-    <div class="content content-flex bgfff">
+    <div class="content content-flex bgfff" style="top:-7px;">
         <el-scrollbar class="scrollbar">
             <div class="scrollbarbox">
                 <div class="scrollbarbox-con">
                     <div class="scrollbarbox-content">
                         <div class="his">
                             <div class="his-top his-con">
+                                <div class="his-con-line"><em v-for="item in 36"></em></div>
+                                <div class="his-con-line his-con-linel"><em v-for="item in 10"></em></div>
+                                <div class="his-con-line his-con-linel his-con-liner"><em v-for="item in 10"></em></div>
                                 <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" v-for="item in data1">
                                     <cabinet-component :color="item.color"></cabinet-component>
                                 </div>
                             </div>
                             <div class="his-cen">
                                 <div class="his-cendoor" :class="{'his-cendoor-close':leftDoor}"></div>
-                                <div class="his-cencon"></div>
+                                <div class="his-cencon">
+                                    <div class="cen-img" v-for="item in imgarr.cenimg">
+                                        <img :src="'/images/'+item+'.png'">
+                                    </div>
+                                </div>
                                 <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}"></div>
                             </div>
                             <div class="his-bottom his-con">
+                                <div class="his-con-line"><em v-for="item in 36"></em></div>
+                                <div class="his-con-line his-con-linel"><em v-for="item in 10"></em></div>
+                                <div class="his-con-line his-con-linel his-con-liner"><em v-for="item in 10"></em></div>
                                 <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" v-for="item in data2">
                                     <cabinet-component :color="item.color"></cabinet-component>
                                 </div>
+                            </div>
+                            <div v-for="item in imgarr.Webcam" class="webcam" :class="'webcam'+item">
+                                <img src="/images/Webcam-ball.png">
                             </div>
                         </div>
                     </div>
@@ -52,6 +65,14 @@ export default {
     },
     data(){
         return{
+            imgarr:{
+                Webcam:[
+                    1,2,3,4,5,6,7,8
+                ],
+                cenimg:[
+                    'smoke','thalposis','smoke','thalposis'
+                ]
+            },
             leftDoor:false,
             rightDoor:true,
             title:'',
@@ -107,7 +128,7 @@ export default {
             position: absolute;
             right: -200px;
             top:0;
-            background: #515E75;
+            background: #838FA3;
             color:#fff;
             transition: All 0.4s ease-in-out;
             .detail-title{
@@ -143,21 +164,27 @@ export default {
     }
     .scrollbarbox-content{
         width: 865px;
-        height: 520px;
+        height: 460px;
         .his{
             width: 100%;
             height:100%;
+            position: relative;
             .his-con{
                 width: calc(100% - 160px);
-                height: 180px;
-                border: 10px solid #515E75;
+                height: 150px;
+                border: 8px solid #838FA3;
                 margin: 0 auto;
                 display: flex;
+                position: relative;
                 &.his-top{
                     border-bottom: none;
                 }
                 &.his-bottom{
                     border-top: none;
+                    .his-con-line{
+                        top: auto;
+                        bottom: -13px;
+                    }
                 }
                 .his-conbox{
                     width: 100%;
@@ -165,29 +192,59 @@ export default {
                     padding: 0 1px;
                     cursor: pointer;
                     &.active{
-                        background: #515E75;
+                        background: #838FA3;
                     }
                     &.his-conbox1{
                         flex-shrink: 2;
                     }
                 }
+                .his-con-line{
+                    width: calc(100% + 22px);
+                    height: 3px;
+                    position: absolute;
+                    left: -10px;
+                    background: #FFC940;
+                    top: -13px;
+                    display: flex;
+                    justify-content: space-between;
+                    em{
+                        width: 10px;
+                        height: 100%;
+                        background: #5A687B;
+                    }
+                }
+                .his-con-linel{
+                    width: 3px;
+                    height: calc(100% + 12px);
+                    top: -13px;
+                    left: -13px;
+                    flex-flow: column;
+                    em{
+                        width: 100%;
+                        height: 10px;
+                    }
+                }
+                .his-con-liner{
+                    left: auto;
+                    right: -13px;
+                }
             }
             .his-cen{
                 width:100%;
-                height: calc(100% - 360px);
+                height: calc(100% - 300px);
                 display: flex;
                 .his-cendoor{
-                    width: 90px;
+                    width: 88px;
                     height: 100%;
-                    border-top: 5px solid #515E75;
-                    border-bottom: 5px solid #515E75;
+                    border-top: 5px solid #838FA3;
+                    border-bottom: 5px solid #838FA3;
                     position:relative;
                     &.his-cendoor-close{
                         border:none;
-                        border-right: 5px solid #515E75;
+                        border-right: 5px solid #838FA3;
                         &.his-cendoor-right{
                             border:none;
-                            border-right: 5px solid #515E75;
+                            border-right: 5px solid #838FA3;
                         }
                     }
                 }
@@ -196,7 +253,7 @@ export default {
                     width: 50px;
                     height: 60px;
                     display: block;
-                    border: 5px solid #515E75;
+                    border: 5px solid #838FA3;
                     border-radius: 0 0 0 100%;
                     border-top: none;
                     border-right: none;
@@ -209,7 +266,7 @@ export default {
                     width: 50px;
                     height: 60px;
                     display: block;
-                    border: 5px solid #515E75;
+                    border: 5px solid #838FA3;
                     border-radius: 100% 0 0 0;
                     border-bottom: none;
                     border-right: none;
@@ -225,10 +282,61 @@ export default {
                     border: none;
                 }
                 .his-cencon{
-                    width: calc(100% - 180px);
+                    width: calc(100% - 176px);
                     height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .cen-img{
+                        margin: 0 10px;
+                        img{
+                            width: 40px;
+                        }
+                    }
                 }
             }
+        }
+    }
+    .webcam{
+        position: absolute;
+        img{
+            height: 30px;
+        }
+        &.webcam1{
+            top: -42px;
+            left: 90px;
+            transform: rotateX(180deg);
+        }
+        &.webcam2{
+            top: 152px;
+            left: 90px;
+        }
+        &.webcam3{
+            bottom: 152px;
+            left: 90px;
+            transform: rotateX(180deg);
+        }
+        &.webcam4{
+            bottom: -42px;
+            left: 90px;
+        }
+        &.webcam5{
+            top: -42px;
+            right: 90px;
+            transform: rotateX(180deg);
+        }
+        &.webcam6{
+            top: 152px;
+            right: 90px;
+        }
+        &.webcam7{
+            bottom: 152px;
+            right: 90px;
+            transform: rotateX(180deg);
+        }
+        &.webcam8{
+            bottom: -42px;
+            right: 90px;
         }
     }
 </style>

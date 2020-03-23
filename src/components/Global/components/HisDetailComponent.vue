@@ -55,8 +55,13 @@
                             <el-radio-button label="month">月</el-radio-button>
                             <el-radio-button label="year">年</el-radio-button>
                         </el-radio-group>
+                        <el-select v-model="initParams.type" :placeholder="$t('PleaseSelect')" style="width:85px;margin:0 5px;">
+                            <el-option label="最大值" value="0"></el-option>
+                            <el-option label="最小值" value="1"></el-option>
+                            <el-option label="平均值" value="2"></el-option>
+                        </el-select>
                         <el-date-picker
-                            style="width: 350px;margin:0 10px; vertical-align: middle;"
+                            style="width: 350px;margin-right:10px; vertical-align: middle;"
                             v-model="filter.time"
                             type="datetimerange"
                             :range-separator="$t('To')"
@@ -64,6 +69,7 @@
                             :end-placeholder="$t('EndDate')">
                             </el-date-picker>
                         <el-button type="primary" @click="submitForm">{{$t("Query")}}</el-button>
+                        <el-button type="primary" @click="submitForm" class="fr">{{$t("BatchExport")}}</el-button>
                     </div>
                     <div class="his-detail-echart">
                         <template v-for="(item,index) in arr">

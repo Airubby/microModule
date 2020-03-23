@@ -140,7 +140,7 @@ export default {
             position: absolute;
             right: -200px;
             top:0;
-            background: #515E75;
+            background: #838FA3;
             color:#fff;
             transition: All 0.4s ease-in-out;
             .detail-title{
@@ -183,7 +183,7 @@ export default {
             .his-con{
                 width: calc(100% - 160px);
                 height: 200px;
-                border: 10px solid #515E75;
+                border: 8px solid #838FA3;
                 margin: 0 auto;
                 display: flex;
                 &.his-top{
@@ -198,7 +198,7 @@ export default {
                     padding: 0 1px;
                     cursor: pointer;
                     &.active{
-                        background: #515E75;
+                        background: #838FA3;
                     }
                     &.his-conbox1{
                         flex-shrink: 2;
@@ -210,17 +210,17 @@ export default {
                 height: calc(100% - 400px);
                 display: flex;
                 .his-cendoor{
-                    width: 90px;
+                    width: 88px;
                     height: 100%;
-                    border-top: 5px solid #515E75;
-                    border-bottom: 5px solid #515E75;
+                    border-top: 5px solid #838FA3;
+                    border-bottom: 5px solid #838FA3;
                     position:relative;
                     &.his-cendoor-close{
                         border:none;
-                        border-right: 5px solid #515E75;
+                        border-right: 5px solid #838FA3;
                         &.his-cendoor-right{
                             border:none;
-                            border-right: 5px solid #515E75;
+                            border-right: 5px solid #838FA3;
                         }
                     }
                 }
@@ -229,7 +229,7 @@ export default {
                     width: 50px;
                     height: 60px;
                     display: block;
-                    border: 5px solid #515E75;
+                    border: 5px solid #838FA3;
                     border-radius: 0 0 0 100%;
                     border-top: none;
                     border-right: none;
@@ -242,7 +242,7 @@ export default {
                     width: 50px;
                     height: 60px;
                     display: block;
-                    border: 5px solid #515E75;
+                    border: 5px solid #838FA3;
                     border-radius: 100% 0 0 0;
                     border-bottom: none;
                     border-right: none;
@@ -258,7 +258,7 @@ export default {
                     border: none;
                 }
                 .his-cencon{
-                    width: calc(100% - 180px);
+                    width: calc(100% - 176px);
                     height: 100%;
                 }
             }

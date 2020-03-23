@@ -3,8 +3,8 @@
         <div class="index-top">
             <div class="index-top-title">实物模型
                 <span style="text-align:center;width:1000px;    display: inline-block;">
-                <span @click="test(1)" style="color:#f00;margin:0 10px;">测试告警</span>
-                <span @click="test(2)" style="color:#f00">解除告警</span>
+                <!-- <span @click="test(1)" style="color:#f00;margin:0 10px;">测试告警</span>
+                <span @click="test(2)" style="color:#f00">解除告警</span> -->
                 </span>
             </div>
             <div class="index-top-con" id="three-dom"></div>

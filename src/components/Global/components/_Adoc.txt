@@ -1,11 +1,15 @@
 BatteryComponent:电池组件
 CircuitMapComponent：电路图组件
 HisComponent：历史组件
+HisDetailComponent：设备详情组件
 IndexComponent：主页组件
 MdcinverterComponent：MDC拓扑配电组件
 TiprealdataComponent：末端实时数据组件
 TiprealdataTwoComponent：末端实时数据组件2
 HumitureComponent：温湿度图示组件
-ForTheReturnComponent：供回水图示组件
-FanAndWaterComponent：风机与水阀图示组件
+EchartBarComponent：供回水图示组件;风机与水阀图示组件
+FanAndWaterComponent：
 AirRealDataComponent：空调实时数据组件
+SecurityComponent：安防与消防组件
+AccessComponent：门禁信息组件
+SensorComponent：传感器信息组件

@@ -59,13 +59,13 @@ export default {
             {
                 name: '出风',
                 type: 'bar',
-                barWidth: '25%',
+                barWidth: '10%',
                 data: [ 20, 36, 10, 10, 20,40]
             },
             {
                 name: '回风',
                 type: 'bar',
-                barWidth: '25%',
+                barWidth: '10%',
                 data: [120, 132,29, 101, 134, 94]
             },
         ]

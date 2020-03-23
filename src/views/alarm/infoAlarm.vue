@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <div class="table_search" :class="{'active':searchHiden}">
-            <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="75px">
+            <el-form ref="ValidateForm" class="form-serarch no-el-checkbox__input" :model="initParams" label-width="75px">
                 <el-row :gutter="0">
                     <el-col :span="10">
                         <el-form-item label="发生时间">
@@ -165,5 +165,6 @@ export default {
         display: inline-block;
         padding: 0px 12px;
         border-radius: 20px;
+        cursor: pointer;
     }
 </style>
