@@ -1,234 +1,125 @@
 <template>
-    <div class="content content-flex bgfff">
-        <el-scrollbar class="scrollbar">
-            <div class="scrollbarbox">
-                <div class="scrollbarbox-con">
-                    <div class="scrollbarbox-content">
-                        <div class="his">
-                            <div class="his-top his-con">
-                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" v-for="item in data1">
-                                    <cabinet-component :color="item.color"></cabinet-component>
-                                </div>
+  <div class="content">
+      <el-scrollbar class="scrollbar">
+            <div class="table_search">
+                <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="0px">
+                    <el-row :gutter="10">
+                        <el-col :md="10" :lg="6">
+                            <el-form-item label="" prop="type">
+                                <el-date-picker
+                                    style="width:100%;"
+                                    v-model="initParams.time"
+                                    type="datetimerange"
+                                    range-separator="至"
+                                    start-placeholder="开始日期"
+                                    end-placeholder="结束日期">
+                                    </el-date-picker>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :md="5" :lg="4">
+                            <div class="mb20">
+                                <el-button type="primary" @click="submitForm">{{$t("Query")}}</el-button>
+                                <el-button class="reset" @click="resetForm">{{$t("Reset")}}</el-button>
                             </div>
-                            <div class="his-cen">
-                                <div class="his-cendoor" :class="{'his-cendoor-close':leftDoor}"></div>
-                                <div class="his-cencon"></div>
-                                <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}"></div>
-                            </div>
-                            <div class="his-bottom his-con">
-                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" v-for="item in data2">
-                                    <cabinet-component :color="item.color"></cabinet-component>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        </el-col>
+                        <el-col :md="9" :lg="14">
+                            <el-button type="primary" @click="submitForm" class="fr">{{$t("BatchExport")}}</el-button>
+                        </el-col>
+                    </el-row>
+                </el-form>
             </div>
+            <el-table-pagination
+                :url="$ajaxUrl+'/getTable'"
+                list-field="data" 
+                total-field="total"
+                method='get' 
+                type="local"
+                :data="table_data"
+                :params="initParams"
+                :showPagination="true"
+                :showSelectAll="true"
+                :columns="table_columns" ref="thisRef">   
+                <el-table-column slot="prepend" type="selection"></el-table-column>
+                <template slot-scope="scope" slot="preview-name">
+                    <span class="color" @click="showDetail(scope.row)">{{scope.row.code}}</span>
+                </template>
+                <template slot-scope="scope" slot="preview-status">
+                    <span v-if="scope.row.status=='1'">{{$t("Inservice")}}</span>
+                    <span v-else class="alarm">{{$t("NotRun")}}</span>
+                </template>
+                <template slot-scope="scope" slot="preview-handle">
+                    <p class="table_handle">
+                        <span @click="disable(scope.row)">{{$t("Disable")}}</span>
+                        <span @click="edit(scope.row)">{{$t("Edit")}}</span>
+                        <span @click="remove(scope.row)">{{$t("Remove")}}</span>
+                    </p>
+                </template>
+            </el-table-pagination>
         </el-scrollbar>
-        <div class="detail" id="detail" @click="stopP($event)">
-            <div class="detail-title">{{title}}</div>
-            <div class="detail-con">
-                <el-scrollbar class="scrollbar">
-                    <ul>
-                        <li v-for="item in 40" @click="toDetail({name:'综合布线系统'})">综合布线系统</li>
-                    </ul>
-                </el-scrollbar>
-            </div>
-        </div>
-    </div>
+  </div>
 </template>
 
 <script>
-import cabinetComponent from './HisComponent/cabinet.vue'
 export default {
-    components: {
-        cabinetComponent
-    },
     created () {
         
     },
+    
     mounted() {
         
     },
     data(){
         return{
-            leftDoor:false,
-            rightDoor:true,
-            title:'',
-            data1:[
-                {title:'配电单元',type:'pd',color:'#E7E6EB'},
-                {title:'整流柜',type:'zl',color:'#E7E6EB'},
-                {title:'电池柜',type:'dc',color:'#E7E6EB'},
-                {title:'设备单元01',type:'jg',color:'#E7E6EB'},
-                {title:'精密空调1',type:'kt',color:'#E7E6EB'},
-                {title:'设备单元02',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元03',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元04',type:'jg',color:'#E7E6EB'},
-                {title:'精密空调2',type:'kt',color:'#E7E6EB'},
-                {title:'设备单元05',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元06',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元07',type:'jg',color:'#E7E6EB'},
-                {title:'精密空调3',type:'kt',color:'#E7E6EB'},
-                {title:'设备单元08',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元09',type:'jg',color:'#E7E6EB'},
+            initParams:{
+                type:null,
+                time:null,
+            },
+            table_columns:[
+                { prop: 'code', label: "时间",minWidth:10},
+                { prop: 'type', label: "卡号",minWidth:10},
+                { prop: 'status', label: "人员编号",minWidth:10},
+                { prop: 'user', label: "人员姓名",minWidth:10},
+                { prop: 'indate', label: "门",minWidth:20},
+                { prop: 'indate', label: "事件内容",minWidth:20},
             ],
-            data2:[
-                {title:'管控单元',type:'gk',color:'#E7E6EB'},
-                {title:'冷量分配单元',type:'llfp',color:'#E7E6EB'},
-                {title:'电池柜',type:'dc',color:'#E7E6EB'},
-                {title:'设备单元18',type:'jg',color:'#E7E6EB'},
-                 {title:'精密空调6',type:'kt',color:'#E7E6EB'},
-                {title:'设备单元17',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元16',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元15',type:'jg',color:'#E7E6EB'},
-                {title:'精密空调5',type:'kt',color:'#E7E6EB'},
-                {title:'设备单元14',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元13',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元12',type:'jg',color:'#E7E6EB'},
-                {title:'精密空调4',type:'kt',color:'#E7E6EB'},
-                {title:'设备单元11',type:'jg',color:'#E7E6EB'},
-                {title:'设备单元10',type:'jg',color:'#E7E6EB'},
-            ]
+            table_data:[
+                {"code":"dslf","type":"dslf","user":"dslf","indate":"dslf","status":"1","d":"dslf"},
+                {"code":"dslf","type":"dslf","user":"dslf","indate":"dslf","status":"0","d":"dslf"},
+            ],
         }
     },
     methods: {
-        
+        resetForm() {
+            this.$refs['ValidateForm'].resetFields();
+        },
+        submitForm() {
+            this.$refs['ValidateForm'].validate((valid) => {
+            if (valid) {
+                console.log(this.dynamicValidateForm)
+            } else {
+                console.log('error submit!!');
+                return false;
+            }
+            });
+        },
+        showDetail:function(row){
+            console.log(row)
+            row["activeComponent"]="detailComponent";
+            this.$emit("backInfo",row);
+        },
+        disable(){
+
+        },
+        edit(row){
+            row["activeComponent"]="editComponent";
+            this.$emit("backInfo",row);
+        },
+        remove(){
+
+        }
     },
-    
+    components: {
+        
+    }
 }
 </script>
-<style lang="less" scoped>
-    .content{
-        position:relative;
-        overflow:hidden;
-        .detail{
-            width: 200px;
-            height: 100%;
-            position: absolute;
-            right: -200px;
-            top:0;
-            background: #515E75;
-            color:#fff;
-            transition: All 0.4s ease-in-out;
-            .detail-title{
-                width: 100%;
-                height: 40px;
-                line-height: 40px;
-                background:#282C32;
-                text-align:center;
-                color: #a0acbf;
-                font-size: 16px;
-            }
-            .detail-con{
-                width: 100%;
-                height: calc(100% - 40px);
-                ul{
-                    width: 100%;
-                    height: 100%;
-                    padding: 10px;
-                    li{
-                        height: 36px;
-                        line-height: 36px;
-                        cursor: pointer;
-                        text-indent: 15px;
-                    }
-                    li:hover{
-                        background: #eaebe9;
-                        color:#62b651;
-                        border-radius: 5px;
-                    }
-                }
-            }
-        }
-    }
-    .scrollbarbox-content{
-        width: 865px;
-        height: 520px;
-        .his{
-            width: 100%;
-            height:100%;
-            .his-con{
-                width: calc(100% - 160px);
-                height: 180px;
-                border: 10px solid #515E75;
-                margin: 0 auto;
-                display: flex;
-                &.his-top{
-                    border-bottom: none;
-                }
-                &.his-bottom{
-                    border-top: none;
-                }
-                .his-conbox{
-                    width: 100%;
-                    height: 100%;
-                    padding: 0 1px;
-                    cursor: pointer;
-                    &.active{
-                        background: #515E75;
-                    }
-                    &.his-conbox1{
-                        flex-shrink: 2;
-                    }
-                }
-            }
-            .his-cen{
-                width:100%;
-                height: calc(100% - 360px);
-                display: flex;
-                .his-cendoor{
-                    width: 90px;
-                    height: 100%;
-                    border-top: 5px solid #515E75;
-                    border-bottom: 5px solid #515E75;
-                    position:relative;
-                    &.his-cendoor-close{
-                        border:none;
-                        border-right: 5px solid #515E75;
-                        &.his-cendoor-right{
-                            border:none;
-                            border-right: 5px solid #515E75;
-                        }
-                    }
-                }
-                .his-cendoor:before{
-                    content: "";
-                    width: 50px;
-                    height: 60px;
-                    display: block;
-                    border: 5px solid #515E75;
-                    border-radius: 0 0 0 100%;
-                    border-top: none;
-                    border-right: none;
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                }
-                .his-cendoor:after{
-                    content: "";
-                    width: 50px;
-                    height: 60px;
-                    display: block;
-                    border: 5px solid #515E75;
-                    border-radius: 100% 0 0 0;
-                    border-bottom: none;
-                    border-right: none;
-                    position: absolute;
-                    left: 0;
-                    bottom: 0;
-                }
-                .his-cendoor-right{
-                    transform: rotateY(180deg);
-                }
-                .his-cendoor-close:before,
-                .his-cendoor-close:after{
-                    border: none;
-                }
-                .his-cencon{
-                    width: calc(100% - 180px);
-                    height: 100%;
-                }
-            }
-        }
-    }
-</style>

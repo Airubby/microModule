@@ -11,6 +11,7 @@
                             <el-radio-button :label="item.value" :key="item.name">{{$t(item.name)}}</el-radio-button>
                         </template>
                     </el-radio-group>
+                    <el-button type="primary" class="ml10">导出巡检报告</el-button>
                 </div>
             </div>
             <el-table-pagination

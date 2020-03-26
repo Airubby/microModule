@@ -10,6 +10,8 @@ export default {
             slidesPerView: 1,
             speed: 100,
             effect: 'slide',
+            simulateTouch:false,  //鼠标拖动无效
+            touchRatio:0.5,
             initialSlide:_this.activeIndex,
             pagination: {
                 el:'.swiper-pagination',

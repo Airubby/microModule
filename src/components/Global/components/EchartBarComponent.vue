@@ -16,7 +16,7 @@ export default {
         let title=this.data.title;
         let xData=[],legend=[],pdata=[],yData=[];
         for(let i=0;i<this.data.dev.length;i++){
-            pdata.push(0);
+            pdata.push(10);
             xData.push(this.data.dev[i].name);
             if(i==0){
                 for(let j=0;j<this.data.dev[i].point.length;j++){
@@ -48,7 +48,7 @@ export default {
         //         data: [120, 132,29, 101, 134, 94]
         //     },
         // ]
-        let color=["#578FEB","#EB5568"]
+        let color=["#3CB2FF","#FFC940"]
         this.$tool.echartAir(this.data.key,title,legend,xData,yData,color);
     },
     data(){
