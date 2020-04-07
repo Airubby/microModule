@@ -21,20 +21,20 @@ import LimitSetComponent from './limitSet'
 import DataPublishComponent from './dataPublish'
 
 import swiper from '@/views/public/mixin/swiper'
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
     mixins:[swiper],
     components: {ConfigInfoComponent,NewsInformComponent,AlarmEventComponent,AlarmMaskComponent,LimitSetComponent,DataPublishComponent},
-	computed:{
-        ...mapGetters([
-            'token'
-        ]),
-    },
+	// computed:{
+    //     ...mapGetters([
+    //         'token'
+    //     ]),
+    // },
     created () {
-        if(!this.token){
-			// this.$message.warning("非法进入");
-			// this.$router.push({path:'/loncom/home'});
-        }
+        // if(!this.token){
+		// 	// this.$message.warning("非法进入");
+		// 	// this.$router.push({path:'/loncom/home'});
+        // }
         let arr=[
             {key:"ConfigInfo",component:"ConfigInfoComponent"},
             {key:"NewsInform",component:"NewsInformComponent"},

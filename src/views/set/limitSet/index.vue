@@ -2,7 +2,7 @@
     <div class="content">
         <div class="font-size16 color mb5">登录超时时间</div>
         <div class="">
-            <el-radio-group v-model="initParams.type">
+            <el-radio-group v-model="initParams.type" class="noboder-radio">
                 <el-radio :label="1">10分钟</el-radio>
                 <el-radio :label="30">30分钟</el-radio>
                 <el-radio :label="0">永不超时</el-radio>

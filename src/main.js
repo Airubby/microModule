@@ -4,7 +4,7 @@ import {router} from './router/index'
 // import store from './store' //用分离的store
 import store from './store/index'
 import axios from 'axios'
-import api from './api' //用request，为每个模块的调用写一个js
+import api from './utils/request'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import ElTablePagination from 'el-table-pagination'

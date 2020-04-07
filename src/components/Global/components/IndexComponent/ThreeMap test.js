@@ -1,4 +1,3 @@
-import Vue from 'vue'
 // var THREE = require('three') //正确
 import * as THREE from 'three';
 // import * as d3 from 'd3-geo';
@@ -7,45 +6,42 @@ import { CSS2DRenderer, CSS2DObject } from "three-css2drender"
 import air from './kongtiao.png';
 import cabinet from './cabinet.png';
 import transparent from './transparent.png'
-export default class ThreeMap {
-    constructor(props,mapData) {
-        this.props=props;
-        this.data=new Array();
-        this.mapData=mapData;
-        this.labelRenderer;
-        this.divIdArray=new Array();
-        this.dom=document.getElementById(this.props.dom);
-        this.init();
-    }
-
-    init() {
-        this.initRenderer();
-        this.initCamera();
-        this.initScene();
-        this.render();
+function ThreeMap(props,mapData) {
+    this.props=props;
+    this.data=new Array();
+    this.mapData=mapData;
+    this.labelRenderer;
+    this.divIdArray=new Array();
+    this.dom=document.getElementById(this.props.dom);
+    init();
+    
+    function init() {
+        initRenderer();
+        initCamera();
+        initScene();
+        render();
         // this.setHelper();
-        this.setControl();
+        setControl();
         // this.drawMultiPolygon(); //引用test1.json
-        this.drawbox();
+        drawbox();
         //引用china.json
         // this.drawMap(); 
         // this.drawLines();
        
-        this.dom.addEventListener('click', this.mouseClickEvent.bind(this))
-      this.dom.addEventListener('mousemove', this.mouseMousemoveEvent.bind(this))
+        this.dom.addEventListener('click', mouseClickEvent.bind(this))
+        this.dom.addEventListener('mousemove', mouseMousemoveEvent.bind(this))
         // this.dom.addEventListener('mousemove', this.mouseHoverEvent.bind(this))
     }
 
     //初始化渲染场景
-    initRenderer() {
-        console.log(this.props)
+    function initRenderer() {
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.dom.offsetWidth,this.dom.offsetHeight);
         
         this.dom.appendChild(this.renderer.domElement);
     }
     //初始化相机
-    initCamera() {
+    function initCamera() {
         this.camera = new THREE.PerspectiveCamera(45, this.dom.offsetWidth / this.dom.offsetHeight, 0.1, 1000);
         //向上的一个坐标系
         // this.camera.up.x = 0;
@@ -55,7 +51,7 @@ export default class ThreeMap {
         this.camera.lookAt(0, 0, 0)
     }
     //初始化场景
-    initScene() {
+    function initScene() {
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0xffffff);
         var ambientLight=new THREE.AmbientLight(0xffffff);
@@ -66,17 +62,17 @@ export default class ThreeMap {
         this.scene.add(ambientLight);
     }
     //渲染
-    render() {
+    function render() {
         this.animate()
     }
-    animate() {
+    function animate() {
         requestAnimationFrame(this.animate.bind(this));
-        this.renderer.render(this.scene, this.camera);
-        if(this.labelRenderer!=null){
-       // this.labelRenderer.render(this.scene, this.camera)
+            this.renderer.render(this.scene, this.camera);
+            if(this.labelRenderer!=null){
+        // this.labelRenderer.render(this.scene, this.camera)
+        }
     }
-    }
-     guid() {
+    function guid() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0,
                 v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -84,16 +80,16 @@ export default class ThreeMap {
         });
     }
    
-    setHelper() {
+    function setHelper() {
         //红色x,绿色y,蓝色z
         const axesHelper = new THREE.AxisHelper(5);
         this.scene.add(axesHelper);
     }
-    setControl() {
+    function setControl() {
         this.controls = new OrbitControls(this.camera);
         this.controls.update();
     }
-    drawbox(){
+    function drawbox(){
         const tgroup = new THREE.Group();
         let loader = new THREE.ObjectLoader();
         // let obj = loader.parse(this.mapData);
@@ -270,7 +266,7 @@ export default class ThreeMap {
         console.log(err);
     });
     }
-    newCabinet(type,width,y,z,title,cabinetwidth,j,tgroup){
+    function newCabinet(type,width,y,z,title,cabinetwidth,j,tgroup){
         var geometry=new THREE.BoxGeometry(
             cabinetwidth ,
             1.66,
@@ -340,26 +336,26 @@ export default class ThreeMap {
        
    
    
-  var mesh2=new THREE.Mesh(geometry.clone(),materail.clone());//创建新的网格对象
-    mesh2.applyMatrix(mirrorMatrix);
-     geometry=new THREE.PlaneGeometry(
-         width,
-         0.18,
-      0.2);//创建机柜名称展示面板
-   var materials2=new THREE.MeshBasicMaterial(this.mapData.materials[this.mapData.materials.length-1]);
-    var mesh2=new THREE.Mesh(geometry,materials2);//创建新的网格对象
-    mesh2.material.type="MeshBasicMaterial";
-    mesh2.material.side=2;//两边
-    mesh2.material.color.set(0xfffffff);//设置颜色
-    mesh2.material.map=new THREE.CanvasTexture(this.getTextCanvas(title));//生成文字图片题图
-    mesh2.material.opacity=0.8;
-    mesh2.material.transparent =  mesh2.material.opacity < 1 ;
-    mirrorMatrix = new THREE.Matrix4().fromArray([j==0?-1:1,0,0,0,0,1,0,0,0,0,1,0,y,0.9,j==0?z-(z*2)-0.5:z+0.5,1]);//面板矩阵
-    mesh2.applyMatrix(mirrorMatrix);
-    this.scene.add(mesh);
-    this.scene.add(mesh2);
-}
-getTextCanvas(text){ //创建文字图片
+        var mesh2=new THREE.Mesh(geometry.clone(),materail.clone());//创建新的网格对象
+        mesh2.applyMatrix(mirrorMatrix);
+        geometry=new THREE.PlaneGeometry(
+            width,
+            0.18,
+        0.2);//创建机柜名称展示面板
+        var materials2=new THREE.MeshBasicMaterial(this.mapData.materials[this.mapData.materials.length-1]);
+        var mesh2=new THREE.Mesh(geometry,materials2);//创建新的网格对象
+        mesh2.material.type="MeshBasicMaterial";
+        mesh2.material.side=2;//两边
+        mesh2.material.color.set(0xfffffff);//设置颜色
+        mesh2.material.map=new THREE.CanvasTexture(this.getTextCanvas(title));//生成文字图片题图
+        mesh2.material.opacity=0.8;
+        mesh2.material.transparent =  mesh2.material.opacity < 1 ;
+        mirrorMatrix = new THREE.Matrix4().fromArray([j==0?-1:1,0,0,0,0,1,0,0,0,0,1,0,y,0.9,j==0?z-(z*2)-0.5:z+0.5,1]);//面板矩阵
+        mesh2.applyMatrix(mirrorMatrix);
+        this.scene.add(mesh);
+        this.scene.add(mesh2);
+    }
+    function getTextCanvas(text){ //创建文字图片
         var width=100, height=60; 
         var canvas = document.createElement('canvas');
         canvas.width = width;
@@ -376,7 +372,7 @@ getTextCanvas(text){ //创建文字图片
         }
     
     //绘制网格
-    getAreaMesh(points) {
+    function getAreaMesh(points) {
         // console.log('---' + points);
         const shape = new THREE.Shape(); //实例一个形状
 
@@ -411,7 +407,7 @@ getTextCanvas(text){ //创建文字图片
     }
 
     //经纬度转三维坐标
-    lnglatToVector(lnglat) {
+    function lnglatToVector(lnglat) {
         if (!this.projection) {
             this.projection = d3
                 .geoMercator() //获取墨卡托坐标方法
@@ -425,7 +421,7 @@ getTextCanvas(text){ //创建文字图片
         let z = 0;
         return [y, x, z];
     }
-    change(uuid,flag){
+    function change(uuid,flag){
         console.log(this.group)
         console.log(uuid)
 
@@ -441,7 +437,7 @@ getTextCanvas(text){ //创建文字图片
             }
         }
     }
-    updatedata(uuid,flag){
+    function updatedata(uuid,flag){
         console.log(this.group)
         console.log(uuid)
 
@@ -457,7 +453,7 @@ getTextCanvas(text){ //创建文字图片
             }
         }
     }
-    mouseMousemoveEvent(event){
+    function mouseMousemoveEvent(event){
        for(let i=0;i< this.group.children.length;i++) {
             let divid=this.group.children[i].uuid+"_text";
             let div = document.getElementById(divid);
@@ -471,7 +467,7 @@ getTextCanvas(text){ //创建文字图片
         }
     }
     //type 1 机柜  2负载
-    switch(type){
+    function switchfn(type){
         if(type=="1"){//机柜
             for(let i=0;i<this.data.length;i++){
                 if(this.data[i].datakey!=null){
@@ -515,7 +511,7 @@ getTextCanvas(text){ //创建文字图片
         }
 
     }
-    mouseClickEvent(event) {
+    function mouseClickEvent(event) {
         console.log(event)
         console.log(this.group)
         if (!this.raycaster)
@@ -584,7 +580,7 @@ getTextCanvas(text){ //创建文字图片
           
        
     }
-    getUuidObj(uuid){
+    function getUuidObj(uuid){
          for(let i=0;i<this.group.children.length;i++){
              if(this.group.children[i].uuid==uuid){
                  return this.group.children[i];
@@ -597,7 +593,7 @@ getTextCanvas(text){ //创建文字图片
     
 
     //更新数据
-    updatevalue(uuiddata,value){
+    function updatevalue(uuiddata,value){
         var obj=this.getUuidObj(uuiddata.key);//获取机柜
         obj.position.y=0;
         obj.scale.set(1,value/100,1);
@@ -608,18 +604,18 @@ getTextCanvas(text){ //创建文字图片
         obj.material.map.needsUpdate = true;
     }
 
-//三维坐标转屏幕坐标
- transPosition (position) {
-    let world_vector = new THREE.Vector3(position.x, position.y, position.z);
-    let vector = world_vector.project(this.camera);
-    let halfWidth = window.innerWidth / 2,
-        halfHeight = window.innerHeight / 2;
-    return {
-        x: Math.round(vector.x * halfWidth + halfWidth),
-        y: Math.round(-vector.y * halfHeight + halfHeight)
-    };
-}
-    mouseHoverEvent(event){
+    //三维坐标转屏幕坐标
+    function transPosition (position) {
+        let world_vector = new THREE.Vector3(position.x, position.y, position.z);
+        let vector = world_vector.project(this.camera);
+        let halfWidth = window.innerWidth / 2,
+            halfHeight = window.innerHeight / 2;
+        return {
+            x: Math.round(vector.x * halfWidth + halfWidth),
+            y: Math.round(-vector.y * halfHeight + halfHeight)
+        };
+    }
+    function mouseHoverEvent(event){
         console.log(event)
         console.log(this.group)
         if (!this.raycaster)
@@ -637,4 +633,8 @@ getTextCanvas(text){ //创建文字图片
         // 计算物体和射线的焦点
         const intersects = this.raycaster.intersectObjects(this.group.children);
     }
+}
+
+export default {
+    ThreeMap
 }

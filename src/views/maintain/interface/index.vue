@@ -64,17 +64,39 @@
                     <span class="el-icon-edit-outline" @click="ConfigSet('phoneInfo')"></span>
                 </div>
             </div>
+            <div class="list-box">
+                <div class="box-left">
+                    <div class="color mb5 font-size16">时钟同步接口设置</div>
+                    <div><span class="border-right">{{$t("NotEnabled")}}</span>192.168.0.12</div>
+                </div>
+                <div class="box-right">
+                    <span class="el-icon-edit-outline" @click="ConfigSet('clockInfo')"></span>
+                </div>
+            </div>
+            <div class="list-box">
+                <div class="box-left">
+                    <div class="color mb5 font-size16">日志自动清理设置</div>
+                    <div><span>{{$t("NotEnabled")}}</span></div>
+                </div>
+                <div class="box-right">
+                    <span class="el-icon-edit-outline" @click="ConfigSet('logInfo')"></span>
+                </div>
+            </div>
         </el-scrollbar>
         <snmp v-if="setInfo.snmpInfo.visible" :dialogInfo="setInfo.snmpInfo"></snmp>
         <aoi v-if="setInfo.aoiInfo.visible" :dialogInfo="setInfo.aoiInfo"></aoi>
+        <clock v-if="setInfo.clockInfo.visible" :dialogInfo="setInfo.clockInfo"></clock>
+        <log v-if="setInfo.logInfo.visible" :dialogInfo="setInfo.logInfo"></log>
   </div>
 </template>
 
 <script>
 import snmp from './component/snmp.vue'
 import aoi from './component/aoi.vue'
+import clock from './component/clock.vue'
+import log from './component/cleanLog.vue'
 export default {
-    components: {snmp,aoi},
+    components: {snmp,aoi,clock,log},
     created () {
         
     },
@@ -104,6 +126,12 @@ export default {
                     visible:false,
                 },
                 phoneInfo:{
+                    visible:false,
+                },
+                clockInfo:{
+                    visible:false,
+                },
+                logInfo:{
                     visible:false,
                 }
             }

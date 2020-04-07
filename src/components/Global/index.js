@@ -19,7 +19,10 @@ requireComponent.keys().forEach(fileName => {
   const componentName = upperFirst(
     camelCase(
       // 获取和目录深度无关的文件名
-      fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
+      fileName
+        .split('/')
+        .pop()
+        .replace(/\.\w+$/, '')
     )
   )
 

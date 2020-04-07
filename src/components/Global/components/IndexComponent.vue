@@ -69,6 +69,7 @@ export default {
         let props={dom:"three-dom"}
         axios.get('/three/scene.json').then(data => {
             let result=data.data;
+            console.log(ThreeMap)
             this.map = new ThreeMap(props,result);
         })
 

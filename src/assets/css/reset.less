@@ -33,6 +33,9 @@
 .el-tabs__active-bar{
     background: #3CB2FF;
 }
+.noboder-radio .el-radio{
+    margin-right: 20px;
+}
 /*弹窗确认*/
 .el-dialog,.el-message-box{
     margin-bottom: 0 !important;
@@ -48,8 +51,10 @@
   .el-dialog__title,.el-message-box__title{
     font-size: 14px !important;
     color: #DAE0EF !important;
+    line-height: 24px;
   }
-  .el-dialog__headerbtn{
+  .el-dialog__headerbtn,
+  .el-message-box__headerbtn{
       top: 8px !important;
       font-size: 22px !important;
   }
@@ -69,29 +74,22 @@
     border-top: 1px solid #D5D5D5;
   }
   .el-message-box__btns{
-    padding: 20px 20px 10px 20px !important;
-    background: #2B3153;
+    padding: 15px 20px !important;
+    text-align: center;
   }
   .loncom_dialog_scroll{
     overflow: auto !important;
   }
   .el-message-box__content{
     padding: 50px 15px !important;
-    background: #1C2340;
-    color: #B9C6F2 !important;
   }
-  .el-message-box__btns .el-button{
-    color: #B9C6F2 !important;
-    padding: 8px 20px;
-  }
-  .el-message-box__btns .el-button--default{
-    border: 1px solid #e0e0e0;
-  }
-  .el-message-box__btns .el-button--default:hover{
-    border: 1px solid #4A78FF;
-    background: #B9C6F2;
-  }
-.el-message-box__btns .el-button--primary{
+//   .el-message-box__btns .el-button--default{
+    
+//   }
+//   .el-message-box__btns .el-button--default:hover{
+    
+//   }
+.el-message-box__headerbtn .el-message-box__close{
     color: #B9C6F2 !important;
 }
 .el-form--label-top .el-form-item__label{
@@ -103,16 +101,19 @@
 .el-tabs__item{
     color: #838FA3;
 }
-.el-checkbox.is-bordered{
+.el-checkbox.is-bordered,
+.el-radio{
     margin-right: 0px;
 }
 .el-checkbox{
     margin-right: 10px;
 }
-.el-checkbox__label{
+.el-checkbox__label,
+.el-radio--small.is-bordered{
     padding-left: 5px;
 }
-.no-el-checkbox__input .el-checkbox__input{
+.no-el-checkbox__input .el-checkbox__input,
+.el-radio--small.is-bordered .el-radio__inner{
     display: none;
 }
 .el-table th{
@@ -122,6 +123,13 @@
     .el-icon-warning{
         color: #3CB2FF;
     }
+}
+.el-message-box__btns .el-button--primary{
+    color: #fff;
+}
+.el-message-box__btns .el-button{
+    border-color: #3CB2FF;
+    color: #3CB2FF;
 }
 /** button*/
 .el-radio-button__orig-radio:checked+.el-radio-button__inner,
@@ -138,19 +146,20 @@
         border-color: #3CB2FF;
         color: #3CB2FF;
     }
-    .el-date-editor .el-range-separator{
-        width: 10%;
-    }
-    .el-date-editor .el-range-input{
-        width: 36%;
-    }
+}
+.el-date-editor .el-range-separator{
+    width: 10%;
+}
+.el-date-editor .el-range-input{
+    width: 36%;
 }
 .el-button--primary{
     background: #3CB2FF;
     border-color: #3CB2FF;
     color: #fff !important;
 }
-.el-button--primary:focus, .el-button--primary:hover{
+.el-button--primary:focus, .el-button--primary:hover,
+.el-message-box__btns .el-button--primary:focus, .el-button--primary:hover{
     background: #52b7f9;
     border-color: #52b7f9;
 }

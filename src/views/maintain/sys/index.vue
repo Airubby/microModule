@@ -1,47 +1,16 @@
 <template>
-  <div class="content">
-        <el-scrollbar class="scrollbar">
-            <div class="list-box">
-                <div class="box-left">
-                    <div class="color mb5 font-size16">{{$t("ProjectConfig")}}</div>
-                    <div><span class="border-right">{{$t("Version")}}0.11</span>{{$t("UpdateAt")}}2020-03-21 10:12:22</div>
-                </div>
-                <div class="box-right">
-                    <span class="el-icon-upload2" @click="update('ProjectConfig')"></span>
-                </div>
-            </div>
-            <div class="list-box">
-                <div class="box-left">
-                    <div class="color mb5 font-size16">{{$t("Corelet")}}</div>
-                    <div><span class="border-right">{{$t("Version")}}0.11</span>{{$t("UpdateAt")}}2020-03-21 10:12:22</div>
-                </div>
-                <div class="box-right">
-                    <span class="el-icon-upload2" @click="update('Corelet')"></span>
-                </div>
-            </div>
-            <div class="list-box">
-                <div class="box-left">
-                    <div class="color mb5 font-size16">{{$t("OSKernal")}}</div>
-                    <div><span class="border-right">{{$t("Version")}}0.11</span>{{$t("UpdateAt")}}2020-03-21 10:12:22</div>
-                </div>
-                <div class="box-right">
-                    <span class="el-icon-upload2" @click="update('OSKernal')"></span>
-                </div>
-            </div>
-            <div style="text-align:center;" class="form-serarch">
-              <el-button class="reset" @click="restartServer">{{$t("RestartServer")}}</el-button>
-              <el-button class="reset" @click="restartSys">{{$t("RestartSys")}}</el-button>
-            </div>
-        </el-scrollbar>
-        <update v-if="updateInfo.visible" :dialogInfo="updateInfo"></update>
-  </div>
+    <div class="content">
+        <component :is="activeComponent" @backInfo="backInfo" :data="obj"></component>
+    </div>
 </template>
 
 <script>
-import update from './component/update.vue'
+import listComponent from './list.vue'
+import planComponent from './plan.vue'
+import backupsComponent from './backups.vue'
 export default {
     components: {
-        update
+        listComponent,planComponent,backupsComponent
     },
     created () {
         
@@ -52,22 +21,19 @@ export default {
     },
     data(){
         return{
-            updateInfo:{
-                visible:false,
-                title:"",
-            }
+            activeComponent:"listComponent",
+            obj:null
         }
     },
     methods: {
-        restartServer:function(){
-
-        },
-        restartSys:function(){
-            
-        },
-        update:function(type){
-            this.updateInfo.title=type;
-            this.updateInfo.visible=true;
+        backInfo:function(info){
+            console.log(info)
+            if(info){
+                this.obj=info;
+                this.activeComponent=info.activeComponent
+            }else{
+                this.activeComponent="listComponent";
+            }
         }
     },
     

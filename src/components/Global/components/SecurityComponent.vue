@@ -17,7 +17,7 @@
                                 <div class="his-cendoor" :class="{'his-cendoor-close':leftDoor}"></div>
                                 <div class="his-cencon">
                                     <div class="cen-img" v-for="item in imgarr.cenimg">
-                                        <img :src="'/images/'+item+'.png'">
+                                        <img :src="'/images/'+item+'.png'" @click="showVideo">
                                     </div>
                                 </div>
                                 <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}"></div>
@@ -53,9 +53,10 @@
 
 <script>
 import cabinetComponent from './HisComponent/cabinet.vue'
+import videoComponent from './SecurityComponent/video.vue'
 export default {
     components: {
-        cabinetComponent
+        cabinetComponent,videoComponent
     },
     created () {
         
@@ -113,7 +114,9 @@ export default {
         }
     },
     methods: {
-        
+        showVideo:function(){
+
+        }
     },
     
 }

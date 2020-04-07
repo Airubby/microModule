@@ -6,7 +6,10 @@
                     <div class="scrollbarbox-con">
                         <div class="scrollbarbox-content">
                             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="125px" class="demo-ruleForm">
-                                <el-form-item label="请输入设置密码" prop="password">
+                                <el-form-item label="请输入账号" prop="userid">
+                                    <el-input v-model="ruleForm.userid" style="width: 300px;" @input="change($event)"></el-input>
+                                </el-form-item>
+                                <el-form-item label="请输入密码" prop="password">
                                     <el-input v-model="ruleForm.password" type="password" style="width: 300px;"></el-input>
                                 </el-form-item>
                             </el-form>
@@ -50,14 +53,19 @@ export default {
         };
         return{
             ruleForm:{
+                userid:"",
                 password:'',
             },
             rules:{
+                userid:[{ required: true,  trigger: 'blur',message:"非空"}],
                 password:[{ required: true,  trigger: 'blur',validator:checkpassword }]
             },
         }
     },
     methods:{
+        change:function(e){
+            console.log(e);
+        },
         //保存的操作
         dialogSure:function(){
             this.$refs['ruleForm'].validate((valid) => {

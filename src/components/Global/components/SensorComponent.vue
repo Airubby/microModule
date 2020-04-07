@@ -2,28 +2,23 @@
   <div class="content">
       <el-scrollbar class="scrollbar">
             <div class="table_search">
-                <el-form ref="ValidateForm" class="form-serarch" :model="initParams" label-width="0px">
+                <el-form ref="ValidateForm" class="form-serarch no-el-checkbox__input" :model="initParams" label-width="0px">
                     <el-row :gutter="10">
-                        <el-col :md="10" :lg="6">
-                            <el-form-item label="" prop="type">
-                                <el-date-picker
-                                    style="width:100%;"
-                                    v-model="initParams.time"
-                                    type="datetimerange"
-                                    range-separator="至"
-                                    start-placeholder="开始日期"
-                                    end-placeholder="结束日期">
-                                    </el-date-picker>
+                        <div style="display:inline-block;float:left;margin:0 10px 0 5px;">
+                            <el-form-item label="">
+                                <el-radio-group v-model="initParams.check" size="small">
+                                    <el-radio label="1" border>近8小时</el-radio>
+                                    <el-radio label="2" border>近24小时</el-radio>
+                                    <el-radio label="3" border>近3天</el-radio>
+                                    <el-radio label="4" border>近7天</el-radio>
+                                </el-radio-group>
                             </el-form-item>
-                        </el-col>
+                        </div>
                         <el-col :md="5" :lg="4">
                             <div class="mb20">
-                                <el-button type="primary" @click="submitForm">{{$t("Query")}}</el-button>
-                                <el-button class="reset" @click="resetForm">{{$t("Reset")}}</el-button>
+                                <router-link :to="{name:'Alarm'}"><el-button type="primary">更多</el-button></router-link>
+                                <el-button class="ml5" @click="resetForm">{{$t("Reset")}}</el-button>
                             </div>
-                        </el-col>
-                        <el-col :md="9" :lg="14">
-                            <el-button type="primary" @click="submitForm" class="fr">{{$t("BatchExport")}}</el-button>
                         </el-col>
                     </el-row>
                 </el-form>
@@ -71,16 +66,14 @@ export default {
     data(){
         return{
             initParams:{
-                type:null,
-                time:null,
+                check:null,
             },
             table_columns:[
-                { prop: 'code', label: "时间",minWidth:10},
-                { prop: 'type', label: "卡号",minWidth:10},
-                { prop: 'status', label: "人员编号",minWidth:10},
-                { prop: 'user', label: "人员姓名",minWidth:10},
-                { prop: 'indate', label: "门",minWidth:20},
-                { prop: 'indate', label: "事件内容",minWidth:20},
+                { prop: 'code', label: "告警等级",minWidth:10},
+                { prop: 'type', label: "事件来源",minWidth:10},
+                { prop: 'status', label: "事件内容",minWidth:10},
+                { prop: 'user', label: "事件状态",minWidth:10},
+                { prop: 'indate', label: "发生时间",minWidth:20},
             ],
             table_data:[
                 {"code":"dslf","type":"dslf","user":"dslf","indate":"dslf","status":"1","d":"dslf"},
