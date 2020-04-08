@@ -16,12 +16,14 @@
                 total-field="total"
                 method='get' 
                 type="local"
+                border
                 :data="table_data"
                 :params="initParams"
                 :showPagination="true"
                 :showSelectAll="true"
+                :span-method="spanMethod"
                 :columns="table_columns" ref="thisRef">   
-                <el-table-column slot="prepend" type="selection"></el-table-column>
+                <!-- <el-table-column slot="prepend" type="selection"></el-table-column> -->
                 <template slot-scope="scope" slot="preview-nowvalue">
                     <span v-if="scope.row.status==='1'" class="bg-alarm table-span">220.6v</span>
                     <span v-else-if="scope.row.status==='0'" class="bg-color table-span">345</span>
@@ -64,14 +66,33 @@ export default {
                 { prop: 'd', label: this.$t("Handle"),slotName:'preview-handle',width:140},
             ],
             table_data:[
-                {"code":"dslf","type":"dslf","user":"dslf","indate":"dslf","status":"1","d":"dslf"},
-                {"code":"dslf","type":"dslf","user":"dslf","indate":"dslf","status":"0","d":"dslf"},
+                {"code":"2020-03-31 00:30:41","type":"/.../backup/202003310030**.sql.tar.gz(系统配置)","user":"dslf","indate":"dslf","status":"1","d":"dslf"},
+                {"code":"2020-03-31 00:30:41","type":"/.../backup/202003310030**.his.tar.gz(历史数据)","user":"dslf","indate":"dslf","status":"0","d":"dslf"},
+                {"code":"2020-03-31 00:30:41","type":"/.../backup/202003310030**.file.tar.gz(软件文件)","user":"dslf","indate":"dslf","status":"0","d":"dslf"},
+                {"code":"2020-03-31 00:30:41","type":"/.../backup/202003310030**.sql.tar.gz(系统配置)","user":"dslf","indate":"dslf","status":"1","d":"dslf"},
+                {"code":"2020-03-31 00:30:41","type":"/.../backup/202003310030**.his.tar.gz(历史数据)","user":"dslf","indate":"dslf","status":"0","d":"dslf"},
+                {"code":"2020-03-31 00:30:41","type":"/.../backup/202003310030**.file.tar.gz(软件文件)","user":"dslf","indate":"dslf","status":"0","d":"dslf"},
             ],
             backupsInfo:{
                 visible:false,
             },
             setInfo:{
                 visible:false
+            },
+            spanMethod:function({ row, column, rowIndex, columnIndex }){
+                if (columnIndex === 0) {
+                    if (rowIndex % 3 === 0) {
+                        return {
+                            rowspan: 3,
+                            colspan: 1
+                        };
+                    } else {
+                        return {
+                            rowspan: 0,
+                            colspan: 0
+                        };
+                    }
+                }
             }
         }
     },

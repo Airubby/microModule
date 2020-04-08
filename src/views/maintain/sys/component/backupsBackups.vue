@@ -1,5 +1,5 @@
 <template>
-    <el-dialog title="设置" :visible.sync="dialogInfo.visible" width="460px" v-dialogDrag append-to-body>
+    <el-dialog title="手动备份" :visible.sync="dialogInfo.visible" width="460px" v-dialogDrag append-to-body>
         <el-scrollbar style="height:220px;" class="scrollbar">
             <div class="pd15" v-loading="loading">
                 <el-form :model="initParams" :rules="rules" ref="ValidateForm" class="form-serarch" label-position="top">
@@ -14,11 +14,20 @@
                             </el-form-item>
                         </el-col>
                         <el-col :md="24" :lg="24">
-                            <el-form-item label="保存路径" prop="status">
-                                <div style="width:250px;float:left;margin-right:5px;">
-                                <el-input v-model="initParams.status"></el-input>
-                                </div>
-                                <span class="info-color">设置文件个数</span>
+                            <el-form-item label="保存位置" prop="status">
+                                <el-radio-group v-model="initParams.type" class="noboder-radio">
+                                    <el-radio :label="1">默认</el-radio>
+                                    <el-radio :label="2">
+                                        <span>外部介质</span>
+                                        <span style="width:150px;margin-left:5px;display: inline-block;">
+                                            <el-select v-model="value" placeholder="请选择">
+                                                <el-option key="1" label="aaa" value="1"></el-option>
+                                                <el-option key="2" label="bbb" value="2"></el-option>
+                                            </el-select>
+                                        </span>
+                                    </el-radio>
+                                </el-radio-group>
+                                <p class="info-color">保存到外部介质需确保U盘已正常插入到采集器</p>
                             </el-form-item>
                         </el-col>
                     </el-row>

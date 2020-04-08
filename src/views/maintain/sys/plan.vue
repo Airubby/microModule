@@ -6,7 +6,7 @@
                     <el-button @click="back">{{$t("Back")}}</el-button>
                 </div>
                 <div>
-                    <el-button type="primary" class="ml10">创建任务</el-button>
+                    <el-button type="primary" class="ml10" @click="createTask">创建任务</el-button>
                 </div>
             </div>
             <el-table-pagination
@@ -34,11 +34,14 @@
                 </template>
             </el-table-pagination>
         </el-scrollbar>
+        <plan-create v-if="planInfo.visible" :dialogInfo="planInfo"></plan-create>
   </div>
 </template>
 
 <script>
+import planCreate from './component/planCreate.vue'
 export default {
+    components:{planCreate},
     created () {
         
     },
@@ -66,11 +69,17 @@ export default {
                 {"code":"dslf","type":"dslf","user":"dslf","indate":"dslf","status":"1","d":"dslf"},
                 {"code":"dslf","type":"dslf","user":"dslf","indate":"dslf","status":"0","d":"dslf"},
             ],
+            planInfo:{
+                visible:false,
+            }
         }
     },
     methods: {
         back() {
             this.$emit("backInfo")
+        },
+        createTask:function(){
+            this.planInfo.visible=true;
         },
         hisTrend:function(){
 

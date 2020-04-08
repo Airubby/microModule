@@ -7,7 +7,7 @@
                 <div class="nav-box">
                     <div class="nav-box-con">
                         <div class="nav-box-con-img"><img src="/images/menu-monitort.png"></div>
-                        <p>主监控</p>
+                        <p>{{$t("Home")}}</p>
                     </div>
                 </div>
            </router-link>
@@ -17,7 +17,7 @@
                 <div class="nav-box">
                     <div class="nav-box-con">
                         <div class="nav-box-con-img"><img src="/images/menu-distribution.png"></div>
-                        <p>配电</p>
+                        <p>{{$t("Power")}}</p>
                     </div>
                 </div>
            </router-link>
@@ -37,7 +37,7 @@
                 <div class="nav-box">
                     <div class="nav-box-con">
                         <div class="nav-box-con-img"><img src="/images/menu-refrigeration.png"></div>
-                        <p>制冷</p>
+                        <p>{{$t("Air")}}</p>
                     </div>
                 </div>
            </router-link>
@@ -104,6 +104,23 @@
                 <!-- <li @click="switcFullScreen">
                     <a href="javascript:;">全屏切换</a>
                 </li> -->
+                <li>
+                    <a href="javascript:;">
+                        <el-dropdown>
+                            <span class="el-dropdown-link">
+                                {{language}}<i class="el-icon-arrow-down el-icon--right"></i>
+                            </span>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item>
+                                    <span @click="setLanguage('zh')">中文</span>
+                                </el-dropdown-item>
+                                <el-dropdown-item>
+                                    <span @click="setLanguage('en')">英文</span>
+                                </el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </a>
+                </li>
                 <li @click="flushPage">
                     <a href="javascript:;">
                         <i class="el-icon-refresh"></i>刷新
@@ -149,6 +166,12 @@ export default {
     name: 'index',
     created () {
         this.date=this.setClock();
+        let lang=Cookies.get('language')||'zh';
+        if(lang=='zh'){
+            this.language="中文"
+        }else{
+            this.language="英文"
+        }
     },
     mounted() {
         setInterval(()=>{
@@ -159,6 +182,7 @@ export default {
         return{
             title:'',
             isRouterAlive:true,
+            language:"中文",
             date:{
                 year:'',
                 month:'',
@@ -173,8 +197,15 @@ export default {
         }
     },
     methods: {
-        change(e){
-            console.log(11111111111)
+        setLanguage:function(language){
+            if(language=="zh"){
+                this.language="中文"
+            }else{
+                this.language="English"
+            }
+            this.$i18n.locale = language
+            this.$store.dispatch('setLanguage', language)
+            this.flushPage();
         },
         flushPage:function(){
             this.isRouterAlive=false;
@@ -326,6 +357,12 @@ export default {
             width: 100%;
             height: calc(100% - 60px);
             padding: 10px;
+        }
+    }
+    .el-dropdown-link{
+        font-size: 17px;
+        i{
+            font-size: 20px;
         }
     }
 </style>
