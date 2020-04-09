@@ -2,7 +2,7 @@
   <div class="content content-flex">
     <div class="content-left">
       <ul>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'Home'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -12,7 +12,7 @@
                 </div>
            </router-link>
         </li>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'Power'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -22,7 +22,7 @@
                 </div>
            </router-link>
         </li>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'Hvdc'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -32,7 +32,7 @@
                 </div>
            </router-link>
         </li>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'Air'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -42,7 +42,7 @@
                 </div>
            </router-link>
         </li>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'Env'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -52,7 +52,7 @@
                 </div>
            </router-link>
         </li>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'Security'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -62,7 +62,7 @@
                 </div>
            </router-link>
         </li>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'His'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -72,7 +72,7 @@
                 </div>
            </router-link>
         </li>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'Set'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -82,7 +82,7 @@
                 </div>
            </router-link>
         </li>
-        <li>
+        <li @click="flushPage">
            <router-link :to="{name:'Maintain'}">
                 <div class="nav-box">
                     <div class="nav-box-con">
@@ -162,15 +162,17 @@
 
 <script>
 import checkPassword from './set/component/dialogCheck.vue'
+import Cookies from 'js-cookie'
 export default {
     name: 'index',
     created () {
         this.date=this.setClock();
         let lang=Cookies.get('language')||'zh';
+        console.log(lang)
         if(lang=='zh'){
             this.language="中文"
         }else{
-            this.language="英文"
+            this.language="English"
         }
     },
     mounted() {

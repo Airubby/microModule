@@ -1,20 +1,24 @@
 <template>
   <div class="content">
-        <component :is="currentView"></component>
+      <public-component :data="arr"></public-component>
   </div>
 </template>
 
 <script>
+import index from '@/views/public/mixin/index'
 export default {
+    mixins:[index],
     created () {
-        this.currentView="IndexComponent"
+        let arr=[
+            {key:"IndexComponent",component:"IndexComponent"},
+        ]
+        this.arr=arr;
     },
     mounted() {
         
     },
     data(){
         return{
-            currentView:""
         }
     },
     methods: {

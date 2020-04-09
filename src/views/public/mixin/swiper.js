@@ -1,5 +1,13 @@
 export default {
+    props:["data"],
     created () {
+        if(this.data){
+            this.arr=this.data;
+            for(let i=0;i<this.arr.length;i++){
+                this.componentArr.push(this.arr[i].component);
+                this.dataArr.push(this.arr[i]);
+            }
+        }
     },
     mounted() {
         this.activeIndex=sessionStorage.activeIndex?sessionStorage.activeIndex:0;
@@ -39,7 +47,22 @@ export default {
     data(){
         return{
             arr:[],
+            componentArr:[],  //存放每个swiper的组件名称，跳转的时候更改用
+            dataArr:[],  //存放每个swiper的组件的数据，跳转的时候切换用
             activeIndex:0,
+            showComponent:true,  //跳转后重新加载组件用
+        }
+    },
+    methods: {
+        backInfo:function(info){
+            if(info){
+                this.componentArr[this.activeIndex]=info["activeComponent"];
+                this.dataArr[this.activeIndex]=info;
+                this.showComponent=false;
+                this.$nextTick(function(){
+                    this.showComponent=true;
+                })
+            }
         }
     },
 }

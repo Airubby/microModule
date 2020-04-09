@@ -1,7 +1,6 @@
 <template>
   <div class="content">
     <div id="swiper-container" class="swiper-container">
-        <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
         <div class="swiper-wrapper" id="swiper-wrapper">
             <div class="swiper-slide" v-for="(item,index) in arr">

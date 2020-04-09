@@ -41,6 +41,7 @@
 <script>
 import cabinetComponent from './HisComponent/cabinet.vue'
 export default {
+    props:["data"],
     components: {
         cabinetComponent
     },

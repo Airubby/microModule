@@ -1,31 +1,29 @@
 <template>
     <div class="content">
-        <component :is="currentView" @backInfo="backInfo" :data="obj"></component>
+        <public-component :data="arr"></public-component>
     </div>
 </template>
 
 <script>
+import index from '@/views/public/mixin/index'
 export default {
+    mixins:[index],
     created () {
-        this.currentView="HisComponent"
+        let arr=[
+            {key:"MDCinverter",component:"HisComponent"},
+        ]
+        this.arr=arr;
     },
     mounted() {
         
     },
     data(){
         return{
-            currentView:"",
-            obj:null
+            
         }
     },
     methods: {
-        backInfo:function(info){
-            console.log(info)
-            if(info){
-                this.obj=info;
-                this.currentView=info.activeComponent;
-            }
-        }
+        
     },
     components: {
         
