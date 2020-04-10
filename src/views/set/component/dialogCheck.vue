@@ -70,9 +70,11 @@ export default {
         dialogSure:function(){
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
+                    console.log(this.$tool.Encrypt(this.ruleForm.password))
+                    console.log(this.$tool.Decrypt("tKb634uLRuFdugF0P01eKw=="))
                     this.dialogInfo.visible=false;
                     this.$store.dispatch("setToken",true);
-                    this.$router.push({path:'/loncom/set'});
+                    // this.$router.push({path:'/loncom/set'});
 
                 } else {
                     console.log('error submit!!');

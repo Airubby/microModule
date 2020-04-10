@@ -898,6 +898,8 @@ export default {
     arrayContains,
     switcFullScreen,
     Format,
+    Encrypt,
+    Decrypt,
     echartAir,
     echartLine,
     echartPUE,

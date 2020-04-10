@@ -1,98 +1,102 @@
 <template>
   <div class="content content-flex">
     <div class="content-left">
-      <ul>
-        <li @click="flushPage">
-           <router-link :to="{name:'Home'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-monitort.png"></div>
-                        <p>{{$t("Home")}}</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-        <li @click="flushPage">
-           <router-link :to="{name:'Power'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-distribution.png"></div>
-                        <p>{{$t("Power")}}</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-        <li @click="flushPage">
-           <router-link :to="{name:'Hvdc'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-hvdc.png"></div>
-                        <p>HVDC</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-        <li @click="flushPage">
-           <router-link :to="{name:'Air'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-refrigeration.png"></div>
-                        <p>{{$t("Air")}}</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-        <li @click="flushPage">
-           <router-link :to="{name:'Env'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-environment.png"></div>
-                        <p>环境</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-        <li @click="flushPage">
-           <router-link :to="{name:'Security'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-security.png"></div>
-                        <p>安防</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-        <li @click="flushPage">
-           <router-link :to="{name:'His'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-history.png"></div>
-                        <p>历史</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-        <li @click="flushPage">
-           <router-link :to="{name:'Set'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-setup.png"></div>
-                        <p>设置</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-        <li @click="flushPage">
-           <router-link :to="{name:'Maintain'}">
-                <div class="nav-box">
-                    <div class="nav-box-con">
-                        <div class="nav-box-con-img"><img src="/images/menu-maintain.png"></div>
-                        <p>维护</p>
-                    </div>
-                </div>
-           </router-link>
-        </li>
-      </ul>
+        <ul>
+            <el-scrollbar class="scrollbar">
+                <template v-for="item in config">
+                    <li @click="flushPage">
+                        <router-link :to="{name:item.component}">
+                            <div class="nav-box">
+                                <div class="nav-box-con">
+                                    <div class="nav-box-con-img"><img :src="'/images/'+item.img"></div>
+                                    <p>{{$t(item.language)}}</p>
+                                </div>
+                            </div>
+                        </router-link>
+                    </li>
+                </template>
+                <!-- <li @click="flushPage">
+                    <router-link :to="{name:'Power'}">
+                            <div class="nav-box">
+                                <div class="nav-box-con">
+                                    <div class="nav-box-con-img"><img src="/images/menu-distribution.png"></div>
+                                    <p>{{$t("Power")}}</p>
+                                </div>
+                            </div>
+                    </router-link>
+                    </li>
+                    <li @click="flushPage">
+                    <router-link :to="{name:'Hvdc'}">
+                            <div class="nav-box">
+                                <div class="nav-box-con">
+                                    <div class="nav-box-con-img"><img src="/images/menu-hvdc.png"></div>
+                                    <p>HVDC</p>
+                                </div>
+                            </div>
+                    </router-link>
+                    </li>
+                    <li @click="flushPage">
+                    <router-link :to="{name:'Air'}">
+                            <div class="nav-box">
+                                <div class="nav-box-con">
+                                    <div class="nav-box-con-img"><img src="/images/menu-refrigeration.png"></div>
+                                    <p>{{$t("Air")}}</p>
+                                </div>
+                            </div>
+                    </router-link>
+                    </li>
+                    <li @click="flushPage">
+                    <router-link :to="{name:'Env'}">
+                            <div class="nav-box">
+                                <div class="nav-box-con">
+                                    <div class="nav-box-con-img"><img src="/images/menu-environment.png"></div>
+                                    <p>环境</p>
+                                </div>
+                            </div>
+                    </router-link>
+                    </li>
+                    <li @click="flushPage">
+                    <router-link :to="{name:'Security'}">
+                            <div class="nav-box">
+                                <div class="nav-box-con">
+                                    <div class="nav-box-con-img"><img src="/images/menu-security.png"></div>
+                                    <p>安防</p>
+                                </div>
+                            </div>
+                    </router-link>
+                    </li>
+                    <li @click="flushPage">
+                    <router-link :to="{name:'His'}">
+                            <div class="nav-box">
+                                <div class="nav-box-con">
+                                    <div class="nav-box-con-img"><img src="/images/menu-history.png"></div>
+                                    <p>历史</p>
+                                </div>
+                            </div>
+                    </router-link>
+                </li> -->
+                <li @click="flushPage">
+                    <router-link :to="{name:'Set'}">
+                        <div class="nav-box">
+                            <div class="nav-box-con">
+                                <div class="nav-box-con-img"><img src="/images/menu-setup.png"></div>
+                                <p>设置</p>
+                            </div>
+                        </div>
+                    </router-link>
+                </li>
+                <li @click="flushPage">
+                    <router-link :to="{name:'Maintain'}">
+                        <div class="nav-box">
+                            <div class="nav-box-con">
+                                <div class="nav-box-con-img"><img src="/images/menu-maintain.png"></div>
+                                <p>维护</p>
+                            </div>
+                        </div>
+                    </router-link>
+                </li>
+            </el-scrollbar>
+        </ul>
     </div>
     <div class="content-right">
       <div class="content-right-top">
@@ -163,6 +167,7 @@
 <script>
 import checkPassword from './set/component/dialogCheck.vue'
 import Cookies from 'js-cookie'
+import { mapGetters } from 'vuex'
 export default {
     name: 'index',
     created () {
@@ -179,6 +184,11 @@ export default {
         setInterval(()=>{
             this.date=this.setClock();
         },1000);
+    },
+    computed:{
+        ...mapGetters([
+            'config'
+        ]),
     },
     data(){
         return{
@@ -364,7 +374,7 @@ export default {
     .el-dropdown-link{
         font-size: 17px;
         i{
-            font-size: 20px;
+            font-size: 20px !important;
         }
     }
 </style>

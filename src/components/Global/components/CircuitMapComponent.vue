@@ -5,18 +5,20 @@
                 <div class="scrollbarbox-con">
                     <div class="scrollbarbox-content">
                         <div class="numbox">
-                            <el-scrollbar class="numbox-left scrollbar">
-                                <div class="numbox-con">
-                                    <template  v-for="(item,index) in 19">
-                                        <el-tooltip class="item" effect="light" content="0.3" placement="left">
-                                            <div class="numbox-box" @click="checkbox($event)">
-                                                <i class="el-icon-check"></i>
-                                                <span>{{item}}</span>
-                                            </div>
-                                        </el-tooltip>
-                                    </template>
-                                </div>
-                            </el-scrollbar>
+                            <div class="numbox-left">
+                                <el-scrollbar class="scrollbar">
+                                    <div class="numbox-con">
+                                        <template  v-for="(item,index) in 19">
+                                            <el-tooltip class="item" effect="light" content="0.3" placement="left">
+                                                <div class="numbox-box" @click="checkbox($event)">
+                                                    <i class="el-icon-check"></i>
+                                                    <span>{{item}}</span>
+                                                </div>
+                                            </el-tooltip>
+                                        </template>
+                                    </div>
+                                </el-scrollbar>
+                            </div>
                             <div class="numbox-right" @click="showFn()"><span>{{$t("HVDCgroup")}}</span></div>
                         </div>
                         <div class="textbox textbox1">

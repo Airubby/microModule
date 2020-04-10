@@ -49,7 +49,7 @@ export default {
             arr:[],
             componentArr:[],  //存放每个swiper的组件名称，跳转的时候更改用
             dataArr:[],  //存放每个swiper的组件的数据，跳转的时候切换用
-            activeIndex:0,
+            activeIndex:sessionStorage.activeIndex||0,
             showComponent:true,  //跳转后重新加载组件用
         }
     },

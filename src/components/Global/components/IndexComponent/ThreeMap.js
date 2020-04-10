@@ -90,7 +90,7 @@ export default class ThreeMap {
         this.scene.add(axesHelper);
     }
     setControl() {
-        this.controls = new OrbitControls(this.camera);
+        this.controls = new OrbitControls(this.camera,this.dom);
         this.controls.update();
     }
     drawbox(){

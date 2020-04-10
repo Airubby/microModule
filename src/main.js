@@ -47,6 +47,19 @@ function getServerConfig() {
       let ajaxUrl = process.env.NODE_ENV == 'production' ? config.production:config.develop;
       Vue.prototype.$ajaxUrl=ajaxUrl;
       store.dispatch('setAjaxUrl',ajaxUrl);
+      store.dispatch('setConfig',config.config);
+      
+      resolve();
+    }).catch((error) => {
+      console.log(error)
+      reject()
+    })
+  })
+}
+function getLanguage() {
+  return new Promise ((resolve, reject) => {
+    axios.get('/language.json').then((result) => {
+      let config = result.data;
       const enLocale=config.enLang
       const zhLocale=config.zhLang
       Vue.use(VueI18n)
@@ -78,6 +91,7 @@ function getServerConfig() {
 
 async function init() {
   await getServerConfig();
+  await getLanguage();
   new Vue({
     router,
     store,

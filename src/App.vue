@@ -10,7 +10,7 @@ import Vue from 'vue'
   export default {
     name: 'app',
     created () {
-        
+        this.changeComponent();
     },
     computed:{
         
@@ -26,10 +26,20 @@ import Vue from 'vue'
       }
     },
     methods:{
-      
+      changeComponent:function(){
+        let val=this.$route;
+        let config=this.$store.state.config;
+        for(let i=0;i<config.length;i++){
+            if(config[i].component==val.name){
+              store.dispatch("setComponentArr",config[i].item);
+            }
+        }
+      }
     },
     watch:{
-     
+      $route:function(){
+        this.changeComponent();
+      }
     }
   }
 </script>
