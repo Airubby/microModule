@@ -32,6 +32,7 @@ export default {
             {key:"SysManage",component:"SysManageComponent"},
         ]
         this.arr=arr;
+        this.backArr=arr;
     },
     
     mounted() {

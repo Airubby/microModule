@@ -43,6 +43,7 @@ export default {
             // {key:"DataPublish",component:"DataPublishComponent"},
         ]
         this.arr=arr;
+        this.backArr=arr;
     },
     mounted() {
         

@@ -24,7 +24,7 @@
                             <el-form-item label="事件来源">
                                 <div style="width:calc(100% - 80px);float:left;">
                                 <el-input v-model="initParams.code" readonly>
-                                    <template slot="append"><span @click="selectPoint">{{$t("Select")}}</span></template>
+                                    <template slot="append"><span @click="selectPoint" class="pdlr20">{{$t("Select")}}</span></template>
                                 </el-input>
                                 </div>
                                 <span @click="changeSearch" class="color ml5">清空</span>

@@ -7,7 +7,7 @@
                     <div><span class="border-right">模块名称</span><span class="border-right">编码</span>安装位置</div>
                 </div>
                 <div class="box-right">
-                    <span class="el-icon-edit-outline" @click="manageObjFn()"></span>
+                    <span class="el-icon-edit-outline" @click="changeEdit('manageObjInfo')"></span>
                 </div>
             </div>
             <div class="list-box">
@@ -16,7 +16,7 @@
                     <div><span class="border-right">厂商名称</span><span class="border-right">联系人</span>交付日期</div>
                 </div>
                 <div class="box-right">
-                    <span class="el-icon-edit-outline" @click="supplierFn()"></span>
+                    <span class="el-icon-edit-outline" @click="changeEdit('supplierInfo')"></span>
                 </div>
             </div>
             <div class="list-box">
@@ -25,7 +25,7 @@
                     <div><span class="border-right">IP地址</span><span class="border-right">掩码</span>网关</div>
                 </div>
                 <div class="box-right">
-                    <span class="el-icon-edit-outline" @click="networkFn()"></span>
+                    <span class="el-icon-edit-outline" @click="changeEdit('networkInfo')"></span>
                 </div>
             </div>
             <div class="list-box">
@@ -34,14 +34,30 @@
                     <div><span class="border-right">2017-12-12</span>维护信息内容维护信息内容维护信息内容</div>
                 </div>
                 <div class="box-right">
-                    <span class="el-icon-edit-outline" @click="stickFn()"></span>
+                    <span class="el-icon-edit-outline" @click="changeEdit('stickInfo')"></span>
+                </div>
+            </div>
+            <div class="list-box">
+                <div class="box-left">
+                    <div class="color mb5 font-size16">运行信息</div>
+                    <div>
+                        <span class="border-right">CPU(<em class="color">45.6%</em>)</span>
+                        <span class="border-right">内存(<em class="color">32.6%</em>)</span>
+                        <span class="border-right">磁盘(<em class="color">15.2%</em>)</span>
+                        <span class="border-right">上行网速(<em class="color">12.6kb/s</em>)</span>
+                        <span>下行网速(<em class="color">32.6kb/s</em>)</span>
+                    </div>
+                </div>
+                <div class="box-right">
+                    <span class="el-icon-edit-outline" @click="changeEdit('runInfo')"></span>
                 </div>
             </div>
         </el-scrollbar>
-        <manage-obj v-if="manageObjInfo.visible" :dialogInfo="manageObjInfo"></manage-obj>
-        <supplier v-if="supplierInfo.visible" :dialogInfo="supplierInfo"></supplier>
-        <network v-if="networkInfo.visible" :dialogInfo="networkInfo"></network>
-        <stick v-if="stickInfo.visible" :dialogInfo="stickInfo"></stick>
+        <manage-obj v-if="initParams.manageObjInfo.visible" :dialogInfo="initParams.manageObjInfo"></manage-obj>
+        <supplier v-if="initParams.supplierInfo.visible" :dialogInfo="initParams.supplierInfo"></supplier>
+        <network v-if="initParams.networkInfo.visible" :dialogInfo="initParams.networkInfo"></network>
+        <stick v-if="initParams.stickInfo.visible" :dialogInfo="initParams.stickInfo"></stick>
+        <run v-if="initParams.runInfo.visible" :dialogInfo="initParams.runInfo"></run>
   </div>
 </template>
 
@@ -50,9 +66,10 @@ import manageObj from './component/manageObj.vue'
 import supplier from './component/supplier.vue'
 import network from './component/network.vue'
 import stick from './component/stick.vue'
+import run from './component/run.vue'
 export default {
     components: {
-        manageObj,supplier,network,stick
+        manageObj,supplier,network,stick,run
     },
     created () {
         
@@ -63,33 +80,30 @@ export default {
     },
     data(){
         return{
-            manageObjInfo:{
-                visible:false,
-            },
-            supplierInfo:{
-                visible:false,
-            },
-            networkInfo:{
-                visible:false,
-            },
-            stickInfo:{
-                visible:false
+            initParams:{
+                manageObjInfo:{
+                    visible:false,
+                },
+                supplierInfo:{
+                    visible:false,
+                },
+                networkInfo:{
+                    visible:false,
+                },
+                stickInfo:{
+                    visible:false
+                },
+                runInfo:{
+                    visible:false
+                }
             }
+            
         }
     },
     methods: {
-        manageObjFn:function(){
-            this.manageObjInfo.visible=true;
+        changeEdit:function(change){
+            this.initParams[change].visible=true;
         },
-        supplierFn:function(){
-            this.supplierInfo.visible=true;
-        },
-        networkFn:function(){
-            this.networkInfo.visible=true;
-        },
-        stickFn:function(){
-            this.stickInfo.visible=true;
-        }
     },
     
 }

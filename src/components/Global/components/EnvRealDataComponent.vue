@@ -40,33 +40,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-box" v-for="item in table">
-                    <div class="table-box-con">
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>℃</div>
+                <div style="border-right:1px solid #E4E7E9;width:calc(100% - 125px)" v-scrollBar>
+                    <div style="display:inline-flex;height:100%;min-width:100%;">
+                    <div class="table-box" v-for="item in table">
+                        <div class="table-box-con">
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>℃</div>
+                            </div>
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>%</div>
+                            </div>
                         </div>
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>%</div>
+                        <div class="table-box-title">
+                            <div class="table-box-cont">
+                                <div class="table-box-content">{{item}}</div>
+                            </div>
+                        </div>
+                        <div class="table-box-con">
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>℃</div>
+                            </div>
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>%</div>
+                            </div>
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>℃</div>
+                            </div>
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>%</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="table-box-title">
-                        <div class="table-box-cont">
-                            <div class="table-box-content">{{item}}</div>
-                        </div>
-                    </div>
-                    <div class="table-box-con">
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>℃</div>
-                        </div>
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>%</div>
-                        </div>
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>℃</div>
-                        </div>
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>%</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -109,33 +113,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-box" v-for="item in table">
-                    <div class="table-box-con">
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>℃</div>
+                <div style="border-right:1px solid #E4E7E9;width:calc(100% - 125px)" v-scrollBar>
+                    <div style="display:inline-flex;height:100%;min-width:100%;">
+                    <div class="table-box" v-for="item in table1">
+                        <div class="table-box-con">
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>℃</div>
+                            </div>
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>%</div>
+                            </div>
                         </div>
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>%</div>
+                        <div class="table-box-title">
+                            <div class="table-box-cont">
+                                <div class="table-box-content">{{item}}</div>
+                            </div>
+                        </div>
+                        <div class="table-box-con">
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>℃</div>
+                            </div>
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>%</div>
+                            </div>
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>℃</div>
+                            </div>
+                            <div class="table-box-cont">
+                                <div class="table-box-content"><span>23</span>%</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="table-box-title">
-                        <div class="table-box-cont">
-                            <div class="table-box-content">{{item}}</div>
-                        </div>
-                    </div>
-                    <div class="table-box-con">
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>℃</div>
-                        </div>
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>%</div>
-                        </div>
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>℃</div>
-                        </div>
-                        <div class="table-box-cont">
-                            <div class="table-box-content"><span>23</span>%</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -151,7 +159,8 @@ export default {
     },
     data(){
         return{
-            table:['01','02','03','04','05','06','07','08','09']
+            table:['01'],
+            table1:['01','02','03','04','05','06','07','08','09'],
         }
     },
     methods: {
@@ -176,8 +185,9 @@ export default {
             border-left: 1px solid #E4E7E9;
             display:flex;
             .table-box{
-                border-right:1px solid #E4E7E9;
-                width: 9%;
+                border-left:1px solid #E4E7E9;
+                width:100%;
+                min-width: 200px;
                 .table-box-title{
                     height: 25%;
                     background:#E4E7E9;
@@ -208,7 +218,7 @@ export default {
                 }
             }
             .table-box1{
-                width: 19%;
+                width: 125px;
                 .table-box1-left{
                     width:65%;
                     height:100%;

@@ -1,5 +1,11 @@
 <template>
-    <el-dialog title="密码验证" :visible.sync="dialogInfo.visible" width="600px" v-dialogDrag>
+    <el-dialog :visible.sync="dialogInfo.visible" width="600px" v-dialogDrag>
+        <div slot="title" class="title">
+            <div class="title-con">
+                <span :class="{'active':title=='a'}" @click="change('a')">密码验证</span>
+                <span :class="{'active':title=='b'}" @click="change('b')">短信验证</span>
+            </div>
+        </div>
         <el-scrollbar style="height:200px;" class="scrollbar">
             <div class="content content-flex">
                 <div class="scrollbarbox">
@@ -7,7 +13,7 @@
                         <div class="scrollbarbox-content">
                             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="125px" class="demo-ruleForm">
                                 <el-form-item label="请输入账号" prop="userid">
-                                    <el-input v-model="ruleForm.userid" style="width: 300px;" @input="change($event)"></el-input>
+                                    <el-input v-model="ruleForm.userid" style="width: 300px;"></el-input>
                                 </el-form-item>
                                 <el-form-item label="请输入密码" prop="password">
                                     <el-input v-model="ruleForm.password" type="password" style="width: 300px;"></el-input>
@@ -52,6 +58,7 @@ export default {
             }
         };
         return{
+            title:'a',
             ruleForm:{
                 userid:"",
                 password:'',
@@ -64,7 +71,7 @@ export default {
     },
     methods:{
         change:function(e){
-            console.log(e);
+            this.title=e;
         },
         //保存的操作
         dialogSure:function(){
@@ -96,5 +103,26 @@ export default {
 }
 </script>
 <style scoped lang="less">
-  
+    .title{
+        height: 20px;
+        .title-con{
+            position: absolute;
+            height: 36px;
+            line-height: 34px;
+            top: 5px;
+            z-index: 999;
+            cursor: pointer;
+            span{
+                padding: 0 10px;
+                color: #fff;
+                display: inline-block;
+                height: 100%;
+                &.active{
+                    background: #fff;
+                    color: #666;
+                }
+            }
+
+        }
+    }
 </style>

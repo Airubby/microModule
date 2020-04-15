@@ -43,6 +43,7 @@ let i18n=''
 function getServerConfig() {
   return new Promise ((resolve, reject) => {
     axios.get('/serverConfig.json').then((result) => {
+      console.log(result)
       let config = result.data;
       let ajaxUrl = process.env.NODE_ENV == 'production' ? config.production:config.develop;
       Vue.prototype.$ajaxUrl=ajaxUrl;
@@ -74,7 +75,7 @@ function getLanguage() {
         }
       }
       i18n = new VueI18n({
-        locale: Cookies.get('language') || config.language, // set locale
+        locale: Cookies.get('language') || config.language || store.state.language, // set locale
         messages // set locale messages
       })
       Vue.use(ElementUI,{

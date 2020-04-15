@@ -191,7 +191,7 @@ export default {
             .table-title{
                 display: flex;
                 width:100%;
-                height: 100px;
+                height: 65px;
                 background: #E4E7E9;
                 border-right: 1px solid #ccc;
                 border-top: 1px solid #ccc;
@@ -207,7 +207,7 @@ export default {
                 border-right:1px solid #E4E7E9;
                 .table-con-list{
                     width:100%;
-                    height: 50px;
+                    height: 40px;
                     display:flex;
                     // border-right:1px solid #E4E7E9;
                     // border-left:1px solid #E4E7E9;
@@ -217,11 +217,11 @@ export default {
                 }
             }
             .table-box{
-                width: 9%;
+                width: 8%;
                 border-left: 1px solid #E4E7E9;
                 border-top: 1px solid #E4E7E9;
                 &.table-box1{
-                    width: 14%;
+                    width: 18%;
                     display:flex;
                     flex-wrap: wrap;
                     .table-box1-con{
@@ -242,6 +242,7 @@ export default {
                     width: 100%;
                     height: 100%;
                     display:table;
+                    word-break: break-all;
                     span{
                         display:table-cell;
                         text-align: center;

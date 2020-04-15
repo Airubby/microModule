@@ -100,9 +100,31 @@
     </div>
     <div class="content-right">
       <div class="content-right-top">
-          <div class="content-right-top-logo">
-            <img src="/images/logo.png">
-          </div>
+           <div class="content-right-top-left"> 
+                <div class="content-right-top-logo">
+                    <img src="/images/logo.png">
+                </div>
+                <div class="content-right-top-slide">
+                    <div class="content-right-top-slide-con">
+                        <div id="index-container" class="index-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    1,稳定hi速度告警，严重告警
+                                </div>
+                                <div class="swiper-slide">
+                                    2,稳定hi速度告警，紧急告警
+                                </div>
+                                <div class="swiper-slide">
+                                    3,稳定hi速度告警，严重告警4
+                                </div>
+                                <div class="swiper-slide">
+                                    4,稳定hi速度告警，严重告警5
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
           <div class="content-right-top-right">
             <ul>
                 <!-- <li @click="switcFullScreen">
@@ -112,7 +134,7 @@
                     <a href="javascript:;">
                         <el-dropdown>
                             <span class="el-dropdown-link">
-                                {{language}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                {{getLanguage}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item>
@@ -172,29 +194,39 @@ export default {
     name: 'index',
     created () {
         this.date=this.setClock();
-        let lang=Cookies.get('language')||'zh';
-        console.log(lang)
-        if(lang=='zh'){
-            this.language="中文"
-        }else{
-            this.language="English"
-        }
     },
     mounted() {
         setInterval(()=>{
             this.date=this.setClock();
         },1000);
+        
+  
+        new this.$Swiper('#index-container', {
+            // slidesPerView: 'auto',
+            centeredSlides: false,
+            spaceBetween: 30,
+            loop : true,
+            speed:3000,
+            autoplay: true
+        })
     },
     computed:{
         ...mapGetters([
             'config'
         ]),
+        getLanguage:function(){
+            let language=this.$store.state.language;
+            if(language=="zh"){
+                return "中文"
+            }else{
+                return "English"
+            }
+        },
     },
     data(){
         return{
             title:'',
             isRouterAlive:true,
-            language:"中文",
             date:{
                 year:'',
                 month:'',
@@ -210,14 +242,8 @@ export default {
     },
     methods: {
         setLanguage:function(language){
-            if(language=="zh"){
-                this.language="中文"
-            }else{
-                this.language="English"
-            }
             this.$i18n.locale = language
             this.$store.dispatch('setLanguage', language)
-            this.flushPage();
         },
         flushPage:function(){
             this.isRouterAlive=false;
@@ -326,13 +352,50 @@ export default {
             background: #fff;
             padding-left: 20px;
             justify-content: space-between;
-            .content-right-top-logo{
-                font-size: 26px;
-                line-height: 60px;
+            .content-right-top-left{
+                width: calc(100% - 650px);
                 display: flex;
-                align-items: center;
-                img{
-                    max-height: 60px;
+                .content-right-top-logo{
+                    font-size: 26px;
+                    line-height: 60px;
+                    display: flex;
+                    align-items: center;
+                    max-width: 300px;
+                    margin-right: 40px;
+                    img{
+                        max-width: 100%;
+                        max-height: 60px;
+                    }
+                }
+                .content-right-top-slide{
+                    width: calc(100% - 340px);
+                    height: 100%;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    .content-right-top-slide-con{
+                        width: 100%;
+                        height: 30px;
+                        line-height: 30px;
+                        background: #fbf0f0;
+                        padding: 0 10px;
+                        border-radius: 4px;
+                    }
+                    .index-container{
+                        overflow: hidden;
+                    }
+                    .swiper-slide{
+                        width: auto;
+                        color: #F85C48;
+                    }
+                    .swiper-container-free-mode > .swiper-wrapper {
+                        -webkit-transition-timing-function: linear;   
+                        -moz-transition-timing-function: linear;
+                        -ms-transition-timing-function: linear;
+                        -o-transition-timing-function: linear;
+                        transition-timing-function: linear;
+                        margin: 0 auto;
+                    }
                 }
             }
             .content-right-top-right{
