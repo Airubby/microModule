@@ -43,6 +43,7 @@ const store = new Vuex.Store({
 			state.config = config
 			let data=config;
 			console.log(asyncRouter)
+			console.log(data)
 			if(data.length>0){
 				let redirect="/loncom/"+data[0].component;
 				let newRouter={
@@ -64,6 +65,14 @@ const store = new Vuex.Store({
 					arr.push(asyncRouter[i]);
 				}
 				newRouter.children=arr;
+				router.addRoutes([newRouter]);
+			}else{
+				let newRouter={
+					path: '/loncom',
+					name:'loncom',
+					component: () => import('@/views/index.vue'),
+					redirect:'/loncom/401',
+				}
 				router.addRoutes([newRouter]);
 			}
 			

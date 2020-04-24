@@ -108,18 +108,11 @@
                     <div class="content-right-top-slide-con">
                         <div id="index-container" class="index-container">
                             <div class="swiper-wrapper">
+                                <template v-for="item in alarmList">
                                 <div class="swiper-slide">
-                                    1,稳定hi速度告警，严重告警
+                                    {{item.content}}
                                 </div>
-                                <div class="swiper-slide">
-                                    2,稳定hi速度告警，紧急告警
-                                </div>
-                                <div class="swiper-slide">
-                                    3,稳定hi速度告警，严重告警4
-                                </div>
-                                <div class="swiper-slide">
-                                    4,稳定hi速度告警，严重告警5
-                                </div>
+                                </template>
                             </div>
                         </div>
                     </div>
@@ -132,7 +125,7 @@
                 </li> -->
                 <li>
                     <a href="javascript:;">
-                        <el-dropdown>
+                        <el-dropdown trigger="click">
                             <span class="el-dropdown-link">
                                 {{getLanguage}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
@@ -202,7 +195,7 @@ export default {
         
   
         new this.$Swiper('#index-container', {
-            // slidesPerView: 'auto',
+            slidesPerView: 'auto',
             centeredSlides: false,
             spaceBetween: 30,
             loop : true,
@@ -237,7 +230,13 @@ export default {
             },
             checkInfo:{
                 visible: false,
-            }
+            },
+            alarmList:[
+                {devid:"001",pointid:"01",content:"1,稳定hi速度告警，严重告警"},
+                {devid:"001",pointid:"02",content:"2,稳定hi速度告警，严重告警"},
+                {devid:"001",pointid:"03",content:"3,稳定hi速度告警，严重告警"},
+                {devid:"001",pointid:"04",content:"4,稳定hi速度告警，严重告警"},
+            ]
         }
     },
     methods: {

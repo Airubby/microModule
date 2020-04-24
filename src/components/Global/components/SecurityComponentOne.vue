@@ -5,10 +5,11 @@
                 <div class="scrollbarbox-con">
                     <div class="scrollbarbox-content">
                         <div class="his">
-                            <div class="his-top his-con">
+                            <div class="his-con">
                                 <div class="his-con-line"><em v-for="item in 36"></em></div>
-                                <div class="his-con-line his-con-linel"><em v-for="item in 10"></em></div>
-                                <div class="his-con-line his-con-linel his-con-liner"><em v-for="item in 10"></em></div>
+                                <div class="his-con-line his-con-lineb"><em v-for="item in 36"></em></div>
+                                <div class="his-con-line his-con-linel"><em v-for="item in 13"></em></div>
+                                <!-- <div class="his-con-line his-con-linel his-con-liner"><em v-for="item in 10"></em></div> -->
                                 <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" v-for="item in data1">
                                     <cabinet-component :color="item.color"></cabinet-component>
                                 </div>
@@ -16,19 +17,27 @@
                             <div class="his-cen">
                                 <div class="his-cendoor" :class="{'his-cendoor-close':leftDoor}"></div>
                                 <div class="his-cencon">
-                                    <div class="cen-img" v-for="item in imgarr.cenimg">
-                                        <img :src="'/images/'+item+'.png'" @click="showVideo">
+                                    <div class="cenimg-box">
+                                        <div class="cen-img" v-for="item in imgarr.cenimg">
+                                            <img :src="'/images/'+item+'.png'">
+                                        </div>
+                                    </div>
+                                    <div class="arrows">
+                                        <div class="arrows-con" v-for="item in 4">
+                                            <arrows-component type="left" color="#3EB3FF" class="arrows-box"></arrows-component>
+                                            <arrows-component type="left" color="#3EB3FF" class="arrows-box"></arrows-component>
+                                            <arrows-component type="left" color="#3EB3FF" class="arrows-box"></arrows-component>
+                                        </div>
+                                    </div>
+                                    <div class="arrows arrows-bottom">
+                                        <div class="arrows-con" v-for="item in 4">
+                                            <arrows-component type="right" color="#F75B49" class="arrows-box"></arrows-component>
+                                            <arrows-component type="right" color="#F75B49" class="arrows-box"></arrows-component>
+                                            <arrows-component type="right" color="#F75B49" class="arrows-box"></arrows-component>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}"></div>
-                            </div>
-                            <div class="his-bottom his-con">
-                                <div class="his-con-line"><em v-for="item in 36"></em></div>
-                                <div class="his-con-line his-con-linel"><em v-for="item in 10"></em></div>
-                                <div class="his-con-line his-con-linel his-con-liner"><em v-for="item in 10"></em></div>
-                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" v-for="item in data2">
-                                    <cabinet-component :color="item.color"></cabinet-component>
-                                </div>
                             </div>
                             <div v-for="item in imgarr.Webcam" class="webcam" :class="'webcam'+item">
                                 <img src="/images/Webcam-ball.png">
@@ -54,9 +63,10 @@
 <script>
 import cabinetComponent from './HisComponent/cabinet.vue'
 import videoComponent from './SecurityComponent/video.vue'
+import arrowsComponent from './HisComponent/arrows.vue'
 export default {
     components: {
-        cabinetComponent,videoComponent
+        cabinetComponent,videoComponent,arrowsComponent
     },
     created () {
         
@@ -68,14 +78,14 @@ export default {
         return{
             imgarr:{
                 Webcam:[
-                    1,2,3,4,5,6,7,8
+                    1,2,3,4
                 ],
                 cenimg:[
-                    'smoke','thalposis','smoke','thalposis'
+                    'smoke','thalposis'
                 ]
             },
-            leftDoor:false,
-            rightDoor:true,
+            leftDoor:true,
+            rightDoor:false,
             title:'',
             data1:[
                 {title:'配电单元',type:'pd',color:'#E7E6EB'},
@@ -167,28 +177,19 @@ export default {
     }
     .scrollbarbox-content{
         width: 865px;
-        height: 460px;
+        height: 230px;
         .his{
             width: 100%;
             height:100%;
             position: relative;
             .his-con{
                 width: calc(100% - 160px);
-                height: 150px;
-                border: 8px solid #838FA3;
+                height: 100%;
+                border-top: 5px solid #838FA3;
+                border-bottom: 5px solid #838FA3;
                 margin: 0 auto;
                 display: flex;
                 position: relative;
-                &.his-top{
-                    border-bottom: none;
-                }
-                &.his-bottom{
-                    border-top: none;
-                    .his-con-line{
-                        top: auto;
-                        bottom: -13px;
-                    }
-                }
                 .his-conbox{
                     width: 200%;
                     height: 100%;
@@ -202,12 +203,12 @@ export default {
                     }
                 }
                 .his-con-line{
-                    width: calc(100% + 22px);
+                    width: calc(100% + 10px);
                     height: 3px;
                     position: absolute;
-                    left: -10px;
+                    left: -8px;
                     background: #FFC940;
-                    top: -13px;
+                    top: -9px;
                     display: flex;
                     justify-content: space-between;
                     em{
@@ -218,9 +219,9 @@ export default {
                 }
                 .his-con-linel{
                     width: 3px;
-                    height: calc(100% + 12px);
-                    top: -13px;
-                    left: -13px;
+                    height: calc(100% + 18px);
+                    top: -9px;
+                    left: -8px;
                     flex-flow: column;
                     em{
                         width: 100%;
@@ -229,15 +230,22 @@ export default {
                 }
                 .his-con-liner{
                     left: auto;
-                    right: -13px;
+                    right: -9px;
+                }
+                .his-con-lineb{
+                    top: auto;
+                    bottom: -9px;
                 }
             }
             .his-cen{
+                position: absolute;
                 width:100%;
-                height: calc(100% - 300px);
+                height: 100%;
+                padding-left: 1px;
+                top: 0;
                 display: flex;
                 .his-cendoor{
-                    width: 88px;
+                    width: 97px;
                     height: 100%;
                     border-top: 5px solid #838FA3;
                     border-bottom: 5px solid #838FA3;
@@ -285,8 +293,9 @@ export default {
                     border: none;
                 }
                 .his-cencon{
-                    width: calc(100% - 176px);
+                    width: 100%;
                     height: 100%;
+                    position: relative;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -307,39 +316,66 @@ export default {
         }
         &.webcam1{
             top: -42px;
-            left: 90px;
+            left: 85px;
             transform: rotateX(180deg);
         }
         &.webcam2{
-            top: 152px;
-            left: 90px;
+            bottom: -42px;
+            left: 85px;
         }
         &.webcam3{
-            bottom: 152px;
-            left: 90px;
+            top: -42px;
+            right: 85px;
             transform: rotateX(180deg);
         }
         &.webcam4{
             bottom: -42px;
-            left: 90px;
+            right: 85px;
         }
         &.webcam5{
             top: -42px;
-            right: 90px;
+            left: 85px;
             transform: rotateX(180deg);
         }
         &.webcam6{
-            top: 152px;
-            right: 90px;
+            bottom: -42px;
+            left: 85px;
         }
         &.webcam7{
-            bottom: 152px;
-            right: 90px;
+            top: -42px;
+            right: 85px;
             transform: rotateX(180deg);
         }
         &.webcam8{
             bottom: -42px;
-            right: 90px;
+            right: 85px;
+        }
+    }
+    .cenimg-box{
+        width: 100%;
+        height: 35px;
+        position: absolute;
+        top: -40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .arrows{
+        width: 100%;
+        height: 20px;
+        position: absolute;
+        top: -35px;
+        display: flex;
+        justify-content: space-around;
+        .arrows-con{
+            display: flex;
+            .arrows-box{
+                margin: 0 1px;
+            }
+        }
+        &.arrows-bottom{
+            bottom: -13px;
+            top: auto;
         }
     }
 </style>

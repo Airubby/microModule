@@ -77,8 +77,8 @@ export const syncRouter=[
 	// 	}, 
     // ]
   	// },
-  
-  { path: '*', component: () => import('@/views/errorPage/404') },
+	{ path: '/loncom/401', component: () => import('@/views/errorPage/401') },
+  	{ path: '*', component: () => import('@/views/errorPage/404') },
   
 ];
 /**

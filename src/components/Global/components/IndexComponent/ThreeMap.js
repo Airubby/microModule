@@ -51,7 +51,7 @@ export default class ThreeMap {
         // this.camera.up.x = 0;
         // this.camera.up.y = 1;
         // this.camera.up.z = 0;
-        this.camera.position.set(0, 6, 4);
+        this.camera.position.set(0.5, 2, 6);
         this.camera.lookAt(0, 0, 0)
     }
     //初始化场景

@@ -1,104 +1,197 @@
 {
-  "production":"https://www.easy-mock.com/mock/5bd2d48f3e503e20f0011196/testUrl",
-  "develop":"https://www.easy-mock.com/mock/5bd2d48f3e503e20f0011196/testUrl",
-  "config":[
-    {
-      "component":"home",
-      "img":"menu-monitort.png",
-      "language":"Home",
-      "item":[
-        {"key":"IndexComponent","component":"IndexComponent"}
-      ]
-    },
-    {
-      "component":"power",
-      "img":"menu-distribution.png",
-      "language":"Power",
-      "item":[
-        {"key":"MDCinverter","component":"MdcinverterComponent"},
-        {"key":"Tiprealdata","component":"TiprealdataTwoComponent"}
-      ]
-    },
-    {
-      "component":"hvdc",
-      "img":"menu-hvdc.png",
-      "language":"Hvdc",
-      "item":[
-        {"key":"CircuitMap","component":"CircuitMapComponent"},
-        {"key":"BatteryA","component":"BatteryComponent"},
-        {"key":"BatteryB","component":"BatteryComponent"},
-        {"key":"BatteryC","component":"BatteryComponent"}
-      ]
-    },
-    {
-      "component":"air",
-      "img":"menu-refrigeration.png",
-      "language":"Air",
-      "item":[
-        {"key":"HumitureChart","component":"HumitureComponent"},
+    "production": "https://www.easy-mock.com/mock/5bd2d48f3e503e20f0011196/testUrl",
+    "develop": "https://www.easy-mock.com/mock/5bd2d48f3e503e20f0011196/testUrl",
+    "config": [
         {
-          "key":"ForTheReturnChart","component":"EchartBarComponent",
-          "title":"温度(℃)",
-          "dev":[
-            {
-              "name":"空调1",
-              "point":[
-                {"devid":"01","pointid":"0101","name":"供水温度(℃)"},{"devid":"01","pointid":"0102","name":"回水温度(℃)"}
-              ]
-            },
-            {
-              "name":"空调2",
-              "point":[
-                {"devid":"02","pointid":"0201","name":"供水温度(℃)"},{"devid":"02","pointid":"0202","name":"回水温度(℃)"}
-              ]
-            }
-          ]
+            "component": "home",
+            "img": "menu-monitort.png",
+            "language": "Home",
+            "item": [
+                {
+                    "key": "IndexComponent",
+                    "component": "IndexComponent"
+                }
+            ]
         },
-        {"key":"FanAndWaterChart","component":"EchartBarComponent",
-          "title":"百分比(%)",
-          "dev":[
-            {
-              "name":"空调1",
-              "point":[
-                {"devid":"01","pointid":"0101","name":"风机转速(%)"},{"devid":"01","pointid":"0102","name":"水阀开度(%)"}
-              ]
-            },
-            {
-              "name":"空调2",
-              "point":[
-                {"devid":"02","pointid":"0201","name":"风机转速(%)"},{"devid":"02","pointid":"0202","name":"水阀开度(%)"}
-              ]
-            }]
+        {
+            "component": "power",
+            "img": "menu-distribution.png",
+            "language": "Power",
+            "item": [
+                {
+                    "key": "MDCinverter",
+                    "component": "MdcinverterComponent"
+                },
+                {
+                    "key": "Tiprealdata",
+                    "component": "TiprealdataTwoComponent"
+                }
+            ]
         },
-        {"key":"AirRealData","component":"AirRealDataComponent"}
-      ]
-    },
-    {
-      "component":"env",
-      "img":"menu-environment.png",
-      "language":"Env",
-      "item":[
-        {"key":"EnvironmentChart","component":"EnvironmentComponent"},
-        {"key":"EnvRealData","component":"EnvRealDataComponent"}
-      ]
-    },
-    {
-      "component":"security",
-      "img":"menu-security.png",
-      "language":"Security",
-      "item":[
-        {"key":"SecurityStatus","component":"SecurityComponent"},
-        {"key":"AccessInfo","component":"AccessComponent"},
-        {"key":"SensorInfo","component":"SensorComponent"}
-      ]
-    },
-    {
-      "component":"his",
-      "img":"menu-history.png",
-      "language":"His",
-      "item":[
-        {"key":"MDCinverter","component":"HisComponent"}
-      ]
-    }
-  ]
+        {
+            "component": "hvdc",
+            "img": "menu-hvdc.png",
+            "language": "Hvdc",
+            "item": [
+                {
+                    "key": "CircuitMap",
+                    "component": "CircuitMapComponent"
+                },
+                {
+                    "key": "BatteryA",
+                    "component": "BatteryComponent"
+                },
+                {
+                    "key": "BatteryB",
+                    "component": "BatteryComponent"
+                },
+                {
+                    "key": "BatteryC",
+                    "component": "BatteryComponent"
+                }
+            ]
+        },
+        {
+            "component": "air",
+            "img": "menu-refrigeration.png",
+            "language": "Air",
+            "item": [
+                {
+                    "key": "HumitureChart",
+                    "component": "HumitureComponent"
+                },
+                {
+                    "key": "ForTheReturnChart",
+                    "component": "EchartBarComponent",
+                    "title": "温度(℃)",
+                    "dev": [
+                        {
+                            "name": "空调1",
+                            "point": [
+                                {
+                                    "devid": "01",
+                                    "pointid": "0101",
+                                    "name": "供水温度(℃)"
+                                },
+                                {
+                                    "devid": "01",
+                                    "pointid": "0102",
+                                    "name": "回水温度(℃)"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "空调2",
+                            "point": [
+                                {
+                                    "devid": "02",
+                                    "pointid": "0201",
+                                    "name": "供水温度(℃)"
+                                },
+                                {
+                                    "devid": "02",
+                                    "pointid": "0202",
+                                    "name": "回水温度(℃)"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "FanAndWaterChart",
+                    "component": "EchartBarComponent",
+                    "title": "百分比(%)",
+                    "dev": [
+                        {
+                            "name": "空调1",
+                            "point": [
+                                {
+                                    "devid": "01",
+                                    "pointid": "0101",
+                                    "name": "风机转速(%)"
+                                },
+                                {
+                                    "devid": "01",
+                                    "pointid": "0102",
+                                    "name": "水阀开度(%)"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "空调2",
+                            "point": [
+                                {
+                                    "devid": "02",
+                                    "pointid": "0201",
+                                    "name": "风机转速(%)"
+                                },
+                                {
+                                    "devid": "02",
+                                    "pointid": "0202",
+                                    "name": "水阀开度(%)"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "AirRealData",
+                    "component": "AirRealDataComponent"
+                }
+            ]
+        },
+        {
+            "component": "env",
+            "img": "menu-environment.png",
+            "language": "Env",
+            "item": [
+                {
+                    "key": "EnvironmentChart",
+                    "component": "EnvironmentComponent"
+                },
+                {
+                    "key": "EnvRealData",
+                    "component": "EnvRealDataComponent"
+                }
+            ]
+        },
+        {
+            "component": "security",
+            "img": "menu-security.png",
+            "language": "Security",
+            "item": [
+                {
+                    "key": "SecurityStatus",
+                    "component": "SecurityComponent"
+                },
+                {
+                    "key": "SecurityStatus",
+                    "component": "SecurityComponentOne"
+                },
+                {
+                    "key": "AccessInfo",
+                    "component": "AccessComponent"
+                },
+                {
+                    "key": "SensorInfo",
+                    "component": "SensorComponent"
+                }
+            ]
+        },
+        {
+            "component": "his",
+            "img": "menu-history.png",
+            "language": "His",
+            "item": [
+                {
+                    "key": "MDCinverter",
+                    "component": "HisComponent"
+                },
+                {
+                    "key": "MDCinverter",
+                    "component": "HisComponentOne"
+                }
+            ]
+        }
+    ]
 }

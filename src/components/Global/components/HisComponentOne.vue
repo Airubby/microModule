@@ -5,20 +5,30 @@
                 <div class="scrollbarbox-con">
                     <div class="scrollbarbox-content">
                         <div class="his">
-                            <div class="his-top his-con">
+                            <div class="his-con">
                                 <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" @click="showDetail(item,$event)" v-for="item in data1">
                                     <cabinet-component :type="item.type" :title="item.title" :color="item.color"></cabinet-component>
                                 </div>
                             </div>
                             <div class="his-cen">
                                 <div class="his-cendoor" :class="{'his-cendoor-close':leftDoor}" @click="showDoor()"></div>
-                                <div class="his-cencon"></div>
-                                <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}" @click="showDoor()"></div>
-                            </div>
-                            <div class="his-bottom his-con">
-                                <div class="his-conbox" :class="{'his-conbox1':item.type=='kt'}" @click="showDetail(item,$event)" v-for="item in data2">
-                                    <cabinet-component :type="item.type" :title="item.title" :color="item.color"></cabinet-component>
+                                <div class="his-cencon">
+                                    <div class="arrows">
+                                        <div class="arrows-con" v-for="item in 4">
+                                            <arrows-component type="left" color="#3EB3FF" class="arrows-box"></arrows-component>
+                                            <arrows-component type="left" color="#3EB3FF" class="arrows-box"></arrows-component>
+                                            <arrows-component type="left" color="#3EB3FF" class="arrows-box"></arrows-component>
+                                        </div>
+                                    </div>
+                                    <div class="arrows arrows-bottom">
+                                        <div class="arrows-con" v-for="item in 4">
+                                            <arrows-component type="right" color="#F75B49" class="arrows-box"></arrows-component>
+                                            <arrows-component type="right" color="#F75B49" class="arrows-box"></arrows-component>
+                                            <arrows-component type="right" color="#F75B49" class="arrows-box"></arrows-component>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="his-cendoor his-cendoor-right" :class="{'his-cendoor-close':rightDoor}" @click="showDoor()"></div>
                             </div>
                         </div>
                     </div>
@@ -40,10 +50,11 @@
 
 <script>
 import cabinetComponent from './HisComponent/cabinet.vue'
+import arrowsComponent from './HisComponent/arrows.vue'
 export default {
     props:["data"],
     components: {
-        cabinetComponent
+        cabinetComponent,arrowsComponent
     },
     created () {
         
@@ -53,8 +64,8 @@ export default {
     },
     data(){
         return{
-            leftDoor:false,
-            rightDoor:true,
+            leftDoor:true,
+            rightDoor:false,
             title:'',
             data1:[
                 {title:'配电单元',type:'pd',color:'#D8645B'},
@@ -73,23 +84,6 @@ export default {
                 {title:'设备单元08',type:'jg',color:'#7BC1A1'},
                 {title:'设备单元09',type:'jg',color:'#7BC1A1'},
             ],
-            data2:[
-                {title:'管控单元',type:'gk',color:'#55A1E2'},
-                {title:'冷量分配单元',type:'llfp',color:'#59CA38'},
-                {title:'电池柜',type:'dc',color:'#F7BB48'},
-                {title:'设备单元18',type:'jg',color:'#7BC1A1'},
-                 {title:'精密空调6',type:'kt',color:'#588EEA'},
-                {title:'设备单元17',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元16',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元15',type:'jg',color:'#7BC1A1'},
-                {title:'精密空调5',type:'kt',color:'#588EEA'},
-                {title:'设备单元14',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元13',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元12',type:'jg',color:'#7BC1A1'},
-                {title:'精密空调4',type:'kt',color:'#588EEA'},
-                {title:'设备单元11',type:'jg',color:'#7BC1A1'},
-                {title:'设备单元10',type:'jg',color:'#7BC1A1'},
-            ]
         }
     },
     methods: {
@@ -124,8 +118,8 @@ export default {
             this.$emit("backInfo",info)
         },
         showDoor:function(){
-            let info={activeComponent:"HisDoorComponent"};
-            this.$emit("backInfo",info)
+            // let info={activeComponent:"HisDoorComponent"};
+            // this.$emit("backInfo",info)
         }
     },
     
@@ -177,22 +171,20 @@ export default {
     }
     .scrollbarbox-content{
         width: 865px;
-        height: 560px;
+        height: 230px;
         .his{
             width: 100%;
             height:100%;
+            position: relative;
             .his-con{
                 width: calc(100% - 160px);
-                height: 200px;
-                border: 8px solid #838FA3;
+                height: 100%;
+                border-top: 5px solid #838FA3;
+                border-bottom: 5px solid #838FA3;
                 margin: 0 auto;
                 display: flex;
-                &.his-top{
-                    border-bottom: none;
-                }
-                &.his-bottom{
-                    border-top: none;
-                }
+                position: relative;
+                z-index: 9999;
                 .his-conbox{
                     width: 200%;
                     height: 100%;
@@ -202,16 +194,19 @@ export default {
                         background: #838FA3;
                     }
                     &.his-conbox1{
-                        width:100%;
+                        width: 100%;
                     }
                 }
             }
             .his-cen{
+                position: absolute;
                 width:100%;
-                height: calc(100% - 400px);
+                height: 100%;
+                padding-left: 1px;
+                top: 0;
                 display: flex;
                 .his-cendoor{
-                    width: 88px;
+                    width: 97px;
                     height: 100%;
                     border-top: 5px solid #838FA3;
                     border-bottom: 5px solid #838FA3;
@@ -259,10 +254,29 @@ export default {
                     border: none;
                 }
                 .his-cencon{
-                    width: calc(100% - 176px);
+                    width: 100%;
                     height: 100%;
+                    position: relative;
                 }
             }
+        }
+    }
+    .arrows{
+        width: 100%;
+        height: 20px;
+        position: absolute;
+        top: -32px;
+        display: flex;
+        justify-content: space-around;
+        .arrows-con{
+            display: flex;
+            .arrows-box{
+                margin: 0 1px;
+            }
+        }
+        &.arrows-bottom{
+            bottom: -10px;
+            top: auto;
         }
     }
 </style>

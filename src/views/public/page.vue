@@ -5,11 +5,10 @@
 </template>
 
 <script>
-import index from '@/views/public/mixin/index'
+import publicComponent from '@/views/public/index.vue'
 export default {
-    mixins:[index],
-    created () {
-        
+    components: {
+        publicComponent
     },
     computed:{
         componentArr: {

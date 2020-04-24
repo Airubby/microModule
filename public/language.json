@@ -286,7 +286,7 @@
     "UserManage":"用户管理",
     "LogManage":"日志管理",
     "SysManage":"系统管理",
-    "ConfigInfo":"配置信息",
+    "ConfigInfo":"ConfigInfo",
     "NewsInform":"消息通知",
     "AlarmEvent":"告警事件",
     "AlarmMask":"告警屏蔽",
