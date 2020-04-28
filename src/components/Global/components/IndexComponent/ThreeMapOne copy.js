@@ -51,7 +51,7 @@ export default class ThreeMap {
         // this.camera.up.x = 0;
         // this.camera.up.y = 1;
         // this.camera.up.z = 0;
-        this.camera.position.set(0.5, 2, 6);
+        this.camera.position.set(0.5, 5, 7);
         this.camera.lookAt(0, 0, 0)
     }
     //初始化场景
@@ -132,16 +132,14 @@ export default class ThreeMap {
                 }
             }
         }
-        let contwidth=5.76;//总宽度 除去 两边0.24 每一边0.12;
+        let contwidth=8.76;//总宽度 除去 两边0.24 每一边0.12;
         var order="left";//渲染顺序
-        var json=[{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"air"},{type:"cabinet"}]
-        let model=16;//机柜总数
+        var json=[{type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"air"}]
+        let model=6;//机柜总数
         let left=0.01//间距
         let cwidth=contwidth-(left*(model-1));//计算总宽
         let width=cwidth/(model);//计算机柜宽度
         let y=(contwidth/2)-(width/2);//Y轴移位
-        let z=1.55;//z轴
-        let z1=1.54;//z轴
        
         var loader11 = new THREE.FontLoader();
            var option={
@@ -161,51 +159,50 @@ export default class ThreeMap {
         });
         loader11.load( '/three/helvetiker_regular.typeface.json', //加载好字体后创建三维文字
         function ( font ) { 
-        for(let j=0;j<1;j++){
-              if(order=="left"){
+            if(order=="left"){
                 y=(contwidth/2)+(width/2)-contwidth;//Y轴移位
-              }else{
+            }else{
                 y=(contwidth/2)-(width/2);//Y轴移位
-              }
-                for(let i=0;i<json.length;i++){
-                    if(order=="left"){
-                        var xxxx=width;
+            }
+            for(let i=0;i<json.length;i++){
+                if(order=="left"){
+                    var xxxx=width;
+                    if(json[i].type=="cabinet"){
+                        xxxx=(width*2)+(left);
+                    }
+                    if(i==0){
                         if(json[i].type=="cabinet"){
-                            xxxx=(width*2)+(left);
-                        }
-                        if(i==0){
-                                if(json[i].type=="cabinet"){
-                                    y=y+(width/2)+(left/2);
-                                }else{
-                                    y=y;
-                                }
+                            y=y+(width/2)+(left/2);
                         }else{
-                            if(json[i].type=="cabinet"){
-                                if(json[i-1].type=="cabinet"){
-                                    y=y+(width*2+left)+left;
-                                }else{
-                                    y=y+width+((width+left)/2)+left;
-                                }
+                            y=y;
+                        }
+                    }else{
+                        if(json[i].type=="cabinet"){
+                            if(json[i-1].type=="cabinet"){
+                                y=y+(width*2+left)+left;
                             }else{
-                                if(json[i-1].type=="cabinet"){
+                                y=y+width+((width+left)/2)+left;
+                            }
+                        }else{
+                            if(json[i-1].type=="cabinet"){
                                 y=y+width+((width+left)/2)+left;
                             }else{
                                 y=y+width+left;
                             }
-                            }
                         }
-                    }else{
-                        var xxxx=width;
-                      if(json[i].type=="cabinet"){
-                          xxxx=(width*2)+(left);
-                      }
-                      if(i==0){
+                    }
+                }else{
+                    var xxxx=width;
+                    if(json[i].type=="cabinet"){
+                        xxxx=(width*2)+(left);
+                    }
+                    if(i==0){
                         if(json[i].type=="cabinet"){
                             y=y-(width/2)-(left/2);
                         }else{
                             y=y;
                         }
-                      }else{
+                    }else{
                         if(json[i].type=="cabinet"){
                             if(json[i-1].type=="cabinet"){
                                 y=y-(width*2+left)-left;
@@ -215,52 +212,19 @@ export default class ThreeMap {
                         }else{
                             if(json[i-1].type=="cabinet"){
                             y=y-width-((width+left)/2)-left;
-                           }else{
+                            }else{
                             y=y-width-left;
-                           }
+                            }
                         }
-                      }
                     }
-                    //创建机柜模型
-                // var geometry=new THREE.BoxGeometry(
-                //  xxxx ,
-                //  1.66,
-                //  1); 
-            //     var materail=new THREE.MeshBasicMaterial(_this.mapData.materials[_this.mapData.materials.length-1]);
-            //     var mesh=new THREE.Mesh(geometry,materail);
-            //     var mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,0,j==0?z-(z*2):z,1]);
-            //     mesh.material.type="MeshBasicMaterial";
-            //     mesh.material.color.set(0xfffffff);
-            //     mesh.material.map=_this.textures[json[i].type];
-            //     mesh.material.transparent=true;
-            //     mesh.applyMatrix(mirrorMatrix);
-            //     mesh.code=json[i].type;
-            //     mesh.material.map=_this.textures[json[i].type];
-            //     tgroup.children.push(mesh);
-            //     _this.data.push(mesh.uuid);
-            //    var mesh2=new THREE.Mesh(geometry.clone(),materail.clone());//创建新的网格对象
-            //    mesh2.applyMatrix(mirrorMatrix);
-            //     geometry=new THREE.PlaneGeometry(
-            //     width,
-            //     0.18,
-            //     0.2);//创建机柜名称展示面板
-            //     var materials2=new THREE.MeshBasicMaterial(_this.mapData.materials[_this.mapData.materials.length-1]);
-            //      var mesh2=new THREE.Mesh(geometry,materials2);//创建新的网格对象
-            //      mesh2.material.type="MeshBasicMaterial";
-            //      mesh2.material.side=2;//两边
-            //      mesh2.material.color.set(0xfffffff);//设置颜色
-            //      mesh2.material.map=new THREE.CanvasTexture(_this.getTextCanvas('机柜'+i+""));//生成文字图片题图
-            //      mirrorMatrix = new THREE.Matrix4().fromArray([j==0?-1:1,0,0,0,0,1,0,0,0,0,1,0,y,0.9,j==0?z-(z*2)-0.5:z+0.5,1]);//面板矩阵
-            //     mesh2.applyMatrix(mirrorMatrix);
-            //    _this.scene.add(mesh);
-            //     _this.scene.add(mesh2);
-                _this.newCabinet(json[i].type,width,y,z,"机柜"+i,xxxx,j,tgroup);
+                }
+                
+                _this.newCabinet(json[i].type,width,y,"机柜"+i,xxxx,tgroup);
             }
-         }
-         _this.group=tgroup;
-      
+            _this.group=tgroup;
+        
         // _this.initLabe();
-         },
+        },
     //加载进度
     function ( xhr ) {
         console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
@@ -270,15 +234,15 @@ export default class ThreeMap {
         console.log(err);
     });
     }
-    newCabinet(type,width,y,z,title,cabinetwidth,j,tgroup){
+    newCabinet(type,width,y,title,cabinetwidth,tgroup){
         var geometry=new THREE.BoxGeometry(
             cabinetwidth ,
-            1.66,
-            1); 
+            3.6,
+            2.98); 
         var materail=new THREE.MeshBasicMaterial(this.mapData.materials[this.mapData.materials.length-1]);
      
         var mesh=new THREE.Mesh(geometry,materail);
-        var mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,0,j==0?z-(z*2):z,1]);
+        var mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,0,0,1]);
         mesh.material.type="MeshBasicMaterial";
         mesh.material.color.set(0xfffffff);
         mesh.material.map=this.textures[type];
@@ -287,18 +251,18 @@ export default class ThreeMap {
         mesh.code=type;
         mesh.material.map=this.textures[type];
         tgroup.children.push(mesh);
-
+        
         if(type=="cabinet"){
             geometry=new THREE.BoxGeometry(
-                cabinetwidth-(0.05) ,
-                1.66,
-                1);
+                cabinetwidth,
+                3.6,
+                2.98);
             var geometryleft=new THREE.BoxGeometry(
-                    0.05 ,
-                    1.66,
-                1);    
+                0.05 ,
+                3.6,
+                2.98);    
             var meshleft=new THREE.Mesh(geometryleft,materail.clone());//创建左边挡板
-            var mirrorMatrixleft = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y-(cabinetwidth/2),0,j==0?z-(z*2):z,1]);
+            var mirrorMatrixleft = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y-(cabinetwidth/2),0,0,1]);
             meshleft.material.type="MeshBasicMaterial";
             meshleft.material.color.set(0xfffffff);
             meshleft.material.map=this.textures[type];
@@ -309,7 +273,7 @@ export default class ThreeMap {
             this.scene.add(meshleft);
 
             var meshrigth=new THREE.Mesh(geometryleft,materail.clone());//创建右边挡板
-            var mirrorMatrixright = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y+(cabinetwidth/2),0,j==0?z-(z*2):z,1]);
+            var mirrorMatrixright = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y+(cabinetwidth/2),0,0,1]);
             meshrigth.material.type="MeshBasicMaterial";
             meshrigth.material.color.set(0xfffffff);
             meshrigth.material.map=this.textures[type];
@@ -318,9 +282,10 @@ export default class ThreeMap {
             meshrigth.code=type;
             meshrigth.material.map=this.textures[type];
             this.scene.add(meshrigth);
+
             var  geometryplan=new THREE.PlaneGeometry(
                     width,
-                    0.18,
+                    2.18,
                 0.2);//创建展示空间、负载数值面板组件
             var mesh2=new THREE.Mesh(geometryplan,materail.clone());//创建新的网格对象
             mesh2.material.type="MeshBasicMaterial";
@@ -329,7 +294,7 @@ export default class ThreeMap {
             mesh2.material.color.set(0xfffffff);//设置颜色
             mesh2.material.map=new THREE.CanvasTexture(this.getTextCanvas("111"));//生成文字图片题图
             mesh2.uuid=this.guid();
-            mirrorMatrix = new THREE.Matrix4().fromArray([j==0?-1:1,0,0,0,0,1,0,0,0,0,1,0,y,0,j==0?z-(z*2)-0.51:z+0.51,1]);//面板矩阵
+            mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,0,0,1]);//面板矩阵
             mesh2.applyMatrix(mirrorMatrix);
             this.scene.add(mesh2);
             tgroup.children.push(mesh2);
@@ -340,24 +305,24 @@ export default class ThreeMap {
        
    
    
-        var mesh2=new THREE.Mesh(geometry.clone(),materail.clone());//创建新的网格对象
-            mesh2.applyMatrix(mirrorMatrix);
-            geometry=new THREE.PlaneGeometry(
-                width,
-                0.18,
-            0.2);//创建机柜名称展示面板
-        var materials2=new THREE.MeshBasicMaterial(this.mapData.materials[this.mapData.materials.length-1]);
-            var mesh2=new THREE.Mesh(geometry,materials2);//创建新的网格对象
-            mesh2.material.type="MeshBasicMaterial";
-            mesh2.material.side=2;//两边
-            mesh2.material.color.set(0xfffffff);//设置颜色
-            mesh2.material.map=new THREE.CanvasTexture(this.getTextCanvas(title));//生成文字图片题图
-            mesh2.material.opacity=0.8;
-            mesh2.material.transparent =  mesh2.material.opacity < 1 ;
-            mirrorMatrix = new THREE.Matrix4().fromArray([j==0?-1:1,0,0,0,0,1,0,0,0,0,1,0,y,0.9,j==0?z-(z*2)-0.5:z+0.5,1]);//面板矩阵
-            mesh2.applyMatrix(mirrorMatrix);
-            this.scene.add(mesh);
-            this.scene.add(mesh2);
+  var mesh2=new THREE.Mesh(geometry.clone(),materail.clone());//创建新的网格对象
+    mesh2.applyMatrix(mirrorMatrix);
+     geometry=new THREE.PlaneGeometry(
+         width,
+         0.18,
+      0.2);//创建机柜名称展示面板
+   var materials2=new THREE.MeshBasicMaterial(this.mapData.materials[this.mapData.materials.length-1]);
+    var mesh2=new THREE.Mesh(geometry,materials2);//创建新的网格对象
+    mesh2.material.type="MeshBasicMaterial";
+    mesh2.material.side=2;//两边
+    mesh2.material.color.set(0xfffffff);//设置颜色
+    mesh2.material.map=new THREE.CanvasTexture(this.getTextCanvas(title));//生成文字图片题图
+    mesh2.material.opacity=0.8;
+    mesh2.material.transparent =  mesh2.material.opacity < 1 ;
+    mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,0.9,0,1]);//面板矩阵
+    mesh2.applyMatrix(mirrorMatrix);
+    this.scene.add(mesh);
+    this.scene.add(mesh2);
 }
 getTextCanvas(text){ //创建文字图片
         var width=100, height=60; 
@@ -410,21 +375,6 @@ getTextCanvas(text){ //创建文字图片
         return mesh;
     }
 
-    //经纬度转三维坐标
-    lnglatToVector(lnglat) {
-        if (!this.projection) {
-            this.projection = d3
-                .geoMercator() //获取墨卡托坐标方法
-                .center([112.946332, 28.236672])
-                .scale(400)
-                //.rotate(Math.PI / 4)
-                .translate([0, 0]);
-        }
-        //const projection = d3.geoMercator().center([108.904496, 32.668849]).scale(80);
-        const [y, x] = this.projection([...lnglat]);
-        let z = 0;
-        return [y, x, z];
-    }
     change(uuid,flag){
         console.log(this.group)
         console.log(uuid)

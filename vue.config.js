@@ -1,3 +1,44 @@
+const isProduction = process.env.NODE_ENV === 'production';
+const externals = {
+    'vue': 'Vue',
+    'vue-router': 'VueRouter',
+    'vuex': 'Vuex',
+    'axios': 'axios',
+    'element-ui': 'ELEMENT',
+    'swiper':'Swiper',
+    'echarts':'echarts',
+    'THREE':'three',
+    'el-table-pagination':'elTablePagination'
+}
+// CDN外链，会插入到index.html中 打包的时候去掉main.js中的elTablePagination引用
+const cdn = {
+    // 开发环境
+    dev: {
+      css: [
+        '/nodepackage/element-ui/lib/theme-chalk/index.css',
+        '/nodepackage/swiper/css/swiper.min.css'
+      ],
+      js: []
+    },
+    // 生产环境
+    build: {
+      css: [
+        '/nodepackage/element-ui/lib/theme-chalk/index.css',
+        '/nodepackage/swiper/css/swiper.min.css'
+      ],
+      js: [
+        '/nodepackage/vue/dist/vue.min.js',
+        '/nodepackage/vue-router/dist/vue-router.min.js',
+        '/nodepackage/vuex/dist/vuex.min.js',
+        '/nodepackage/axios/dist/axios.min.js',
+        '/nodepackage/element-ui/lib/index.js',
+        '/nodepackage/swiper/js/swiper.min.js',
+        '/nodepackage/echarts/dist/echarts.min.js',
+        '/nodepackage/three/build/three.min.js',
+        '/nodepackage/el-table-pagination/lib/index.js',
+      ]
+    }
+}
 module.exports = {
     // 基本路径
     publicPath: '/',
@@ -11,9 +52,68 @@ module.exports = {
     // compiler: false,
     // webpack配置
     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-    chainWebpack: () => {
+    chainWebpack: (config) => {
+         /**
+         * 添加CDN参数/将externals定义的不需要Webpack打包编译的到htmlWebpackPlugin配置中，
+         */
+        config
+            .plugin('html')
+            .tap(args => {
+            if (isProduction) {
+                args[0].cdn = cdn.build
+            }
+            if (!isProduction) {
+                args[0].cdn = cdn.dev
+            }
+            return args
+            })
     },
-    configureWebpack: () => {
+    configureWebpack: (config) => {
+        const myConfig = {}
+        if (isProduction) {
+            // 1. 生产环境npm包转CDN，externals定义的部分不需要Webpack打包编译
+            myConfig.externals = externals
+            //3.js代码整合
+            let optimization= {
+                //整合代码
+                splitChunks: {
+                    cacheGroups: {
+                        vendor:{
+                            chunks:"all",
+                            test: /node_modules/,
+                            name:"vendor",
+                            minChunks: 1,
+                            maxInitialRequests: 5,
+                            minSize: 0,
+                            priority:100,
+                        },
+                        common: {
+                            chunks:"all",
+                            test:/[\\/]src[\\/]js[\\/]/,
+                            name: "common",
+                            minChunks: 2,
+                            maxInitialRequests: 5,
+                            minSize: 0,
+                            priority:60
+                        },
+                        styles: {
+                            name: 'styles',
+                            test: /\.(le|sa|sc|c)ss$/,
+                            chunks: 'all',
+                            enforce: true,
+                        },
+                        runtimeChunk: {
+                            name: 'manifest'
+                        }
+                    } 
+                },
+                
+            }
+            Object.assign(config, {
+                optimization
+            })
+        }
+        return myConfig
         // if (process.env.NODE_ENV === 'production') {
         //     // 为生产环境修改配置...
         //     config.mode = 'production';
