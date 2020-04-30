@@ -7,9 +7,14 @@
 // import store from './store'
 import store from './store/index'
 import Vue from 'vue'
+import api from '@/utils/request'
   export default {
     name: 'app',
     created () {
+        //store.state.AjaxUrl完成后绑定API全局
+        api.service.defaults.baseURL=store.state.AjaxUrl;
+        // 将API方法绑定到全局
+        Vue.prototype.$api = api
         this.changeComponent();
     },
     computed:{

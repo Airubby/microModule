@@ -4,7 +4,6 @@ import {router} from './router/index'
 // import store from './store' //用分离的store
 import store from './store/index'
 import axios from 'axios'
-import api from './utils/request'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import ElTablePagination from 'el-table-pagination'
@@ -22,8 +21,7 @@ import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'// element-ui lang
 
 import './assets/css/index.less'
 
-// // 将API方法绑定到全局
-Vue.prototype.$api = api
+
 //绑定工具函数到全局
 Vue.prototype.$tool = tool
 
