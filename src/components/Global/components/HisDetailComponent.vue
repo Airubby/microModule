@@ -62,11 +62,10 @@
                         </el-select>
                         <el-time-picker
                             v-show="filter.type=='hour'"
-                            is-range
                             class="timerpicker"
                             v-model="filter.time"
-                            value-format="HH:mm"
-                            format="HH:mm"
+                            value-format="HH:00"
+                            format="HH:00"
                             range-separator="至"
                             start-placeholder="开始时间"
                             end-placeholder="结束时间"
@@ -76,7 +75,7 @@
                             v-show="filter.type=='day'"
                             class="timerpicker"
                             v-model="filter.time"
-                            type="daterange"
+                            type="date"
                             :picker-options="dayDisabled"
                             :range-separator="$t('To')"
                             :start-placeholder="$t('StartDate')"
@@ -86,6 +85,8 @@
                             v-show="filter.type=='month'"
                             v-model="filter.time"
                             class="timerpicker"
+                            value-format="yyyy-MM"
+                            format="yyyy-MM"
                             :picker-options="monthDisabled"
                             type="month"
                             placeholder="选择月">
@@ -221,7 +222,7 @@ export default {
                 time:null
             },
             filter:{
-                type:"day",
+                type:"hour",
                 type1:null,
                 time:null,
             },
@@ -248,6 +249,23 @@ export default {
         }
     },
     methods: {
+        //获取当月的开始结束时间
+        getMonth:function(val){
+            console.log(val)
+            var begintime=val+"-01 00:00:00";
+            var endtime="",lastMonth="";
+            var arr=val.split("-");
+            if(Number(arr[1])==12){
+                //获取下一年1号的前一天
+                lastMonth=new Date((Number(arr[0])+1)+"-01").getTime()-1000*60*60*24;
+            }else{
+                //下一个月的1号的前一天
+                lastMonth=new Date(arr[0]+"-"+(Number(arr[1])+1)+"-01").getTime()-1000*60*60*24;
+            }
+            endtime=this.$tool.Format("yyyy-MM-dd",lastMonth)+" 23:59:59";
+            console.log(begintime)
+            console.log(endtime)
+        },
         submitForm:function(){
 
         },
@@ -560,7 +578,12 @@ export default {
     watch:{
         'filter.type':function(val){
             this.filter.time=null;
-        }
+        },
+        'filter.time':function(val){
+            if(this.filter.type=='month'){
+                this.getMonth(val);
+            }
+        },
     }
     // destroyed() {
     //     this.changeTitle();
