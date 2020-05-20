@@ -107,6 +107,12 @@ export const asyncRouter=[
 		meta: { title: '维护'},
 		component: () => import('@/views/maintain/index.vue')
 	}, 
+	{
+		path: '/loncom/test',
+		name: 'test',
+		meta: { title: '测试'},
+		component: () => import('@/views/Test.vue')
+	}, 
 ]
 export const router= new Router({
   //mode: 'history',

@@ -38,7 +38,7 @@
                                         <div class="inverter-box-text"><span>4</span></div>
                                     </div>
                                 </div>
-                                <div class="inverter-box-right bg3"><span>市电A路</span></div>
+                                <div class="inverter-box-right vertical-rl bg3"><span>市电A路</span></div>
                             </div>
                             <div class="inverter-box">
                                 <div class="inverter-box-left">
@@ -73,7 +73,7 @@
                                         <div class="inverter-box-text"><span>4</span></div>
                                     </div>
                                 </div>
-                                <div class="inverter-box-right bg3"><span>市电B路</span></div>
+                                <div class="inverter-box-right vertical-rl bg3"><span>市电B路</span></div>
                             </div>
                         </div>
                         <div class="inverterline">
@@ -335,6 +335,7 @@ export default {
                             text-align: center;
                             justify-content: center;
                             border-left: 1px solid rgba(228, 231, 233, 0.5);
+                            overflow: hidden;
                         }
                         .inverter-box-left-title{
                             width: 34%;
@@ -347,14 +348,10 @@ export default {
                 .inverter-box-right{
                     width:30px;
                     height:100%;
-                    display:table;
                     padding: 0 5px;
                     font-size: 16px;
-                    span{
-                        display: table-cell;
-                        text-align:center;
-                        vertical-align: middle;
-                    }
+                    vertical-align: middle;
+                    text-align: center;
                 }
             }
         }

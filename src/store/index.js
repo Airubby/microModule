@@ -42,8 +42,6 @@ const store = new Vuex.Store({
 		SET_CONFIG(state, config){
 			state.config = config
 			let data=config;
-			console.log(asyncRouter)
-			console.log(data)
 			if(data.length>0){
 				let redirect="/loncom/"+data[0].component;
 				let newRouter={
