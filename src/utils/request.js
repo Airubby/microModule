@@ -4,6 +4,7 @@ import { Message,Loading,Notification } from 'element-ui'
 import {router} from '@/router/index'
 import store from '@/store/index'
 let loadingService=null;
+let timer=null;
 let service = axios.create({
   // baseURL: 'http://www.javasoft.top:9090/service',
   baseURL: store.getters.AjaxUrl,
@@ -62,10 +63,12 @@ service.interceptors.response.use(
   response => {
     loadingService.close();
     const res = response.data;
-    if(res.data.err_code=="-1"&&store.getters.infoFlag){
-        store.dispatch('setInfoFlag',false);
-        Notification.warning("请登录系统");
-        router.push({path:'/login'});
+    if(res.data.err_code=="-1"){
+        clearTimeout(timer);
+        timer=setTimeout(() => {
+          Notification.warning("请登录系统");
+          router.push({path:'/login'});
+        }, 1000);
         return Promise.reject("请登录系统");
     }
     return response.data;
