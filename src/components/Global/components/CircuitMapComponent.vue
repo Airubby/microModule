@@ -19,7 +19,7 @@
                                     </div>
                                 </el-scrollbar>
                             </div>
-                            <div class="numbox-right" @click="showFn()"><span>{{$t("HVDCgroup")}}</span></div>
+                            <div class="numbox-right vertical-rl" @click="showFn()"><span>{{$t("HVDCgroup")}}</span></div>
                         </div>
                         <div class="textbox textbox1">
                             <div class="title">271.30</div>
@@ -181,7 +181,6 @@ export default {
                 width:30px;
                 height:100%;
                 background:#E4E7E9;
-                writing-mode: vertical-rl;
                 padding: 0 5px;
                 font-size:16px;
             }
