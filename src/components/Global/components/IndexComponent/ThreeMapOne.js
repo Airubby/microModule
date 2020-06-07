@@ -4,8 +4,11 @@ import * as THREE from 'three';
 // import * as d3 from 'd3-geo';
 var OrbitControls = require('three-orbit-controls')(THREE)
 import { CSS2DRenderer, CSS2DObject } from "three-css2drender"
-import air from './kongtiao.png';
+// import air from './kongtiao.png';
 import cabinet from './cabinet.png';
+// import cabinet from './hvdc.png';
+import air from './lietougui.png';
+// import air from './guankonggui.png';
 import transparent from './transparent.png'
 export default class ThreeMap {
     constructor(props,mapData) {
@@ -134,8 +137,12 @@ export default class ThreeMap {
         }
         let contwidth=8.76;//总宽度 除去 两边0.24 每一边0.12;
         var order="left";//渲染顺序
-        var json=[{type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"air"}]
-        let model=6;//机柜总数
+        var json=[
+            {type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},
+            {type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},
+            {type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},
+            {type:"air"},{type:"cabinet"}]
+        let model=32;//机柜总数
         let left=0.01//间距
         let cwidth=contwidth-(left*(model-1));//计算总宽
         let width=cwidth/(model);//计算机柜宽度
@@ -238,7 +245,7 @@ export default class ThreeMap {
         var geometry=new THREE.BoxGeometry(
             cabinetwidth ,
             3.6,
-            2.98); 
+            3.1); 
         var materail=new THREE.MeshBasicMaterial(this.mapData.materials[this.mapData.materials.length-1]);
      
         var mesh=new THREE.Mesh(geometry,materail);
@@ -319,7 +326,7 @@ export default class ThreeMap {
     mesh2.material.map=new THREE.CanvasTexture(this.getTextCanvas(title));//生成文字图片题图
     mesh2.material.opacity=0.8;
     mesh2.material.transparent =  mesh2.material.opacity < 1 ;
-    mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,1.8,1.55,1]);//面板矩阵
+    mirrorMatrix = new THREE.Matrix4().fromArray([1,0,0,0,0,1,0,0,0,0,1,0,y,1.85,1.55,1]);//面板矩阵
     mesh2.applyMatrix(mirrorMatrix);
     this.scene.add(mesh);
     this.scene.add(mesh2);

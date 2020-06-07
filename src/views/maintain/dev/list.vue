@@ -109,6 +109,7 @@ export default {
             console.log(row)
             row["activeComponent"]="detailComponent";
             this.$emit("backInfo",row);
+            console.log(this.$refs.thisRef)
         },
         disable(){
 
