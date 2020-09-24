@@ -50,7 +50,6 @@ import api from '@/utils/request'
     },
     data(){
       return{
-        
       }
     },
     methods:{
