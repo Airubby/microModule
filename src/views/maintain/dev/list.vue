@@ -39,6 +39,7 @@
                 type="local"
                 :data="table_data"
                 :params="initParams"
+                :pageIndex="2"
                 :showPagination="true"
                 :showSelectAll="true"
                 :columns="table_columns" ref="thisRef">   

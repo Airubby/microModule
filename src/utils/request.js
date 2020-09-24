@@ -39,17 +39,17 @@ function filterNull (o) {
 // request拦截器
 service.interceptors.request.use(
   config => {
-    // 让每个请求携带自定义token 请根据实际情况自行修改
-    if(config.method=="post"){
-      config.data=Qs.stringify(filterNull(Object.assign({},config.data)))
-      config.headers['Content-Type']='application/x-www-form-urlencoded';
-    }
-    if(config.method=="get"){
-      config.params=filterNull(Object.assign({},config.params))
-    }
-    if (store.getters.token) {
-      config.headers['X-Token'] =store.getters.token // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-    }
+    // // 让每个请求携带自定义token 请根据实际情况自行修改
+    // if(config.method=="post"){
+    //   config.data=Qs.stringify(filterNull(Object.assign({},config.data)))
+    //   config.headers['Content-Type']='application/x-www-form-urlencoded';
+    // }
+    // if(config.method=="get"){
+    //   config.params=filterNull(Object.assign({},config.params))
+    // }
+    // if (store.getters.token) {
+    //   config.headers['X-Token'] =store.getters.token // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+    // }
     return config;
   },
   error => {
@@ -77,7 +77,7 @@ service.interceptors.response.use(
     console.log(error.response)
     loadingService.close();
     Notification.error('服务器错误，请联系管理人员！');
-    router.push({path:'/login'});
+    // router.push({path:'/login'});
     return error.response;
     return Promise.reject("重新登录");
     

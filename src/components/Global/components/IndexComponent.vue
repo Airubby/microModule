@@ -84,6 +84,7 @@ export default {
     },
     methods: {
         test:function(info){
+            this.map.clearScene();
             console.log(this.map)
             let flag=true;
             if(info==1){

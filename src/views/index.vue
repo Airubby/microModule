@@ -100,76 +100,53 @@
     </div>
     <div class="content-right">
       <div class="content-right-top">
-           <div class="content-right-top-left"> 
-                <div class="content-right-top-logo">
-                    <img src="/images/logo.png">
-                </div>
-                <div class="content-right-top-slide">
-                    <div class="content-right-top-slide-con">
-                        <div id="index-container" class="index-container">
-                            <div class="swiper-wrapper">
-                                <template v-for="item in alarmList">
-                                <div class="swiper-slide">
-                                    {{item.content}}
-                                </div>
-                                </template>
-                            </div>
-                        </div>
+            <div class="content-right-top-logo">
+                <img src="/images/logo.png">
+            </div>
+            <div id="index-container" class="index-container" style="overflow:hidden">
+                <div class="swiper-wrapper">
+                    <template v-for="item in alarmList">
+                    <div class="swiper-slide">
+                        {{item.content}}
                     </div>
+                    </template>
                 </div>
-           </div>
-          <div class="content-right-top-right">
-            <ul>
-                <!-- <li @click="switcFullScreen">
-                    <a href="javascript:;">全屏切换</a>
-                </li> -->
-                <li>
-                    <a href="javascript:;">
-                        <el-dropdown trigger="click">
-                            <span class="el-dropdown-link">
-                                {{getLanguage}}<i class="el-icon-arrow-down el-icon--right"></i>
-                            </span>
-                            <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item>
-                                    <span @click="setLanguage('zh')">中文</span>
-                                </el-dropdown-item>
-                                <el-dropdown-item>
-                                    <span @click="setLanguage('en')">英文</span>
-                                </el-dropdown-item>
-                            </el-dropdown-menu>
-                        </el-dropdown>
-                    </a>
-                </li>
-                <li @click="flushPage">
-                    <a href="javascript:;">
-                        <i class="el-icon-refresh"></i>刷新
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <i class="el-icon-s-opportunity"></i>声光
-                    </a>
-                </li>
-                <li>
-                    <router-link :to="{name:'Alarm'}">
-                        <el-badge :value="200" :max="99" class="item">
-                            <i class="el-icon-bell"></i>告警
-                        </el-badge>
-                    </router-link>
-                </li>
-                <li>
-                    <a href="javascript:;" @click="setSys">
-                        <i class="el-icon-user"></i>登陆
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <p style="font-size:26px;">{{date.hours}}:{{date.minutes}}:{{date.seconds}}</p>
-                        <p class="font-size12">{{date.year}}-{{date.month}}-{{date.day}}<span>{{date.week}}</span></p>
-                    </a>
-                </li>
-            </ul>
-          </div>
+            </div>
+            <div class="index-right-top-list">
+                <el-dropdown trigger="click">
+                    <span class="el-dropdown-link">
+                        {{getLanguage}}<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>
+                            <span @click="setLanguage('zh')">中文</span>
+                        </el-dropdown-item>
+                        <el-dropdown-item>
+                            <span @click="setLanguage('en')">英文</span>
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </div>
+            <div class="index-right-top-list" @click="flushPage">
+                <i class="el-icon-refresh"></i>刷新
+            </div>
+            <div class="index-right-top-list">
+                <i class="el-icon-s-opportunity"></i>声光
+            </div>
+            <div class="index-right-top-list">
+                <router-link :to="{name:'Alarm'}">
+                    <el-badge :value="200" :max="99" class="item">
+                        <i class="el-icon-bell"></i>告警
+                    </el-badge>
+                </router-link>
+            </div>
+            <div class="index-right-top-list" @click="setSys">
+                <i class="el-icon-user"></i>登陆
+            </div>
+            <div>
+                <p style="font-size:26px;">{{date.hours}}:{{date.minutes}}:{{date.seconds}}</p>
+                <p class="font-size12">{{date.year}}-{{date.month}}-{{date.day}}<span>{{date.week}}</span></p>
+            </div>
       </div>
       <div class="content-body">
         <router-view  v-if="isRouterAlive"/>
@@ -236,13 +213,15 @@ export default {
                 {devid:"001",pointid:"02",content:"2,稳定hi速度告警，严重告警"},
                 {devid:"001",pointid:"03",content:"3,稳定hi速度告警，严重告警"},
                 {devid:"001",pointid:"04",content:"4,稳定hi速度告警，严重告警"},
-            ]
+            ],
+            vWeek: [this.$t("SUN"),this.$t("Mon"),this.$t("Tues"),this.$t("Wed"),this.$t("Thurs"),this.$t("Fir"),this.$t("Sat")]
         }
     },
     methods: {
         setLanguage:function(language){
             this.$i18n.locale = language
             this.$store.dispatch('setLanguage', language)
+            this.vWeek=[this.$t("SUN"),this.$t("Mon"),this.$t("Tues"),this.$t("Wed"),this.$t("Thurs"),this.$t("Fir"),this.$t("Sat")];
         },
         flushPage:function(){
             this.isRouterAlive=false;
@@ -253,7 +232,7 @@ export default {
         setClock:function(){
             let vWeek,vDate={};
             // vWeek = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
-            vWeek = ["SUN","Mon","Tues","Wed","Thurs","Fir","Sat"];
+            // vWeek = ["SUN","Mon","Tues","Wed","Thurs","Fir","Sat"];
             let date =  new Date();
             vDate["year"] = date.getFullYear();
             vDate["month"] =( date.getMonth() + 1)<10?("0"+ (date.getMonth() + 1)): date.getMonth() + 1;
@@ -261,7 +240,7 @@ export default {
             vDate["hours"] = date.getHours()<10?("0"+date.getHours()):date.getHours();
             vDate["minutes"] = date.getMinutes()<10?("0"+date.getMinutes()):date.getMinutes();
             vDate["seconds"] = date.getSeconds()<10?("0"+date.getSeconds()):date.getSeconds();
-            vDate["week"] = this.$t(vWeek[date.getDay()]);
+            vDate["week"] = this.vWeek[date.getDay()];
             return vDate;
         },
         switcFullScreen:function(){
@@ -345,87 +324,35 @@ export default {
         width: calc(100% - 100px);
         height: 100%;
         .content-right-top{
+            display: flex;
+            white-space: nowrap;
+            align-items: center;
+            background: #fff;
             width: 100%;
             height: 60px;
-            display: flex;
-            background: #fff;
-            padding-left: 20px;
-            justify-content: space-between;
-            .content-right-top-left{
-                width: calc(100% - 650px);
+            padding: 0 15px;
+            .content-right-top-logo{
+                font-size: 26px;
+                line-height: 60px;
                 display: flex;
-                .content-right-top-logo{
-                    font-size: 26px;
-                    line-height: 60px;
-                    display: flex;
-                    align-items: center;
-                    max-width: 300px;
-                    margin-right: 40px;
-                    img{
-                        max-width: 100%;
-                        max-height: 60px;
-                    }
-                }
-                .content-right-top-slide{
-                    width: calc(100% - 340px);
-                    height: 100%;
-                    overflow: hidden;
-                    display: flex;
-                    align-items: center;
-                    .content-right-top-slide-con{
-                        width: 100%;
-                        height: 30px;
-                        line-height: 30px;
-                        background: #fbf0f0;
-                        padding: 0 10px;
-                        border-radius: 4px;
-                    }
-                    .index-container{
-                        overflow: hidden;
-                    }
-                    .swiper-slide{
-                        width: auto;
-                        color: #F85C48;
-                    }
-                    .swiper-container-free-mode > .swiper-wrapper {
-                        -webkit-transition-timing-function: linear;   
-                        -moz-transition-timing-function: linear;
-                        -ms-transition-timing-function: linear;
-                        -o-transition-timing-function: linear;
-                        transition-timing-function: linear;
-                        margin: 0 auto;
-                    }
+                align-items: center;
+                max-width: 260px;
+                min-width: 260px;
+                margin-right: 20px;
+                img{
+                    max-width: 100%;
+                    max-height: 60px;
                 }
             }
-            .content-right-top-right{
-                ul{
-                    height: 100%;
-                    li{
-                        height: 100%;
-                        float: left;
-                        display: table;
-                        padding: 0 15px;
-                        font-size: 17px;
-                        a{
-                            display: table-cell;
-                            vertical-align: middle;
-                            text-align: center;
-                            border-bottom: 2px solid #fff;
-                            img{
-                                height: 30px;
-                            }
-                            i{
-                                font-size: 24px;
-                                vertical-align: middle;
-                            }
-                        }
-                        .router-link-active{
-                            color: #3CB2FF;
-                            border-color: #3CB2FF;
-                        }
-                    }
+            .index-right-top-list{
+                font-size: 17px;
+                margin: 0 12px;
+                i{
+                    font-size: 24px;
+                    vertical-align: middle;
                 }
             }
+             
         }
         .content-body{
             width: 100%;

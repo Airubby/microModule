@@ -136,12 +136,8 @@ export default class ThreeMap {
         }
         let contwidth=5.76;//总宽度 除去 两边0.24 每一边0.12;
         var order="left";//渲染顺序
-        var json=[
-            {type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},
-            {type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},
-            {type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},
-            {type:"air"},{type:"cabinet"}]
-        let model=32;//机柜总数
+        var json=[{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"air"},{type:"cabinet"},{type:"cabinet"},{type:"cabinet"},{type:"air"},{type:"cabinet"}]
+        let model=16;//机柜总数
         let left=0.01//间距
         let cwidth=contwidth-(left*(model-1));//计算总宽
         let width=cwidth/(model);//计算机柜宽度
@@ -167,82 +163,81 @@ export default class ThreeMap {
         });
         loader11.load( '/three/helvetiker_regular.typeface.json', //加载好字体后创建三维文字
         function ( font ) { 
-        for(let j=0;j<2;j++){
-              if(order=="left"){
-                y=(contwidth/2)+(width/2)-contwidth;//Y轴移位
-              }else{
-                y=(contwidth/2)-(width/2);//Y轴移位
-              }
-                for(let i=0;i<json.length;i++){
-                    if(order=="left"){
-                        var xxxx=width;
+            for(let j=0;j<1;j++){
+                if(order=="left"){
+                    y=(contwidth/2)+(width/2)-contwidth;//Y轴移位
+                }else{
+                    y=(contwidth/2)-(width/2);//Y轴移位
+                }
+                    for(let i=0;i<json.length;i++){
+                        if(order=="left"){
+                            var xxxx=width;
+                            if(json[i].type=="cabinet"){
+                                xxxx=(width*2)+(left);
+                            }
+                            if(i==0){
+                                    if(json[i].type=="cabinet"){
+                                        y=y+(width/2)+(left/2);
+                                    }else{
+                                        y=y;
+                                    }
+                            }else{
+                                if(json[i].type=="cabinet"){
+                                    if(json[i-1].type=="cabinet"){
+                                        y=y+(width*2+left)+left;
+                                    }else{
+                                        y=y+width+((width+left)/2)+left;
+                                    }
+                                }else{
+                                    if(json[i-1].type=="cabinet"){
+                                    y=y+width+((width+left)/2)+left;
+                                }else{
+                                    y=y+width+left;
+                                }
+                                }
+                            }
+                        }else{
+                            var xxxx=width;
                         if(json[i].type=="cabinet"){
                             xxxx=(width*2)+(left);
                         }
                         if(i==0){
-                                if(json[i].type=="cabinet"){
-                                    y=y+(width/2)+(left/2);
-                                }else{
-                                    y=y;
-                                }
+                            if(json[i].type=="cabinet"){
+                                y=y-(width/2)-(left/2);
+                            }else{
+                                y=y;
+                            }
                         }else{
                             if(json[i].type=="cabinet"){
                                 if(json[i-1].type=="cabinet"){
-                                    y=y+(width*2+left)+left;
+                                    y=y-(width*2+left)-left;
                                 }else{
-                                    y=y+width+((width+left)/2)+left;
+                                    y=y-width-((width+left)/2)-left;
                                 }
                             }else{
                                 if(json[i-1].type=="cabinet"){
-                                y=y+width+((width+left)/2)+left;
-                            }else{
-                                y=y+width+left;
-                            }
-                            }
-                        }
-                    }else{
-                        var xxxx=width;
-                      if(json[i].type=="cabinet"){
-                          xxxx=(width*2)+(left);
-                      }
-                      if(i==0){
-                        if(json[i].type=="cabinet"){
-                            y=y-(width/2)-(left/2);
-                        }else{
-                            y=y;
-                        }
-                      }else{
-                        if(json[i].type=="cabinet"){
-                            if(json[i-1].type=="cabinet"){
-                                y=y-(width*2+left)-left;
-                            }else{
                                 y=y-width-((width+left)/2)-left;
+                            }else{
+                                y=y-width-left;
                             }
-                        }else{
-                            if(json[i-1].type=="cabinet"){
-                            y=y-width-((width+left)/2)-left;
-                           }else{
-                            y=y-width-left;
-                           }
+                            }
                         }
-                      }
-                    }
-                   
-                _this.newCabinet(json[i].type,width,y,z,"机柜"+i,xxxx,j,tgroup);
+                        }
+                    _this.newCabinet(json[i].type,width,y,z,"机柜"+i,xxxx,j,tgroup);
+                }
             }
-         }
-         _this.group=tgroup;
-      
+            _this.group=tgroup;
+        
         // _this.initLabe();
-         },
-    //加载进度
-    function ( xhr ) {
-        console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-    },
-    //出现错误
-    function (err) {
-        console.log(err);
-    });
+        },
+        //加载进度
+        function ( xhr ) {
+            console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+        //出现错误
+        function (err) {
+            console.log(err);
+        });
     }
     newCabinet(type,width,y,z,title,cabinetwidth,j,tgroup){
         var geometry=new THREE.BoxGeometry(
@@ -333,7 +328,7 @@ export default class ThreeMap {
             this.scene.add(mesh);
             this.scene.add(mesh2);
 }
-getTextCanvas(text){ //创建文字图片
+    getTextCanvas(text){ //创建文字图片
         var width=100, height=60; 
         var canvas = document.createElement('canvas');
         canvas.width = width;
@@ -347,7 +342,7 @@ getTextCanvas(text){ //创建文字图片
         ctx.textBaseline = 'middle';
         ctx.fillText(text, width/2,height/2); 
         return canvas;
-        }
+    }
     
     //绘制网格
     getAreaMesh(points) {
@@ -506,7 +501,7 @@ getTextCanvas(text){ //创建文字图片
 
         // 计算物体和射线的焦点
         const intersects = this.raycaster.intersectObjects(this.group.children);
-        console.log(intersects)
+       
         // if(intersects.length>0){
         //     intersects[0].object.position.y=0;
         //     intersects[0].object.scale.set(1 ,0.4, 1);
@@ -519,35 +514,7 @@ getTextCanvas(text){ //创建文字图片
         if(intersects.length>0){
             for(var i=0;i<this.group.children.length;i++) {
                if(intersects[0].object.uuid==this.group.children[i].uuid && (this.group.children[i].code=="cabinet" || this.group.children[i].code=="air")){//只针对机柜和空调类型进行下一步操作
-              //  intersects[0].object.material.color.set(0x66ff00,1);//设置点击模型的颜色
-               // intersects[0].object.map=new THREE.CanvasTexture(this.getTextCanvas("你好"));
-               // this.updatevalue(intersects[0].object.uuid,Math.ceil(Math.random()*100));
-               // this.cubeLabe(intersects[0].object);//展示机柜的展示框
               
-        //        intersects[0].object.position.y=0;
-        //        intersects[0].object.scale.set(1,0.6,1);
-        //       var y= this.group.children[i].position.y;
-        //       intersects[0].object.position.y=y-1.66*(1-0.6)/2;
-        //       //intersects[0].object.material.type="LineDashedMaterial";
-        //       //intersects[0].object.material.color.set(0x66ff00);
-        //       intersects[0].object.material.map=this.textures["transparent"];
-        //     //  intersects[0].object.material.fog=true;
-        //     //   ntersects[0].object.material.opacity=0.5;
-        //    // intersects[0].object.material.transparent = true;
-        //           for(let j=0;j<this.data.length;j++){
-        //            if( intersects[0].object.uuid==this.data[j].key){
-        //             var obj= this.getUuidObj(this.data[j].datakey);
-        //             if(obj!=null){
-        //                 obj.position.y=0;
-        //                 obj.material.opacity=0.8;
-        //                 obj.material.transparent =  obj.material.opacity < 1 ;
-        //                 obj.position.y=y-1.66*(1)/2+0.1;
-        //                 obj.material.map=new THREE.CanvasTexture(this.getTextCanvas(0.6+"%"));//生成文字图片题图
-        //                 obj.material.map.needsUpdate = true;
-        //                 obj.visible=true;
-        //             }
-        //            }
-        //           }
                    continue;
                }
                this.group.children[i].material.color.set(0xfffffff);
@@ -582,17 +549,17 @@ getTextCanvas(text){ //创建文字图片
         obj.material.map.needsUpdate = true;
     }
 
-//三维坐标转屏幕坐标
- transPosition (position) {
-    let world_vector = new THREE.Vector3(position.x, position.y, position.z);
-    let vector = world_vector.project(this.camera);
-    let halfWidth = window.innerWidth / 2,
-        halfHeight = window.innerHeight / 2;
-    return {
-        x: Math.round(vector.x * halfWidth + halfWidth),
-        y: Math.round(-vector.y * halfHeight + halfHeight)
-    };
-}
+    //三维坐标转屏幕坐标
+    transPosition (position) {
+        let world_vector = new THREE.Vector3(position.x, position.y, position.z);
+        let vector = world_vector.project(this.camera);
+        let halfWidth = window.innerWidth / 2,
+            halfHeight = window.innerHeight / 2;
+        return {
+            x: Math.round(vector.x * halfWidth + halfWidth),
+            y: Math.round(-vector.y * halfHeight + halfHeight)
+        };
+    }
     mouseHoverEvent(event){
         console.log(event)
         console.log(this.group)
@@ -611,4 +578,44 @@ getTextCanvas(text){ //创建文字图片
         // 计算物体和射线的焦点
         const intersects = this.raycaster.intersectObjects(this.group.children);
     }
+    //组件销毁的时候调用清除mesh
+    clearScene(){
+        let meshList=this.scene.children;
+        if(meshList.length > 0){ 
+            let flag=true;
+            while (flag) {
+                if(meshList.length==1){
+                    flag=false;
+                }
+                var currObj = meshList[0];
+                // 判断类型
+                if(currObj instanceof THREE.Scene){
+                    var children = currObj.children;
+                    for(var i = 0; i< children.length; i++){
+                        this.deleteGroup(children[i]);
+                    } 
+                }else{ 
+                    this.deleteGroup(currObj);
+                }
+                this.scene.remove(currObj);
+            }
+        }
+        console.log(this.renderer)
+        console.log(THREE.Cache)
+        this.renderer.dispose();
+        THREE.Cache.clear()
+    }
+
+    deleteGroup(group){
+        if (!group) return;
+        // 删除掉所有的模型组内的mesh
+        group.traverse(function (item) {
+            if (item instanceof THREE.Mesh) {
+                console.log(item)
+                item.geometry.dispose(); // 删除几何体
+                item.material.dispose(); // 删除材质
+            }
+        });
+    }
+    
 }

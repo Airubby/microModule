@@ -1,16 +1,12 @@
 {
     "production": "https://www.easy-mock.com/mock/5bd2d48f3e503e20f0011196/testUrl",
-    "develop": "https://www.easy-mock.com/mock/5bd2d48f3e503e20f0011196/testUrl",
+    "develop": "http://172.18.47.162:8081",
     "config": [
         {
             "component": "home",
             "img": "menu-monitort.png",
             "language": "Home",
             "item": [
-                {
-                    "key": "IndexComponent",
-                    "component": "IndexComponent"
-                },
                 {
                     "key": "IndexComponent",
                     "component": "IndexComponentOne"

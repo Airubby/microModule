@@ -21,7 +21,7 @@ import api from '@/utils/request'
         
     },
     mounted() {
-      
+        this.getWebSocket();
         // this.$tool.wsConnection("",function(result){
         //   store.dispatch('setwsData',eval(result.data));
         // })
@@ -54,6 +54,18 @@ import api from '@/utils/request'
       }
     },
     methods:{
+      getWebSocket:function(){
+            if(!this.$ws||this.$ws.readyState!=1){
+                this.$tool.wsConnection("",function(result){
+                    console.log(result)
+                    // store.dispatch('setwsData',eval(result.data));
+                })
+            }
+            //每隔一段时间检测一下是否连上webSocket
+            setTimeout(()=>{
+                this.getWebSocket();
+            },10000)
+        },
       changeComponent:function(){
         let val=this.$route;
         let config=this.$store.state.config;
