@@ -4,8 +4,8 @@
         <ul>
             <el-scrollbar class="scrollbar">
                 <template v-for="item in config">
-                    <li @click="flushPage">
-                        <router-link :to="{name:item.component}">
+                    <li @click="enterPage(item)">
+                        <router-link :to="{name:item.key}">
                             <div class="nav-box">
                                 <div class="nav-box-con">
                                     <div class="nav-box-con-img"><img :src="'/images/'+item.img"></div>
@@ -75,7 +75,7 @@
                             </div>
                     </router-link>
                 </li> -->
-                <li @click="flushPage">
+                <li>
                     <router-link :to="{name:'Set'}">
                         <div class="nav-box">
                             <div class="nav-box-con">
@@ -160,10 +160,13 @@
 import checkPassword from './set/component/dialogCheck.vue'
 import Cookies from 'js-cookie'
 import { mapGetters } from 'vuex'
+import getComponent from '@/views/mixins/getComponent'
 export default {
     name: 'index',
+    mixins:[getComponent],
     created () {
         this.date=this.setClock();
+        
     },
     mounted() {
         setInterval(()=>{
@@ -181,9 +184,6 @@ export default {
         })
     },
     computed:{
-        ...mapGetters([
-            'config'
-        ]),
         getLanguage:function(){
             let language=this.$store.state.language;
             if(language=="zh"){

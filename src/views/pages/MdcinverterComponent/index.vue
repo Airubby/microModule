@@ -196,8 +196,8 @@
 </template>
 
 <script>
-import switchc from './MDCinverterComponent/switch.vue'
-import showDetail from './MDCinverterComponent/showDetail.vue'
+import switchc from './switch'
+import showDetail from './showDetail'
 export default {
     created () {
         let config=[

@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import cabinetComponent from './HisComponent/cabinet.vue'
-import arrowsComponent from './HisComponent/arrows.vue'
+import cabinetComponent from './cabinet.vue'
+import arrowsComponent from './arrows.vue'
 export default {
     props:["data"],
     components: {

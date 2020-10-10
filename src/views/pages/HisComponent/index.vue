@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import cabinetComponent from './HisComponent/cabinet.vue'
+import cabinetComponent from './cabinet.vue'
 export default {
     props:["data"],
     components: {

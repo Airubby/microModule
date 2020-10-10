@@ -1,61 +1,27 @@
 <template>
-  <div class="content">
-    <div id="swiper-container" class="swiper-container">
-        <div class="swiper-pagination"></div>
-        <div class="swiper-wrapper" id="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item,index) in arr">
-                <component :is="item.component" :data="item"></component>
-            </div>
-        </div>
-    </div>
-  </div>
+    <pageIndex :currentConfig="currentConfig"></pageIndex>
 </template>
 
 <script>
-import ConfigInfoComponent from './configInfo'
-import NewsInformComponent from './newsInform'
-import AlarmEventComponent from './alarmEvent'
-import AlarmMaskComponent from './alarmMask'
-import LimitSetComponent from './limitSet'
-import DataPublishComponent from './dataPublish'
-
-import swiper from '@/views/public/mixin/swiper'
-// import { mapGetters } from 'vuex'
+import pageIndex from '@/views/public/pageHasIndex'
 export default {
-    mixins:[swiper],
-    components: {ConfigInfoComponent,NewsInformComponent,AlarmEventComponent,AlarmMaskComponent,LimitSetComponent,DataPublishComponent},
-	// computed:{
-    //     ...mapGetters([
-    //         'token'
-    //     ]),
-    // },
+    components: {pageIndex},
     created () {
-        // if(!this.token){
-		// 	// this.$message.warning("非法进入");
-		// 	// this.$router.push({path:'/loncom/home'});
-        // }
-        let arr=[
-            {key:"ConfigInfo",component:"ConfigInfoComponent"},
-            {key:"NewsInform",component:"NewsInformComponent"},
-            {key:"AlarmEvent",component:"AlarmEventComponent"},
-            {key:"AlarmMask",component:"AlarmMaskComponent"},
-            {key:"LimitSet",component:"LimitSetComponent"},
-            // {key:"DataPublish",component:"DataPublishComponent"},
-        ]
-        this.arr=arr;
-        this.backArr=arr;
+        
     },
+    
     mounted() {
         
     },
     data(){
         return{
-            
+            currentConfig:[
+                {key:"AlarmEvent",language:"AlarmEvent"},{key:"AlarmMask",language:"AlarmMask"},
+                {key:"LimitSet",language:"LimitSet"},{key:"DataPublish",language:"DataPublish"},
+                {key:"NewsInform",language:"NewsInform"},{key:"ConfigInfo",language:"ConfigInfo"}
+            ]
         }
     },
-	destroyed() {
-		this.$store.dispatch("setToken",false);
-	},
     methods: {
         
     },

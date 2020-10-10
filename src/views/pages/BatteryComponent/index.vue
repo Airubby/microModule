@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-        <div class="echart-info" :id="data.key"></div>
+        <div class="echart-info"></div>
         <div class="table">
             <div class="table-con">
                 <div class="table-box table-box-title">
@@ -26,8 +26,7 @@
 import echarts from 'echarts'
 export default {
     created () {
-        console.log(this.$attrs.data)
-        this.data=this.$attrs.data;
+
     },
     mounted() {
         let xData=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20'];
@@ -54,7 +53,7 @@ export default {
                     data: [220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330, 400,220, 182, 191, 234, 290, 330]
                 }
             ];
-        let echart=this.clickLegend(this.data.key,xData,legend,title,color,series);
+        let echart=this.clickLegend('Battery',xData,legend,title,color,series);
         window.onresize=function(){
             echart.resize();
         }

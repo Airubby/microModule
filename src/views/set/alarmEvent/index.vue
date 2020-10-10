@@ -361,11 +361,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-    .content{
-        height: calc(100% + 15px);
-        position: relative;
-        top: -15px;
-    }
     .right-title{
         height: 40px;
         line-height: 40px;

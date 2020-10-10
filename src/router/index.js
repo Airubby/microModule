@@ -76,7 +76,13 @@ export const syncRouter=[
 	// 		component: () => import('@/views/maintain/index.vue')
 	// 	}, 
     // ]
-  	// },
+	  // },
+	{
+		path: '/loncom/test',
+		name: 'test',
+		meta: { title: '测试'},
+		component: () => import('@/views/Test.vue')
+	}, 
 	{ path: '/loncom/401', component: () => import('@/views/errorPage/401') },
   	{ path: '*', component: () => import('@/views/errorPage/404') },
   
@@ -98,25 +104,100 @@ export const asyncRouter=[
 	{
 		path: '/loncom/set',
 		name: 'Set',
-		meta: { title: '设置'},
-		component: () => import('@/views/set/index.vue')
+		component: () => import('@/views/set/index.vue'),
+		redirect:'/loncom/set/alarmEvent',
+		children:[
+			{
+				path: '/loncom/set/alarmEvent',
+				name: 'AlarmEvent',
+				meta: { },
+				component: () => import('@/views/set/alarmEvent/index.vue')
+			},
+			{
+				path: '/loncom/set/alarmMask',
+				name: 'AlarmMask',
+				meta: { },
+				component: () => import('@/views/set/alarmMask/index.vue')
+			}, 
+			{
+				path: '/loncom/set/limitSet',
+				name: 'LimitSet',
+				meta: { },
+				component: () => import('@/views/set/limitSet/index.vue')
+			}, 
+			{
+				path: '/loncom/set/dataPublish',
+				name: 'DataPublish',
+				meta: { },
+				component: () => import('@/views/set/dataPublish/index.vue')
+			}, 
+			{
+				path: '/loncom/set/newsInform',
+				name: 'NewsInform',
+				meta: { },
+				component: () => import('@/views/set/newsInform/index.vue')
+			}, 
+			{
+				path: '/loncom/set/configInfo',
+				name: 'ConfigInfo',
+				meta: { },
+				component: () => import('@/views/set/configInfo/index.vue')
+			}, 
+		]
 	}, 
 	{
 		path: '/loncom/maintain',
 		name: 'Maintain',
-		meta: { title: '维护'},
-		component: () => import('@/views/maintain/index.vue')
-	}, 
-	{
-		path: '/loncom/test',
-		name: 'test',
-		meta: { title: '测试'},
-		component: () => import('@/views/Test.vue')
+		component: () => import('@/views/maintain/index.vue'),
+		redirect:'/loncom/maintain/dev',
+		children:[
+			{
+				path: '/loncom/maintain/dev',
+				name: 'DevManage',
+				meta: { },
+				component: () => import('@/views/maintain/dev/index.vue')
+			},
+			{
+				path: '/loncom/maintain/interface',
+				name: 'InterfaceManage',
+				meta: { },
+				component: () => import('@/views/maintain/interface/index.vue')
+			},
+			{
+				path: '/loncom/maintain/ganged',
+				name: 'GangedManage',
+				meta: { },
+				component: () => import('@/views/maintain/ganged/index.vue')
+			},
+			{
+				path: '/loncom/maintain/user',
+				name: 'UserManage',
+				meta: { },
+				component: () => import('@/views/maintain/user/index.vue')
+			},
+			{
+				path: '/loncom/maintain/log',
+				name: 'LogManage',
+				meta: { },
+				component: () => import('@/views/maintain/log/index.vue')
+			},
+			{
+				path: '/loncom/maintain/sys',
+				name: 'SysManage',
+				meta: { },
+				component: () => import('@/views/maintain/sys/index.vue')
+			},
+		]
 	}, 
 ]
-export const router= new Router({
-  //mode: 'history',
-  mode:'hash',
-  base: process.env.BASE_URL,
-  routes:syncRouter
-})
+export function resetRouter () {
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher
+}
+const createRouter = () => new Router({
+    // mode: 'history',  //默认hash
+    base: process.env.BASE_URL,
+    routes: syncRouter
+ })
+
+export const router= createRouter()

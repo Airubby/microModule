@@ -1,9 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookies from 'js-cookie'
-import {router,asyncRouter } from '@/router/index'
+import {router,resetRouter,asyncRouter } from '@/router/index'
 Vue.use(Vuex)
-
+/**
+ * 递归过滤异步路由表，生成router数据结构
+ * @param asyncRouterMap
+ * @param data
+ */
+const rootPath="/loncom";
+function filterAsyncRouter(data) {
+    data.map((item)=>{
+		let addr=item.component;
+		item.component = () => import(`@/views/public/pageIndex.vue`);
+		item.name= item.component;
+		item.path=rootPath+`/${addr}`;
+        if(item.children&&item.children.length>0){
+            item["redirect"]=rootPath+`/${addr}/`+item.children[0].component;
+            item.children=filterAsyncRouter(item.children);
+        }
+    })
+    return data;
+}
 const store = new Vuex.Store({
 	state: {
 		wsData:{},
@@ -11,7 +29,9 @@ const store = new Vuex.Store({
 		language: Cookies.get('language') || 'zh',
 		token:"",
 		activeIndex:Cookies.get('activeIndex') || 0,
-		config:[],
+		config:[], //所有导航
+		currentConfig:{},  //当前导航
+		currentComponent:"",  //当前组件
 		componentArr:[],
 	},
 	getters : {
@@ -20,6 +40,8 @@ const store = new Vuex.Store({
 		AjaxUrl: state => state.AjaxUrl,
 		token: state=>state.token,
 		config: state=>state.config,
+		currentConfig:state=>state.currentConfig,
+		currentComponent:state=>state.currentComponent,
 		componentArr: state=>state.componentArr,
 	},
 	mutations: {
@@ -40,40 +62,64 @@ const store = new Vuex.Store({
 			Cookies.set('TOKEN', token)
 		},
 		SET_CONFIG(state, config){
+			resetRouter(); //重置初始路由
 			state.config = config
 			let data=config;
+			let redirect=data.length>0?`${rootPath}/`+data[0].key:`${rootPath}/401`;
+			let newRouter={
+				path: rootPath,
+				name:'loncom',
+				component: () => import('@/views/index.vue'),
+				redirect:redirect,
+				children:[]
+			}
 			if(data.length>0){
-				let redirect="/loncom/"+data[0].component;
-				let newRouter={
-					path: '/loncom',
-					name:'loncom',
-					component: () => import('@/views/index.vue'),
-					redirect:redirect,
-					children:[]
-				}
 				let arr=[];
 				for(let i=0;i<data.length;i++){
-					arr.push({
-						path: '/loncom/'+data[i].component,
-						name: data[i].component,
-						component: () => import('@/views/public/page.vue'),
-					});
+					let children=[];
+					if(data[i].children&&data[i].children.length>0){
+						for(let j=0;j<data[i].children.length;j++){
+							children.push({
+								path: `${rootPath}/`+data[i].key+"/"+data[i].children[j].key,
+								name: data[i].children[j].key,
+								meta:{componentName:data[i].children[j].component},
+								component: () => import('@/views/public/pageIndex.vue'),
+							})
+						}
+					}
+					if(children.length>0){
+						arr.push({
+							path: `${rootPath}/`+data[i].key,
+							name: data[i].key,
+							meta:{componentName:data[i].component},
+							component: () => import('@/views/public/pageMoreIndex.vue'),
+							redirect:children[0].path,
+							children:children
+						});
+					}else{
+						arr.push({
+							path: `${rootPath}/`+data[i].key,
+							name: data[i].key,
+							meta:{componentName:data[i].component},
+							component: () => import('@/views/public/pageIndex.vue'),
+						});
+					}
+					
 				}
-				for(let i=0;i<asyncRouter.length;i++){
-					arr.push(asyncRouter[i]);
-				}
-				newRouter.children=arr;
-				router.addRoutes([newRouter]);
-			}else{
-				let newRouter={
-					path: '/loncom',
-					name:'loncom',
-					component: () => import('@/views/index.vue'),
-					redirect:'/loncom/401',
-				}
-				router.addRoutes([newRouter]);
+				newRouter.children=arr.concat(asyncRouter);
+				// let theAsyncRouter = filterAsyncRouter(data);
+				// if(theAsyncRouter){
+				// 	newRouter.redirect=rootPath+theAsyncRouter[0].component;
+				// 	newRouter.children=theAsyncRouter;
+				// }
 			}
-			
+			router.addRoutes([newRouter]);
+		},
+		SET_CURRENTCONFIG(state,currentConfig){
+			state.currentConfig=currentConfig
+		},
+		SET_CURRENTCOMPONENT(state,currentComponent){
+			state.currentComponent=currentComponent
 		},
 		SET_COMPONENT_ARR(state, arr){
 			state.componentArr = arr
@@ -95,6 +141,12 @@ const store = new Vuex.Store({
 		},
 		setConfig({ commit }, config) {
 			commit('SET_CONFIG', config)
+		},
+		setCurrentConfig({ commit }, currentConfig){
+			commit('SET_CURRENTCONFIG', currentConfig)
+		},
+		setCurrentComponent({ commit }, currentComponent){
+			commit('SET_CURRENTCOMPONENT', currentComponent)
 		},
 		setComponentArr({ commit }, arr) {
 			commit('SET_COMPONENT_ARR', arr)

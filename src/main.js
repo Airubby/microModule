@@ -31,8 +31,8 @@ Vue.prototype.$Swiper = Swiper
 
 Vue.use(ElTablePagination)
 
-//加载组件
-import './components/Global/index.js'
+// //加载组件
+// import './components/Global/index.js'
 
 
 Vue.config.productionTip = false

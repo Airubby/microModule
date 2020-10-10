@@ -96,9 +96,9 @@
 </template>
 
 <script>
-import battery from './CircuitMapComponent/battery.vue'
-import threeline from './CircuitMapComponent/threeLine.vue'
-import show from './CircuitMapComponent/show.vue'
+import battery from './battery.vue'
+import threeline from './threeLine.vue'
+import show from './show.vue'
 export default {
     components: {
       battery,threeline,show

@@ -62,9 +62,9 @@ import api from '@/utils/request'
                 })
             }
             //每隔一段时间检测一下是否连上webSocket
-            setTimeout(()=>{
-                this.getWebSocket();
-            },10000)
+            // setTimeout(()=>{
+            //     this.getWebSocket();
+            // },10000)
         },
       changeComponent:function(){
         let val=this.$route;

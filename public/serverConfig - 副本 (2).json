@@ -3,71 +3,65 @@
     "develop": "http://172.18.47.162:8081",
     "config": [
         {
-            "key": "home",
-            "component": "IndexComponentOne",
+            "component": "home",
             "img": "menu-monitort.png",
-            "language": "Home"
+            "language": "Home",
+            "item": [
+                {
+                    "key": "IndexComponent",
+                    "component": "IndexComponentOne"
+                }
+            ]
         },
         {
-            "key": "power",
             "component": "power",
             "img": "menu-distribution.png",
             "language": "Power",
-            "children": [
+            "item": [
                 {
                     "key": "MDCinverter",
-                    "component": "MdcinverterComponent",
-                    "language":"MDCinverter"
+                    "component": "MdcinverterComponent"
                 },
                 {
                     "key": "Tiprealdata",
-                    "component": "TiprealdataTwoComponent",
-                    "language":"Tiprealdata"
+                    "component": "TiprealdataTwoComponent"
                 }
             ]
         },
         {
             "component": "hvdc",
-            "key":"hvdc",
             "img": "menu-hvdc.png",
             "language": "Hvdc",
-            "children": [
+            "item": [
                 {
                     "key": "CircuitMap",
-                    "language": "CircuitMap",
                     "component": "CircuitMapComponent"
                 },
                 {
                     "key": "BatteryA",
-                    "language": "BatteryA",
                     "component": "BatteryComponent"
                 },
                 {
                     "key": "BatteryB",
-                    "language": "BatteryB",
                     "component": "BatteryComponent"
                 },
                 {
                     "key": "BatteryC",
-                    "language": "BatteryC",
                     "component": "BatteryComponent"
                 }
             ]
         },
         {
             "component": "air",
-            "key":"air",
             "img": "menu-refrigeration.png",
             "language": "Air",
-            "children": [
+            "item": [
                 {
                     "key": "HumitureChart",
-                    "language": "HumitureChart",
                     "component": "HumitureComponent"
                 },
                 {
                     "key": "ForTheReturnChart",
-                    "language": "ForTheReturnChart",
                     "component": "EchartBarComponent",
                     "title": "温度(℃)",
                     "dev": [
@@ -105,7 +99,6 @@
                 },
                 {
                     "key": "FanAndWaterChart",
-                    "language": "FanAndWaterChart",
                     "component": "EchartBarComponent",
                     "title": "百分比(%)",
                     "dev": [
@@ -143,71 +136,59 @@
                 },
                 {
                     "key": "AirRealData",
-                    "language": "AirRealData",
                     "component": "AirRealDataComponent"
                 }
             ]
         },
         {
             "component": "env",
-            "key": "env",
             "img": "menu-environment.png",
             "language": "Env",
-            "children": [
+            "item": [
                 {
                     "key": "EnvironmentChart",
-                    "language": "EnvironmentChart",
                     "component": "EnvironmentComponent"
                 },
                 {
                     "key": "EnvRealData",
-                    "language": "EnvRealData",
                     "component": "EnvRealDataComponent"
                 }
             ]
         },
         {
             "component": "security",
-            "key": "security",
             "img": "menu-security.png",
             "language": "Security",
-            "children": [
+            "item": [
                 {
                     "key": "SecurityStatus",
-                    "language": "SecurityStatus",
                     "component": "SecurityComponent"
                 },
                 {
-                    "key": "SecurityStatusOne",
-                    "language": "SecurityStatus",
+                    "key": "SecurityStatus",
                     "component": "SecurityComponentOne"
                 },
                 {
                     "key": "AccessInfo",
-                    "language": "AccessInfo",
                     "component": "AccessComponent"
                 },
                 {
                     "key": "SensorInfo",
-                    "language": "SensorInfo",
                     "component": "SensorComponent"
                 }
             ]
         },
         {
             "component": "his",
-            "key": "his",
             "img": "menu-history.png",
             "language": "His",
-            "children": [
+            "item": [
                 {
-                    "key": "HisComponent",
-                    "language": "MDCinverter",
+                    "key": "MDCinverter",
                     "component": "HisComponent"
                 },
                 {
-                    "key": "HisComponentOne",
-                    "language": "MDCinverter",
+                    "key": "MDCinverter",
                     "component": "HisComponentOne"
                 }
             ]

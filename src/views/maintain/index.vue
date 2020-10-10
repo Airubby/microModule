@@ -1,38 +1,13 @@
 <template>
-  <div class="content">
-    <div id="swiper-container" class="swiper-container">
-        <div class="swiper-pagination"></div>
-        <div class="swiper-wrapper" id="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item,index) in arr">
-                <component :is="item.component" :data="item" v-if="getIndex==index"></component>
-            </div>
-        </div>
-    </div>
-  </div>
+    <pageIndex :currentConfig="currentConfig"></pageIndex>
 </template>
 
 <script>
-import DevManageComponent from './dev'
-import InterfaceManageComponent from './interface'
-import GangedManageComponent from './ganged'
-import UserManageComponent from './user'
-import LogManageComponent from './log'
-import SysManageComponent from './sys'
-import swiper from '@/views/public/mixin/swiper'
+import pageIndex from '@/views/public/pageHasIndex'
 export default {
-    mixins:[swiper],
-    components: {DevManageComponent,InterfaceManageComponent,GangedManageComponent,UserManageComponent,LogManageComponent,SysManageComponent},
+    components: {pageIndex},
     created () {
-        let arr=[
-            {key:"DevManage",component:"DevManageComponent"},
-            {key:"InterfaceManage",component:"InterfaceManageComponent"},
-            {key:"GangedManage",component:"GangedManageComponent"},
-            {key:"UserManage",component:"UserManageComponent"},
-            {key:"LogManage",component:"LogManageComponent"},
-            {key:"SysManage",component:"SysManageComponent"},
-        ]
-        this.arr=arr;
-        this.backArr=arr;
+        
     },
     
     mounted() {
@@ -40,7 +15,11 @@ export default {
     },
     data(){
         return{
-            
+            currentConfig:[
+                {key:"DevManage",language:"DevManage"},{key:"InterfaceManage",language:"InterfaceManage"},
+                {key:"GangedManage",language:"GangedManage"},{key:"UserManage",language:"UserManage"},
+                {key:"LogManage",language:"LogManage"},{key:"SysManage",language:"SysManage"}
+            ]
         }
     },
     methods: {
