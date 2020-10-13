@@ -112,10 +112,7 @@ export default {
             }
         },
         toDetail:function(item){
-            console.log(item)
-            let info=item;
-            info["activeComponent"]="HisDetailComponent"
-            this.$emit("backInfo",info)
+            this.$router.push({name:'HisOneDetailComponent',query:{params:JSON.stringify({"id":"a",name:'小呆'})}});
         },
         showDoor:function(){
             // let info={activeComponent:"HisDoorComponent"};

@@ -51,7 +51,7 @@ export default {
 				display: block;
 				background: #718199;
 				color: #fff;
-				&.router-link-exact-active{
+				&.router-link-exact-active,&.router-link-active{
 					background: #5a687b;
 				}
 			}

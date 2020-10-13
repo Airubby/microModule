@@ -53,13 +53,14 @@ export default {
             this.$store.dispatch('setCurrentConfig',item);
         },
         setComponent:function(){
+            //key作为的路由name
             for(let i=0;i<this.config.length;i++){
                 if(this.config[i].children&&this.config[i].children.length>0){
                     for(let m=0;m<this.config[i].children.length;m++){
                         this.getComponent(this.config[i].children[m].component);
                         if(this.config[i].children[m].relation&&this.config[i].children[m].relation.length>0){
                             for(let n=0;n<this.config[i].children[m].relation.length;n++){
-                                this.getComponent(this.config[i].children[m].component,this.config[i].children[m].relation[n]);
+                                this.getComponent(this.config[i].children[m].component,this.config[i].children[m].relation[n].component);
                             }
                         }
                     }
@@ -67,7 +68,7 @@ export default {
                     this.getComponent(this.config[i].component);
                     if(this.config[i].relation&&this.config[i].relation.length>0){
                         for(let j=0;j<this.config[i].relation.length;j++){
-                            this.getComponent(this.config[i].component,this.config[i].relation[j]);
+                            this.getComponent(this.config[i].component,this.config[i].relation[j].component);
                         }
                     }
                 }
@@ -75,12 +76,21 @@ export default {
             this.changeRoute();
         },
         changeRoute:function(){
+            console.log(this.$route)
             for(let i=0;i<this.config.length;i++){
                 if(this.config[i].children&&this.config[i].children.length>0){
                     for(let j=0;j<this.config[i].children.length;j++){
                         if(this.$route.name==this.config[i].children[j].key){
                             this.enterPage(this.config[i]);
                             break;
+                        }
+                        if(this.config[i].children[j].relation&&this.config[i].children[j].relation.length>0){
+                            for(let m=0;m<this.config[i].children[j].relation.length;m++){
+                                if(this.$route.name==this.config[i].children[j].relation[m].key){
+                                    this.enterPage(this.config[i]);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }else{
@@ -188,6 +198,9 @@ export default {
     watch:{
         $route(to,from){
             this.changeRoute();
+        },
+        config:function(){
+            this.setComponent();
         },
     },
     destroyed() {

@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <div class="echart" :id="data.key">
+        <div class="echart" id="ehartBar">
         </div>
     </div>
 </template>
@@ -8,7 +8,6 @@
 <script>
 
 export default {
-    props:["data"],
     created(){
 
     },
@@ -49,11 +48,47 @@ export default {
         //     },
         // ]
         let color=["#3CB2FF","#FFC940"]
-        this.$tool.echartAir(this.data.key,title,legend,xData,yData,color);
+        this.$tool.echartAir("ehartBar",title,legend,xData,yData,color);
     },
     data(){
         return{
-            
+            data:{
+                    "key": "ForTheReturnChart",
+                    "component": "EchartBarComponent",
+                    "title": "温度(℃)",
+                    "dev": [
+                        {
+                            "name": "空调1",
+                            "point": [
+                                {
+                                    "devid": "01",
+                                    "pointid": "0101",
+                                    "name": "供水温度(℃)"
+                                },
+                                {
+                                    "devid": "01",
+                                    "pointid": "0102",
+                                    "name": "回水温度(℃)"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "空调2",
+                            "point": [
+                                {
+                                    "devid": "02",
+                                    "pointid": "0201",
+                                    "name": "供水温度(℃)"
+                                },
+                                {
+                                    "devid": "02",
+                                    "pointid": "0202",
+                                    "name": "回水温度(℃)"
+                                }
+                            ]
+                        }
+                    ]
+                }
         }
     },
     methods: {

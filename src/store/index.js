@@ -32,7 +32,6 @@ const store = new Vuex.Store({
 		config:[], //所有导航
 		currentConfig:{},  //当前导航
 		currentComponent:"",  //当前组件
-		componentArr:[],
 	},
 	getters : {
 		language: state => state.language,
@@ -42,7 +41,6 @@ const store = new Vuex.Store({
 		config: state=>state.config,
 		currentConfig:state=>state.currentConfig,
 		currentComponent:state=>state.currentComponent,
-		componentArr: state=>state.componentArr,
 	},
 	mutations: {
 		SET_WSDATA(state,wsData){
@@ -85,6 +83,16 @@ const store = new Vuex.Store({
 								meta:{componentName:data[i].children[j].component},
 								component: () => import('@/views/public/pageIndex.vue'),
 							})
+							if(data[i].children[j].relation&&data[i].children[j].relation.length>0){
+								for(let m=0;m<data[i].children[j].relation.length;m++){
+									children.push({
+										path: `${rootPath}/`+data[i].key+"/"+data[i].children[j].key+"/"+data[i].children[j].relation[m].key,
+										name: data[i].children[j].relation[m].key,
+										meta:{componentName:data[i].children[j].relation[m].component},
+										component: () => import('@/views/public/pageIndex.vue'),
+									})
+								}
+							}
 						}
 					}
 					if(children.length>0){
@@ -103,6 +111,16 @@ const store = new Vuex.Store({
 							meta:{componentName:data[i].component},
 							component: () => import('@/views/public/pageIndex.vue'),
 						});
+						if(data[i].relation&&data[i].relation.length>0){
+							for(let m=0;m<data[i].relation.length;m++){
+								children.push({
+									path: `${rootPath}/`+data[i].key+"/"+data[i].relation[m].key,
+									name: data[i].relation[m].key,
+									meta:{componentName:data[i].relation[m].component},
+									component: () => import('@/views/public/pageIndex.vue'),
+								})
+							}
+						}
 					}
 					
 				}
@@ -120,9 +138,6 @@ const store = new Vuex.Store({
 		},
 		SET_CURRENTCOMPONENT(state,currentComponent){
 			state.currentComponent=currentComponent
-		},
-		SET_COMPONENT_ARR(state, arr){
-			state.componentArr = arr
 		},
 	},
 	actions: {
@@ -147,9 +162,6 @@ const store = new Vuex.Store({
 		},
 		setCurrentComponent({ commit }, currentComponent){
 			commit('SET_CURRENTCOMPONENT', currentComponent)
-		},
-		setComponentArr({ commit }, arr) {
-			commit('SET_COMPONENT_ARR', arr)
 		},
 	},
 })

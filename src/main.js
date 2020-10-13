@@ -47,7 +47,6 @@ function getServerConfig() {
       Vue.prototype.$ajaxUrl=ajaxUrl;
       store.dispatch('setAjaxUrl',ajaxUrl);
       store.dispatch('setConfig',config.config);
-      
       resolve();
     }).catch((error) => {
       console.log(error)

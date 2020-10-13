@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-        <div class="echart-info"></div>
+        <div class="echart-info" id="Battery"></div>
         <div class="table">
             <div class="table-con">
                 <div class="table-box table-box-title">

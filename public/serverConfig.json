@@ -202,13 +202,15 @@
             "children": [
                 {
                     "key": "HisComponent",
-                    "language": "MDCinverter",
-                    "component": "HisComponent"
+                    "language": "His",
+                    "component": "HisComponent",
+                    "relation":[{"key":"HisDetailComponent","component":"HisDetailComponent"}]
                 },
                 {
                     "key": "HisComponentOne",
-                    "language": "MDCinverter",
-                    "component": "HisComponentOne"
+                    "language": "His",
+                    "component": "HisComponentOne",
+                    "relation":[{"key":"HisOneDetailComponent","component":"HisOneDetailComponent"}]
                 }
             ]
         }

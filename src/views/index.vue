@@ -3,8 +3,8 @@
     <div class="content-left">
         <ul>
             <el-scrollbar class="scrollbar">
-                <template v-for="item in config">
-                    <li @click="enterPage(item)">
+                <template v-for="item in $store.getters.config">
+                    <li>
                         <router-link :to="{name:item.key}">
                             <div class="nav-box">
                                 <div class="nav-box-con">
@@ -85,7 +85,7 @@
                         </div>
                     </router-link>
                 </li>
-                <li @click="flushPage">
+                <li>
                     <router-link :to="{name:'Maintain'}">
                         <div class="nav-box">
                             <div class="nav-box-con">
@@ -160,10 +160,8 @@
 import checkPassword from './set/component/dialogCheck.vue'
 import Cookies from 'js-cookie'
 import { mapGetters } from 'vuex'
-import getComponent from '@/views/mixins/getComponent'
 export default {
     name: 'index',
-    mixins:[getComponent],
     created () {
         this.date=this.setClock();
         
