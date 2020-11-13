@@ -29,6 +29,33 @@
             ]
         },
         {
+            "component": "ups",
+            "img": "menu-distribution.png",
+            "language": "ups",
+            "item": [
+                {
+                    "key": "rackInfo",
+                    "component": "RackInfo"
+                },
+                {
+                    "key": "rack",
+                    "component": "RackOverview"
+                },
+                {
+                    "key": "ups",
+                    "component": "UpsComponent"
+                },
+                {
+                    "key": "upsmodule",
+                    "component": "UpsModuleComponent"
+                },
+                {
+                    "key": "cool",
+                    "component": "CoolComponent"
+                }
+            ]
+        },
+        {
             "component": "hvdc",
             "img": "menu-hvdc.png",
             "language": "Hvdc",

@@ -1,6 +1,8 @@
 {
   "language":"zh",
   "zhLang":{
+    "ups":"UPS",
+    "upsmodule":"UPS模块",
     "Home":"主监控",
     "Power":"配电",
     "Hvdc":"HVDC",
@@ -193,6 +195,8 @@
     
   },
   "enLang":{
+      "ups":"UPS",
+      "upsmodule":"UPSModule",
     "Home":"Home",
     "Power":"Power",
     "Hvdc":"HVDC",
