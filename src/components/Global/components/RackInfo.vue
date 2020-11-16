@@ -321,7 +321,7 @@ export default {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         .top-box{
             text-align: center;
             .number{

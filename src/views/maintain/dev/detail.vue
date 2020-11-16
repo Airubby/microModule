@@ -1,6 +1,6 @@
 <template>
-  <div class="content">
-      <el-scrollbar class="scrollbar">
+    <div class="content">
+        <el-scrollbar class="scrollbar">
             <div class="table_search">
                 <div class="form-serarch">
                     <el-button @click="back">{{$t("Back")}}</el-button>
@@ -39,7 +39,7 @@
                 </template>
             </el-table-pagination>
         </el-scrollbar>
-  </div>
+    </div>
 </template>
 
 <script>

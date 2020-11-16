@@ -23,6 +23,10 @@
                     "component": "MdcinverterComponent"
                 },
                 {
+                    "key": "MDCinverterSH",
+                    "component": "MdcinvertershComponent"
+                },
+                {
                     "key": "Tiprealdata",
                     "component": "TiprealdataTwoComponent"
                 }
@@ -30,9 +34,13 @@
         },
         {
             "component": "ups",
-            "img": "menu-distribution.png",
+            "img": "menu-ups.png",
             "language": "ups",
             "item": [
+                {
+                    "key": "rackInAssert",
+                    "component": "RackInAssert"
+                },
                 {
                     "key": "rackInfo",
                     "component": "RackInfo"
