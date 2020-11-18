@@ -25,9 +25,9 @@
                     <div class="index-bottom-box-conleft">
                         <div class="index-conleft-box">
                             <div class="index-conleft-boxcon">
-                                <div class="num"><span>20.0</span>℃</div>
+                                <div class="num"><span><Aashow value="3"></Aashow></span>℃</div>
                                 <div class="text">
-                                    <p>热通道</p>
+                                    <p @click="showP('hidden')">热通道</p>
                                     <p>MAX</p>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                             <div class="index-conleft-boxcon">
                                 <div class="num"><span>20.0</span>℃</div>
                                 <div class="text">
-                                    <p>冷通道</p>
+                                    <p @click="showP('show')">冷通道</p>
                                     <p>MAX</p>
                                 </div>
                             </div>
@@ -76,6 +76,9 @@ export default {
         }
     },
     methods: {
+        showP:function(info){
+            this.$store.dispatch("setPriceStatus",info);
+        },
         test:function(info){
             console.log(this.map)
             let flag=true;

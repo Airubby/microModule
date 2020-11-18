@@ -12,7 +12,8 @@ const store = new Vuex.Store({
 		token:"",
 		activeIndex:Cookies.get('activeIndex') || 0,
 		config:[],
-		componentArr:[],
+        componentArr:[],
+        priceStatus:"btn",  //btn:展示按钮；hidden：隐藏；show:正常展示
 	},
 	getters : {
 		language: state => state.language,
@@ -20,7 +21,8 @@ const store = new Vuex.Store({
 		AjaxUrl: state => state.AjaxUrl,
 		token: state=>state.token,
 		config: state=>state.config,
-		componentArr: state=>state.componentArr,
+        componentArr: state=>state.componentArr,
+        priceStatus: state=>state.priceStatus,
 	},
 	mutations: {
 		SET_WSDATA(state,wsData){
@@ -77,7 +79,10 @@ const store = new Vuex.Store({
 		},
 		SET_COMPONENT_ARR(state, arr){
 			state.componentArr = arr
-		},
+        },
+        SET_PRICE_STATUS(state,info){
+            state.priceStatus=info;
+        }
 	},
 	actions: {
 		setwsData({commit},wsData){
@@ -98,6 +103,9 @@ const store = new Vuex.Store({
 		},
 		setComponentArr({ commit }, arr) {
 			commit('SET_COMPONENT_ARR', arr)
+        },
+        setPriceStatus({ commit }, info) {
+			commit('SET_PRICE_STATUS', info)
 		},
 	},
 })
