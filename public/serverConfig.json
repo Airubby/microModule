@@ -29,6 +29,10 @@
                 {
                     "key": "Tiprealdata",
                     "component": "TiprealdataTwoComponent"
+                },
+                {
+                    "key": "TiprealdataSH",
+                    "component": "TiprealdatashComponent"
                 }
             ]
         },

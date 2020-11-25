@@ -10,6 +10,12 @@ export default {
                 this.dataArr.push(this.arr[i]);
             }
         }
+        //详情页刷新，使其在当前页
+        if(sessionStorage.activeData&&sessionStorage.activeComponent){
+            this.activeIndex=sessionStorage.activeIndex?sessionStorage.activeIndex:0;
+            this.componentArr[this.activeIndex]=sessionStorage.activeComponent;
+            this.dataArr[this.activeIndex]=JSON.parse(sessionStorage.activeData)
+        }
     },
     mounted() {
         this.activeIndex=sessionStorage.activeIndex?sessionStorage.activeIndex:0;
@@ -57,11 +63,20 @@ export default {
                 },
                 on:{
                     slideChangeTransitionStart:function(){
+                        _this.reset();
+                    },
+                    slideChangeTransitionEnd:function(){
                         _this.activeIndex=this.activeIndex;
                         sessionStorage.activeIndex=this.activeIndex;
                     }
                 },
             })
+        },
+        reset:function(){
+            for(let i=0;i<this.arr.length;i++){
+                this.componentArr[i]=this.arr[i].component;
+                this.dataArr[i]=this.arr[i];
+            }
         },
         backInfo:function(info){
             if(info){
@@ -72,6 +87,12 @@ export default {
                     this.showComponent=true;
                 })
             }
+        },
+        setPageInfo:function(){
+            sessionStorage.pageInfo="";  // table跳转到详情页的时候记录table的当前页，返回的时候回到当前页用的，table那里绑定这个pageInfo
+            sessionStorage.activeData="";
+            sessionStorage.activeComponent="";
+            sessionStorage.backData="";  //跳转到详情页之前的备份数据
         }
     },
     watch:{
@@ -88,6 +109,9 @@ export default {
                     this.initSwiper();
                 })
             }
+        },
+        activeIndex:function(){
+            this.setPageInfo()
         }
     }
 }

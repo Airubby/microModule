@@ -170,6 +170,7 @@ export default {
                 xAxis: {
                     type: 'category',
                     data: ['机组','风机','加湿器','加热器'],
+                    boundaryGap: true,//设置为true
                     axisLine:{
                         lineStyle:{
                             color:this.lineColor,
@@ -181,7 +182,11 @@ export default {
                     },  
                     axisLabel:{
                         color:this.color
-                    },            
+                    },   
+                    axisTick: {
+                        alignWithLabel: true//类目轴中在 boundaryGap 为 true 的时候有效，
+                        //可以保证刻度线和标签对齐,不设置会出现柱状图不在刻度线中间
+                    }           
                 },
                 yAxis: {
                     type: 'value',
